@@ -30,3 +30,6 @@ Thumbs.db
 
 # Vite 缓存
 vite.config.*.timestamp-*
+
+# Claude Code 会话目录
+.claude/

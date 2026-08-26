@@ -30,9 +30,7 @@ export function FloatingActions() {
   // 每个页面「首次出现即展示 5 秒」只触发一次，之后仅靠点击把手展开
   const pendingInitial = useRef(true);
 
-  const isDetailPage =
-    /^\/posts\/[^/]+\/?$/.test(pathname) ||
-    (/^\/forum\/post\/[^/]+\/?$/.test(pathname) && !pathname.startsWith('/forum/post/new'));
+  const isDetailPage = /^\/posts\/[^/]+\/?$/.test(pathname);
   const hasContent = showTop || isDetailPage;
 
   // 展开并起 5 秒收起计时

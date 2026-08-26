@@ -61,29 +61,6 @@ export const router = createBrowserRouter([
           { path: 'tier', lazy: page(() => import('@/app/tier/page')) },
           { path: 'privacy', lazy: page(() => import('@/app/privacy/page')) },
           { path: 'agree', lazy: page(() => import('@/app/agree/page')) },
-          {
-            // ForumProvider（及其静态依赖的论坛 API client）随论坛路由懒加载，不进入口
-            lazy: async () => {
-              const { ForumProvider } = await import('@/app/forum/forum-provider');
-              return {
-                Component: function ForumLayout() {
-                  return <ForumProvider><Outlet /></ForumProvider>;
-                },
-              };
-            },
-            children: [
-              { path: 'forum', lazy: page(() => import('@/app/forum/page')) },
-              { path: 'forum/post/new', lazy: page(() => import('@/app/forum/post/new/page')) },
-              { path: 'forum/post/:id', lazy: page(() => import('@/app/forum/post/page')) },
-              { path: 'forum/auth/login', lazy: page(() => import('@/app/forum/auth/login/page')) },
-              { path: 'forum/auth/register', lazy: page(() => import('@/app/forum/auth/register/page')) },
-              { path: 'forum/auth/forgot-password', lazy: page(() => import('@/app/forum/auth/forgot-password/page')) },
-              { path: 'forum/auth/reset-password', lazy: page(() => import('@/app/forum/auth/reset-password/page')) },
-              { path: 'forum/me', lazy: page(() => import('@/app/forum/me/page')) },
-              { path: 'forum/u', lazy: page(() => import('@/app/forum/u/page')) },
-              { path: 'forum/admin', lazy: page(() => import('@/app/forum/admin/page')) },
-            ],
-          },
           ...redirectRoutes,
           { path: '*', element: <NotFoundPage /> },
         ],

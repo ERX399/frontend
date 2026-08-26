@@ -107,20 +107,7 @@ export const STATIC_ROUTE_META: Record<string, RouteMeta> = {
     description:
       '从夯到拉：在线层级排行榜（Tier List）制作工具，上传图片后拖放排名，从最夯到最拉，本地生成可保存为图片。',
   },
-  '/forum': {
-    title: '论坛社区',
-    description:
-      '夏之论坛：技术交流与闲聊灌水社区，支持 Markdown 发帖、评论与点赞，欢迎注册加入讨论。',
-  },
-  '/forum/post/new': { title: '发布新帖', description: '在夏之论坛发布新帖子。', noindex: true },
-  '/forum/auth/login': { title: '登录', description: '登录夏之论坛账号。', noindex: true },
-  '/forum/auth/register': { title: '注册账号', description: '注册夏之论坛账号。', noindex: true },
-  '/forum/auth/forgot-password': { title: '找回密码', description: '找回论坛账号密码。', noindex: true },
-  '/forum/auth/reset-password': { title: '重置密码', description: '重置论坛账号密码。', noindex: true },
-  '/forum/me': { title: '个人中心', description: '论坛个人中心。', noindex: true },
-  '/forum/u': { title: '用户主页', description: '论坛用户主页。', noindex: true },
-  '/forum/admin': { title: '论坛管理', description: '论坛管理面板。', noindex: true },
-};
+  };
 
 /** /posts/:slug 在真实文章数据到达前的兜底 meta（客户端随后覆写；Worker 侧查 posts.json 覆写） */
 export const POST_FALLBACK_META: RouteMeta = {
@@ -129,12 +116,6 @@ export const POST_FALLBACK_META: RouteMeta = {
   ogType: 'article',
 };
 
-/** /forum/post/:id 兜底 meta */
-export const FORUM_POST_FALLBACK_META: RouteMeta = {
-  title: '论坛帖子',
-  description: '来自夏之论坛的帖子与讨论。',
-  ogType: 'article',
-};
 
 export const REDIRECT_META: RouteMeta = {
   title: '正在重定向',
@@ -168,7 +149,6 @@ export function resolveRouteMeta(pathname: string): RouteMeta {
   if (exact) return exact;
   if (path in redirects) return REDIRECT_META;
   if (path.startsWith('/posts/')) return POST_FALLBACK_META;
-  if (path.startsWith('/forum/post/')) return FORUM_POST_FALLBACK_META;
   return NOT_FOUND_META;
 }
 
