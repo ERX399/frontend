@@ -13,7 +13,7 @@ export const siteConfig = {
   title: '《夏之》官方网站',
   subtitle: 'AcoFork',
   url: 'https://2x.nz',
-  icon: `https://github.com/ERX399.png`,
+  icon: `https://ker.520pro.top/awa.jpg`,
   description:
     '夏之的个人网站 —— 包含技术博客、论坛社区、实用在线工具等，记录分享技术与生活。',
   keywords: [
@@ -27,8 +27,8 @@ export const siteConfig = {
     url: 'https://2x.nz',
   },
   bio: {
-    avatar: `https://github.com/ERX399.png`,
-    avatar2x: `https://github.com/ERX399.png`,
+    avatar: `https://ker.520pro.top/awa.jpg`,
+    avatar2x: `https://ker.520pro.top/awa.jpg`,
     name: '夏之',
     bio: 'Protect What You Love.',
     links: [
@@ -68,9 +68,6 @@ export const siteConfig = {
     frontend: 'https://github.com/afoim/af_frontend',
     backend: 'https://github.com/afoim/af_forum-backend',
     natTool: 'https://github.com/afoim/webrtc_check_nat',
-  },
-  forum: {
-    totpIssuer: 'AcoFork Forum',
   },
   links: {
     // 指向个人主页而非具体仓库：前端仓库已转私有，直链会 404

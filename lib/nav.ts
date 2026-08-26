@@ -5,7 +5,7 @@ declare const __BUILD_ID__: string;
 // spec=140（140px / 6KB）而不是 spec=0（原图 / 72KB）：这张图只在 header 里
 // 显示成 28px，且**每个页面都有** —— 用原图等于全站每次首屏白扔 66KB。
 // 与 siteConfig.bio.avatar 的 1x 档同一个 URL，首页两处共用一次请求。
-export const SITE_ICON = `https://github.com/ERX399.png`;
+export const SITE_ICON = `https://ker.520pro.top/awa.jpg`;
 export const SITE_NAME = '夏之';
 
 export interface NavLink {
