@@ -16,10 +16,10 @@ interface Friend {
   backlink?: string;
 }
 
-const API = import.meta.env.VITE_FRIENDS_DOMAIN || 'https://raw-fas.2x.nz';
+const API = import.meta.env.VITE_FRIENDS_DOMAIN || 'https://raw-f.520pro.top';
 
 /**
- * 友链数据来自社区 PR（af_friends-data），`url` / `avatar` 是**投稿人可控**的字符串。
+ * 友链数据来自社区 PR（friends-data），`url` / `avatar` 是**投稿人可控**的字符串。
  * 直接甩进 `href` 就等于把 `javascript:` / `data:text/html` 的执行权交出去 ——
  * 一次合错的 PR 就是一个存储型 XSS。这里只放行 http/https，其余一律当没有链接：
  * 卡片仍然渲染（不至于因为一条脏数据整块消失），但不再可点。
@@ -142,12 +142,12 @@ export function FriendsClient({ initial }: { initial?: Friend[] } = {}) {
           <li>
             打开{' '}
             <a
-              href="https://github.com/afoim/af_friends-data/tree/main/data/friends"
+              href="https://github.com/ERX399/friends-data/tree/main/data/friends"
               target="_blank"
               rel="noopener noreferrer"
               className="underline underline-offset-2 hover:text-foreground"
             >
-              afoim/af_friends-data/data/friends
+              ERX399/friends-data/data/friends
             </a>{' '}
             ，点击右上角 <span className="font-medium text-foreground">···</span> → <span className="font-medium text-foreground">Create new file</span>
           </li>
@@ -172,7 +172,7 @@ export function FriendsClient({ initial }: { initial?: Friend[] } = {}) {
           </li>
           <li>
             <span className="font-medium text-foreground">backlink</span> 必填。填写后系统会验证你的友链页是否包含本站链接（
-            <code className="rounded bg-muted px-1 py-0.5">href=https://2x.nz</code>），验证通过后自动合并
+            <code className="rounded bg-muted px-1 py-0.5">href=https://520pro.top</code>），验证通过后自动合并
           </li>
           <li>
             如果 backlink 验证不通过，PR 不会自动合并，请确保你的友链页包含本站链接后 push 更新
@@ -192,7 +192,7 @@ export function FriendsClient({ initial }: { initial?: Friend[] } = {}) {
           提交后 GitHub Actions 会自动检查头像和网站的可达性，通过后合并。
           如果有问题，请
           <a
-            href="https://github.com/afoim/af_friends-data/issues/new"
+            href="https://github.com/ERX399/friends-data/issues/new"
             target="_blank"
             rel="noopener noreferrer"
             className="underline underline-offset-2 hover:text-foreground"

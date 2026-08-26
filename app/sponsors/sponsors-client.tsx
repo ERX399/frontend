@@ -9,7 +9,7 @@ interface Sponsor {
   amount: string;
 }
 
-const API = import.meta.env.VITE_FRIENDS_DOMAIN || 'https://raw-fas.2x.nz';
+const API = import.meta.env.VITE_FRIENDS_DOMAIN || 'https://raw-f.520pro.top';
 
 export function SponsorsClient({ initial }: { initial?: Sponsor[] } = {}) {
   const [sponsors, setSponsors] = useState<Sponsor[]>(initial ?? []);
