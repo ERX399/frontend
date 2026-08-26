@@ -12,7 +12,7 @@ export const siteConfig = {
   siteName: '夏之',
   title: '《夏之》官方网站',
   subtitle: 'AcoFork',
-  url: 'https://2x.nz',
+  url: 'https://520pro.top',
   icon: `https://ker.520pro.top/awa.jpg`,
   description:
     '夏之的个人网站 —— 包含技术博客、论坛社区、实用在线工具等，记录分享技术与生活。',
@@ -24,7 +24,7 @@ export const siteConfig = {
   ogImage: '/files/img/official.png',
   author: {
     name: 'AcoFork',
-    url: 'https://2x.nz',
+    url: 'https://520pro.top',
   },
   bio: {
     avatar: `https://ker.520pro.top/awa.jpg`,
@@ -32,7 +32,7 @@ export const siteConfig = {
     name: '夏之',
     bio: 'Protect What You Love.',
     links: [
-      { name: '爱发电', icon: 'simple-icons:afdian', url: 'https://www.ifdian.net/a/acofork', color: '#946ce6' },
+      { name: '爱发电', icon: 'simple-icons:afdian', url: 'https://www.ifdian.net/a/ERX399', color: '#946ce6' },
       { name: 'B站主页', icon: 'simple-icons:bilibili', url: 'https://space.bilibili.com/325903362', color: '#fb7299' },
       { name: 'QQ群', icon: '/icon/QQ.svg', url: 'https://qm.qq.com/q/FWqOHlwL2m' },
       { name: 'Telegram群', icon: 'simple-icons:telegram', url: 'https://t.me/+_07DERp7k1ljYTc1', color: '#0088cc' },

@@ -10,7 +10,7 @@
 import { redirects } from '../redirects';
 
 export const SITE_NAME = '夏之';
-export const SITE_URL = 'https://2x.nz';
+export const SITE_URL = 'https://520pro.top';
 export const SITE_TITLE = '《夏之》官方网站';
 export const SITE_DESCRIPTION =
   '夏之的个人网站 —— 包含技术博客、论坛社区、AI 生图、实用在线工具等，记录分享技术与生活。';

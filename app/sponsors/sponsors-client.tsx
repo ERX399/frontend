@@ -63,7 +63,7 @@ export function SponsorsClient({ initial }: { initial?: Sponsor[] } = {}) {
       {/* 去卡片：上下分隔线代替四边框，窄屏不再被 border + px 吃掉宽度 */}
       <div className="mb-12 flex flex-col items-center gap-4 border-y border-border py-8">
         <h2 className="text-2xl font-bold">支付宝赞助</h2>
-        <img src="/sponsors/qrcode/alipay.svg" alt="支付宝二维码" className="h-64 w-64" />
+        <img src="/sponsors/qrcode/pay.svg" alt="支付宝二维码" className="h-64 w-64" />
         <p className="text-center text-xs text-muted-foreground">
           如果你是要
           <Link to="/posts/pin" className="underline underline-offset-2 hover:text-foreground">
