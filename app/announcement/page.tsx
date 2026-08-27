@@ -8,7 +8,7 @@ import { Link } from 'react-router';
 import { Icon } from '@/components/ui/icon';
 import { buttonVariants } from '@/components/ui/button';
 
-const MAIL = 'acofork@foxmail.com';
+const MAIL = 'e.r.x399@gmail.com';
 
 function H2({ children }: { children: React.ReactNode }) {
   return (
@@ -98,7 +98,7 @@ export default function AnnouncementPage() {
           <p className="mt-1 text-sm text-muted-foreground">
             直接补录即可：点击顶部横幅的「立即补录」，或访问{' '}
             <Link to="/auth" className="underline">
-              2x.nz/auth
+              520pro.top/auth
             </Link>
             ，填写邮箱和一个新密码（至少 8 位），提交后即完成绑定。
           </p>
