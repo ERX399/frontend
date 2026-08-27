@@ -41,7 +41,7 @@ export const siteConfig = {
   },
   live: {
     statusApi: 'https://b-live.2x.nz',
-    roomUrl: 'https://live.bilibili.com/12005649',
+    roomUrl: '/building',
   },
   services: {
     nat: 'https://nat.2x.nz/api/analyze',
