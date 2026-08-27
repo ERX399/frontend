@@ -21,6 +21,16 @@ function NotFoundPage() {
   );
 }
 
+function ForumWipPage() {
+  return (
+    <main className="container mx-auto max-w-6xl px-4 py-24 text-center">
+      <h1 className="text-3xl font-bold mb-3">论坛正在装修中</h1>
+      <p className="text-muted-foreground mb-8">敬请期待</p>
+      <a href="/" className="text-primary hover:underline">返回首页</a>
+    </main>
+  );
+}
+
 /**
  * 全站规范形态为「无尾斜杠」：/posts/x 而非 /posts/x/。
  * 边缘 Worker 已对带斜杠请求做 301，这里只兜底 SPA 内部导航（history API 不经边缘）。
@@ -62,26 +72,18 @@ export const router = createBrowserRouter([
           { path: 'privacy', lazy: page(() => import('@/app/privacy/page')) },
           { path: 'agree', lazy: page(() => import('@/app/agree/page')) },
           {
-            // ForumProvider（及其静态依赖的论坛 API client）随论坛路由懒加载，不进入口
-            lazy: async () => {
-              const { ForumProvider } = await import('@/app/forum/forum-provider');
-              return {
-                Component: function ForumLayout() {
-                  return <ForumProvider><Outlet /></ForumProvider>;
-                },
-              };
-            },
+            path: 'forum',
+            element: <ForumWipPage />,
             children: [
-              { path: 'forum', lazy: page(() => import('@/app/forum/page')) },
-              { path: 'forum/post/new', lazy: page(() => import('@/app/forum/post/new/page')) },
-              { path: 'forum/post/:id', lazy: page(() => import('@/app/forum/post/page')) },
-              { path: 'forum/auth/login', lazy: page(() => import('@/app/forum/auth/login/page')) },
-              { path: 'forum/auth/register', lazy: page(() => import('@/app/forum/auth/register/page')) },
-              { path: 'forum/auth/forgot-password', lazy: page(() => import('@/app/forum/auth/forgot-password/page')) },
-              { path: 'forum/auth/reset-password', lazy: page(() => import('@/app/forum/auth/reset-password/page')) },
-              { path: 'forum/me', lazy: page(() => import('@/app/forum/me/page')) },
-              { path: 'forum/u', lazy: page(() => import('@/app/forum/u/page')) },
-              { path: 'forum/admin', lazy: page(() => import('@/app/forum/admin/page')) },
+              { path: 'post/new' },
+              { path: 'post/:id' },
+              { path: 'auth/login' },
+              { path: 'auth/register' },
+              { path: 'auth/forgot-password' },
+              { path: 'auth/reset-password' },
+              { path: 'me' },
+              { path: 'u' },
+              { path: 'admin' },
             ],
           },
           ...redirectRoutes,

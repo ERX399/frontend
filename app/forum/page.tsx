@@ -192,6 +192,10 @@ function ForumContent({ initial }: { initial: ForumInitialData }) {
   return (
     <>
     <main className="container mx-auto max-w-6xl px-4 py-8">
+      <div className="flex items-center gap-2 border-y border-amber-500/40 bg-amber-500/10 px-4 py-3 mb-6 text-sm text-amber-600 dark:text-amber-400 -mx-4 sm:mx-0 sm:border sm:rounded-lg">
+        <Icon icon="mdi:hammer-wrench" className="size-4 shrink-0" />
+        论坛正在装修中，敬请期待
+      </div>
       <div className="flex items-center justify-between mb-6">
         {/* h1 而不是裸 button：这是本页的主标题，缺了它整页没有一级标题。
             内层保留 button 以打开论坛高级设置对话框（原交互不变）。 */}
