@@ -2,8 +2,6 @@ import { useEffect, useState, useRef, type MouseEvent } from 'react';
 import { Form, Link, useLocation, useNavigate, useNavigation, useSubmit } from 'react-router';
 import { Icon } from '@/components/ui/icon';
 import { Skeleton } from '@/components/ui/skeleton';
-import * as Dialog from '@/components/ui/dialog';
-import { EnvironmentSwitcher } from '@/components/environment-switcher';
 import { Pagination } from '@/components/pagination';
 import { Button } from '@/components/ui/button';
 import { formatCompactCount } from '@/lib/format';
@@ -148,7 +146,6 @@ function ForumContent({ initial }: { initial: ForumInitialData }) {
   const loading = navigation.state === 'loading' && navigation.location?.pathname === '/forum';
 
   const [searchInput, setSearchInput] = useState(search);
-  const [forumDialogOpen, setForumDialogOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
   // 浏览器前进/后退时让输入框跟上 URL
@@ -199,9 +196,7 @@ function ForumContent({ initial }: { initial: ForumInitialData }) {
       <div className="flex items-center justify-between mb-6">
         {/* h1 而不是裸 button：这是本页的主标题，缺了它整页没有一级标题。
             内层保留 button 以打开论坛高级设置对话框（原交互不变）。 */}
-        <h1 className="text-2xl font-bold">
-          <button onClick={() => setForumDialogOpen(true)} className="hover:text-primary transition-colors text-left cursor-pointer">论坛</button>
-        </h1>
+        <h1 className="text-2xl font-bold">论坛</h1>
         <div className="flex items-center gap-2">
           {/* 登录态未定时渲染「未登录」而不是 null：服务端拿不到登录态，
               渲染 null 会让禁用 JS 的访客连登录入口都看不到。已登录用户会有
@@ -305,16 +300,6 @@ function ForumContent({ initial }: { initial: ForumInitialData }) {
         </>
       )}
     </main>
-
-      <Dialog.Dialog open={forumDialogOpen} onOpenChange={setForumDialogOpen}>
-        <Dialog.DialogContent className="max-w-sm">
-          <Dialog.DialogHeader>
-            <Dialog.DialogTitle>论坛高级设置</Dialog.DialogTitle>
-            <Dialog.DialogDescription>论坛环境切换与 API 地址配置</Dialog.DialogDescription>
-          </Dialog.DialogHeader>
-          <EnvironmentSwitcher type="forum" onClose={() => setForumDialogOpen(false)} />
-        </Dialog.DialogContent>
-      </Dialog.Dialog>
     </>
   );
 }

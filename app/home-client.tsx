@@ -286,9 +286,21 @@ export function HomeClient() {
             {siteConfig.bio.links.map((link) => {
               const isLocalImage = link.icon.startsWith('/');
               const isBilibili = link.name === 'B站主页';
+              // 站内路径（/building 等）走 React Router 导航，不开新标签；外链才 target=_blank
+              const isInternal = link.url.startsWith('/');
               const iconNode = isLocalImage
                 ? <img src={link.icon} alt={link.name} className="w-4 h-4" />
                 : <Icon icon={link.icon} className="w-4 h-4" style={link.color ? { color: link.color } : undefined} />;
+
+              if (isInternal) {
+                return (
+                  <Link key={link.name} to={link.url}>
+                    <Button variant="outline" className="gap-2 h-9 px-4 text-sm font-medium rounded-lg">
+                      {iconNode}<span>{link.name}</span>
+                    </Button>
+                  </Link>
+                );
+              }
 
               return isBilibili ? (
                 <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer">
