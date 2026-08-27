@@ -73,7 +73,7 @@ export const router = createBrowserRouter([
           { path: 'posts/:slug', lazy: page(() => import('@/app/posts/[slug]/page')) },
           { path: 'friends', lazy: page(() => import('@/app/friends/page')) },
           { path: 'sponsors', lazy: page(() => import('@/app/sponsors/page')) },
-          { path: 'files', lazy: page(() => import('@/app/files/page')) },
+          { path: 'files', element: <BuildingPage /> },
           { path: 'cover', lazy: page(() => import('@/app/cover/page')) },
           { path: 'watermark', lazy: page(() => import('@/app/watermark/page')) },
           { path: 'convert', lazy: page(() => import('@/app/convert/page')) },
