@@ -33,7 +33,7 @@ export const siteConfig = {
     bio: 'Protect What You Love.',
     links: [
       { name: '爱发电', icon: 'simple-icons:afdian', url: 'https://www.ifdian.net/a/ERX399', color: '#946ce6' },
-      { name: 'B站主页', icon: 'simple-icons:bilibili', url: 'https://space.bilibili.com/325903362', color: '#fb7299' },
+      { name: 'B站主页', icon: 'simple-icons:bilibili', url: 'https://space.bilibili.com/1009057001', color: '#fb7299' },
       { name: 'QQ群', icon: '/icon/QQ.svg', url: 'https://qm.qq.com/q/FWqOHlwL2m' },
       { name: 'Telegram群', icon: 'simple-icons:telegram', url: 'https://t.me/+_07DERp7k1ljYTc1', color: '#0088cc' },
       { name: 'GitHub', icon: 'mdi:github', url: 'https://github.com/ERX399', color: '' },

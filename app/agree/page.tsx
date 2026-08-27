@@ -36,7 +36,7 @@ export default function AgreePage() {
       <H2>运营者信息</H2>
       <P>
         本网站（以下简称“本站”）由个人运营。联系邮箱：{' '}
-        <a href="mailto:i@2x.nz" className="font-mono underline">i@2x.nz</a>
+        <a href="mailto:e.r.x399@gmail.com" className="font-mono underline">e.r.x399@gmail.com</a>
       </P>
       <P>
         本站服务器位于美国，无中国 ICP
