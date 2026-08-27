@@ -120,6 +120,7 @@ export function HomeClient() {
               width={112}
               height={112}
               fetchPriority="high"
+              referrerPolicy="no-referrer"
               className="h-full w-full object-cover"
               draggable={false}
             />
@@ -148,6 +149,12 @@ export function HomeClient() {
             <Button size="lg" className="gap-2">
               <Icon icon="mdi:post-outline" className="size-4" />
               阅读博客
+            </Button>
+          </Link>
+          <Link to="/forum">
+            <Button size="lg" variant="outline" className="gap-2">
+              <Icon icon="mdi:forum" className="size-4" />
+              进入论坛
             </Button>
           </Link>
         </div>

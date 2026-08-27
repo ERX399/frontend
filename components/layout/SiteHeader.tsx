@@ -63,7 +63,7 @@ export function SiteHeader() {
 
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 shrink-0 hover:opacity-80 transition-opacity">
-          <img src={SITE_ICON} alt="logo" width={28} height={28} className="h-7 w-7 rounded-full" />
+          <img src={SITE_ICON} alt="logo" width={28} height={28} referrerPolicy="no-referrer" className="h-7 w-7 rounded-full" />
           <span className="font-semibold text-sm tracking-tight">{SITE_NAME}</span>
         </Link>
 
@@ -162,7 +162,7 @@ export function SiteHeader() {
           />
           <div className="absolute right-0 top-full h-[calc(100dvh-3.5rem)] w-72 flex flex-col border-l border-border bg-background p-4 overflow-y-auto">
             <div className="flex items-center gap-2.5 font-semibold text-sm">
-              <img src={SITE_ICON} alt="" width={24} height={24} loading="lazy" className="h-6 w-6 rounded-full" />
+              <img src={SITE_ICON} alt="" width={24} height={24} loading="lazy" referrerPolicy="no-referrer" className="h-6 w-6 rounded-full" />
               {SITE_NAME}
             </div>
 

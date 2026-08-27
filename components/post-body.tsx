@@ -16,7 +16,7 @@ export function PostBody({ slug, domain }: { slug: string; domain?: string }) {
   const [loading, setLoading] = useState(() => !markdown);
   const [error, setError] = useState('');
 
-  const baseDomain = domain || 'https://raw-posts.2x.nz';
+  const baseDomain = domain || 'https://raw-posts.520pro.top';
 
   useEffect(() => {
     if (markdown) return; // 内嵌数据已就绪，无需拉取

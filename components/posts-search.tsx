@@ -4,7 +4,7 @@ import { Icon } from '@/components/ui/icon';
 import { Skeleton } from '@/components/ui/skeleton';
 import { coverThumb } from '@/lib/cover-thumb';
 
-const DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.2x.nz';
+const DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.520pro.top';
 
 interface PostEntry {
   slug: string;
