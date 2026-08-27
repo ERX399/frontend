@@ -34,10 +34,9 @@ export const siteConfig = {
     links: [
       { name: '爱发电', icon: 'simple-icons:afdian', url: 'https://www.ifdian.net/a/ERX399', color: '#946ce6' },
       { name: 'B站主页', icon: 'simple-icons:bilibili', url: 'https://space.bilibili.com/1009057001', color: '#fb7299' },
-      { name: 'QQ群', icon: '/icon/QQ.svg', url: 'https://qm.qq.com/q/FWqOHlwL2m' },
-      { name: 'Telegram群', icon: 'simple-icons:telegram', url: 'https://t.me/+_07DERp7k1ljYTc1', color: '#0088cc' },
+      { name: 'QQ群', icon: '/icon/QQ.svg', url: '/building' },
+      { name: 'Telegram群', icon: 'simple-icons:telegram', url: '/building', color: '#0088cc' },
       { name: 'GitHub', icon: 'mdi:github', url: 'https://github.com/ERX399', color: '' },
-      { name: 'Folo', icon: 'simple-icons:folo', url: 'https://app.folo.is/share/feeds/245004133358075904', color: '#ff6b35' },
     ],
   },
   live: {
@@ -64,8 +63,8 @@ export const siteConfig = {
     categoryId: 'DIC_kwDOUCZmN84DEEGn',
   },
   repos: {
-    // af_frontend / af_forum-backend 均为私有仓库，这两条仅作记录，不要渲染成站内链接
-    frontend: 'https://github.com/ERX399/af_frontend',
+    // frontend / af_forum-backend 均为私有仓库，这两条仅作记录，不要渲染成站内链接
+    frontend: 'https://github.com/ERX399/frontend',
     backend: 'https://github.com/ERX399/af_forum-backend',
     natTool: 'https://github.com/ERX399/webrtc_check_nat',
   },

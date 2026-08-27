@@ -21,6 +21,16 @@ function NotFoundPage() {
   );
 }
 
+function BuildingPage() {
+  return (
+    <main className="container mx-auto max-w-6xl px-4 py-24 text-center">
+      <h1 className="text-3xl font-bold mb-3">建设中</h1>
+      <p className="text-muted-foreground mb-8">该功能正在建设，敬请期待</p>
+      <a href="/" className="text-primary hover:underline">返回首页</a>
+    </main>
+  );
+}
+
 function ForumWipPage() {
   return (
     <main className="container mx-auto max-w-6xl px-4 py-24 text-center">
@@ -71,6 +81,7 @@ export const router = createBrowserRouter([
           { path: 'tier', lazy: page(() => import('@/app/tier/page')) },
           { path: 'privacy', lazy: page(() => import('@/app/privacy/page')) },
           { path: 'agree', lazy: page(() => import('@/app/agree/page')) },
+          { path: 'building', element: <BuildingPage /> },
           {
             path: 'forum',
             element: <ForumWipPage />,
