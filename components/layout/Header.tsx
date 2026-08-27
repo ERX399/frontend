@@ -29,7 +29,7 @@ export function Header() {
             to="/"
             className="shrink-0 hover:opacity-80 transition-opacity"
           >
-            <img src={siteConfig.icon} alt="Home" className="h-6 w-6 rounded-full" />
+            <img src={siteConfig.icon} alt="Home" referrerPolicy="no-referrer" className="h-6 w-6 rounded-full" />
           </Link>
           {crumbs.map((crumb, i) => (
             <div key={crumb.href} className="inline-flex items-center gap-1">

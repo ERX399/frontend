@@ -20,6 +20,7 @@ export interface NavLink {
 // 恢复时把对应条目加回 NAV_LINKS 与下面的分组数组即可。
 export const NAV_LINKS: NavLink[] = [
   { label: '博客',     icon: 'mdi:post-outline',        href: '/posts' },
+  { label: '论坛',     icon: 'mdi:forum',               href: '/forum' },
   { label: '友链',     icon: 'mdi:link-variant',        href: '/friends' },
   { label: '赞助',     icon: 'mdi:heart',               href: '/sponsors' },
   { label: '封面制作', icon: 'mdi:image-edit',          href: '/cover' },
@@ -31,7 +32,7 @@ export const NAV_LINKS: NavLink[] = [
   { label: '统计',     icon: 'mdi:chart-line',          href: 'https://umami.2x.nz/share/CdkXbGgZr6ECKOyK' },
 ];
 
-export const PRIMARY_NAV = ['博客', '友链', '赞助'];
+export const PRIMARY_NAV = ['博客', '论坛', '友链', '赞助'];
 export const TOOLS_NAV   = ['封面制作', '水印', '图片转换', '文件', '从夯到拉'];
 // 外链（渲染在工具下拉/移动端菜单底部，带外链角标）
 export const EXTERNAL_NAV = ['状态', '统计'];

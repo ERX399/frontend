@@ -13,7 +13,7 @@ export const SITE_NAME = '夏之';
 export const SITE_URL = 'https://520pro.top';
 export const SITE_TITLE = '《夏之》官方网站';
 export const SITE_DESCRIPTION =
-  '夏之的个人网站 —— 包含技术博客、论坛社区、AI 生图、实用在线工具等，记录分享技术与生活。';
+  '夏之的个人网站 —— 包含技术博客、实用在线工具等，记录分享技术与生活。';
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/files/img/official.png`;
 
 export interface RouteMeta {
@@ -38,7 +38,7 @@ export const STATIC_ROUTE_META: Record<string, RouteMeta> = {
   '/posts': {
     title: '博客文章',
     description:
-      '夏之（AcoFork）的技术博客：开发笔记、教程踩坑、折腾记录与生活随笔，支持按分类、标签浏览与全文搜索。',
+      '夏之（ERX399）的技术博客：开发笔记、教程踩坑、折腾记录与生活随笔，支持按分类、标签浏览与全文搜索。',
   },
   '/gallery': {
     title: '图库',
@@ -76,7 +76,7 @@ export const STATIC_ROUTE_META: Record<string, RouteMeta> = {
   },
   '/agree': {
     title: '用户协议',
-    description: '夏之网站用户协议：使用本站论坛、AI 生图等服务前请阅读的条款与说明。',
+    description: '夏之网站用户协议：使用本站服务前请阅读的条款与说明。',
   },
   '/redirect-preview': {
     title: '重定向预览',
@@ -107,15 +107,34 @@ export const STATIC_ROUTE_META: Record<string, RouteMeta> = {
     description:
       '从夯到拉：在线层级排行榜（Tier List）制作工具，上传图片后拖放排名，从最夯到最拉，本地生成可保存为图片。',
   },
+  '/forum': {
+    title: '论坛社区',
+    description:
+      '夏之论坛：技术交流与闲聊灌水社区，支持 Markdown 发帖、评论与点赞，欢迎注册加入讨论。',
+  },
+  '/forum/post/new': { title: '发布新帖', description: '在夏之论坛发布新帖子。', noindex: true },
+  '/forum/auth/login': { title: '登录', description: '登录夏之论坛账号。', noindex: true },
+  '/forum/auth/register': { title: '注册账号', description: '注册夏之论坛账号。', noindex: true },
+  '/forum/auth/forgot-password': { title: '找回密码', description: '找回论坛账号密码。', noindex: true },
+  '/forum/auth/reset-password': { title: '重置密码', description: '重置论坛账号密码。', noindex: true },
+  '/forum/me': { title: '个人中心', description: '论坛个人中心。', noindex: true },
+  '/forum/u': { title: '用户主页', description: '论坛用户主页。', noindex: true },
+  '/forum/admin': { title: '论坛管理', description: '论坛管理面板。', noindex: true },
   };
 
 /** /posts/:slug 在真实文章数据到达前的兜底 meta（客户端随后覆写；Worker 侧查 posts.json 覆写） */
 export const POST_FALLBACK_META: RouteMeta = {
   title: '博客文章',
-  description: '来自夏之（AcoFork）博客的技术文章。',
+  description: '来自夏之（ERX399）博客的技术文章。',
   ogType: 'article',
 };
 
+/** /forum/post/:id 兜底 meta */
+export const FORUM_POST_FALLBACK_META: RouteMeta = {
+  title: '论坛帖子',
+  description: '来自夏之论坛的帖子与讨论。',
+  ogType: 'article',
+};
 
 export const REDIRECT_META: RouteMeta = {
   title: '正在重定向',
@@ -149,6 +168,7 @@ export function resolveRouteMeta(pathname: string): RouteMeta {
   if (exact) return exact;
   if (path in redirects) return REDIRECT_META;
   if (path.startsWith('/posts/')) return POST_FALLBACK_META;
+  if (path.startsWith('/forum/post/')) return FORUM_POST_FALLBACK_META;
   return NOT_FOUND_META;
 }
 

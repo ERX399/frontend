@@ -11,19 +11,19 @@ export const siteConfig = {
   name: 'SVAF',
   siteName: '夏之',
   title: '《夏之》官方网站',
-  subtitle: 'AcoFork',
+  subtitle: 'ERX399',
   url: 'https://520pro.top',
   icon: `https://ker.520pro.top/awa.jpg`,
   description:
-    '夏之的个人网站 —— 包含技术博客、论坛社区、实用在线工具等，记录分享技术与生活。',
+    '夏之的个人网站 —— 包含技术博客、实用在线工具等，记录分享技术与生活。',
   keywords: [
     '夏之', '夏之官网',
-    '博客', 'AcoFork Blog', 'AcoFork', 'Blog', 'acofork blog', 'acofork',
+    '博客', 'ERX399 Blog', 'ERX399', 'Blog', 'erx399 blog', 'erx399',
   ],
   lang: 'zh_CN',
   ogImage: '/files/img/official.png',
   author: {
-    name: 'AcoFork',
+    name: '夏之',
     url: 'https://520pro.top',
   },
   bio: {
@@ -36,7 +36,7 @@ export const siteConfig = {
       { name: 'B站主页', icon: 'simple-icons:bilibili', url: 'https://space.bilibili.com/325903362', color: '#fb7299' },
       { name: 'QQ群', icon: '/icon/QQ.svg', url: 'https://qm.qq.com/q/FWqOHlwL2m' },
       { name: 'Telegram群', icon: 'simple-icons:telegram', url: 'https://t.me/+_07DERp7k1ljYTc1', color: '#0088cc' },
-      { name: 'GitHub', icon: 'mdi:github', url: 'https://github.com/afoim', color: '' },
+      { name: 'GitHub', icon: 'mdi:github', url: 'https://github.com/ERX399', color: '' },
       { name: 'Folo', icon: 'simple-icons:folo', url: 'https://app.folo.is/share/feeds/245004133358075904', color: '#ff6b35' },
     ],
   },
@@ -65,13 +65,16 @@ export const siteConfig = {
   },
   repos: {
     // af_frontend / af_forum-backend 均为私有仓库，这两条仅作记录，不要渲染成站内链接
-    frontend: 'https://github.com/afoim/af_frontend',
-    backend: 'https://github.com/afoim/af_forum-backend',
-    natTool: 'https://github.com/afoim/webrtc_check_nat',
+    frontend: 'https://github.com/ERX399/af_frontend',
+    backend: 'https://github.com/ERX399/af_forum-backend',
+    natTool: 'https://github.com/ERX399/webrtc_check_nat',
+  },
+  forum: {
+    totpIssuer: 'ERX399 Forum',
   },
   links: {
     // 指向个人主页而非具体仓库：前端仓库已转私有，直链会 404
-    github: 'https://github.com/afoim',
+    github: 'https://github.com/ERX399',
   },
   // 2026-08-07：论坛与交互小说随 Oracle VPS 下线且不再恢复，入口一并摘除；
   // B站封面需要服务端代请求 B 站接口，应急期同样不可用。

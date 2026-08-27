@@ -10,9 +10,9 @@ import { applySeo } from '@/lib/seo/apply-seo';
 import { SITE_URL } from '@/lib/seo/route-meta';
 import { readEmbeddedPostData } from '@/lib/embedded-post-data';
 
-const POSTS_DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.2x.nz';
+const POSTS_DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.520pro.top';
 /** 文章 markdown 源文件所在的开源仓库 */
-const POSTS_REPO = 'https://github.com/afoim/af_blog-data';
+const POSTS_REPO = 'https://github.com/ERX399/blog-data';
 
 interface PostMeta {
   slug: string;
@@ -100,7 +100,7 @@ export function PostDetailReader({ slug }: { slug: string }) {
                 : `${SITE_URL}/files/img/official.png`,
               keywords: found.tags.length ? found.tags.join(',') : undefined,
               inLanguage: 'zh-CN',
-              author: { '@type': 'Person', name: 'AcoFork', url: SITE_URL },
+              author: { '@type': 'Person', name: '夏之', url: SITE_URL },
               mainEntityOfPage: `${SITE_URL}/posts/${found.slug}`,
             },
           });
