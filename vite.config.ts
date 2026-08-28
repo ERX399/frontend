@@ -10,6 +10,11 @@ export default defineConfig({
       '@': fileURLToPath(new URL('.', import.meta.url)),
     },
   },
+  server: {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  },
   define: (() => {
     const now = new Date();
     const pad = (n: number) => String(n).padStart(2, '0');
