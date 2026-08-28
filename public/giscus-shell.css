@@ -1,94 +1,106 @@
-/* 夏之博客 giscus 主题：纯暗灰阶 + 零圆角，配色与 app/globals.css 同源。
-   giscus 在 https iframe 内加载本表（components/giscus.tsx 的 data-theme），
-   必须以可公开访问的 HTTPS 绝对地址提供。 */
 main {
-  --color-prettylights-syntax-comment: oklch(0.708 0 0);
-  --color-prettylights-syntax-constant: oklch(0.92 0 0);
-  --color-prettylights-syntax-entity: oklch(0.92 0 0);
-  --color-prettylights-syntax-storage-modifier-import: oklch(0.92 0 0);
-  --color-prettylights-syntax-entity-tag: oklch(0.92 0 0);
-  --color-prettylights-syntax-keyword: oklch(0.92 0 0);
-  --color-prettylights-syntax-string: oklch(0.708 0 0);
-  --color-prettylights-syntax-variable: oklch(0.92 0 0);
-  --color-prettylights-syntax-brackethighlighter-unmatched: oklch(0.68 0.21 27);
-  --color-prettylights-syntax-invalid-illegal-text: oklch(0.92 0 0);
-  --color-prettylights-syntax-invalid-illegal-bg: oklch(0.68 0.21 27);
-  --color-prettylights-syntax-carriage-return-text: oklch(0.92 0 0);
-  --color-prettylights-syntax-carriage-return-bg: oklch(0.68 0.21 27);
-  --color-prettylights-syntax-string-regexp: oklch(0.708 0 0);
-  --color-prettylights-syntax-markup-list: oklch(0.92 0 0);
-  --color-prettylights-syntax-markup-heading: oklch(0.92 0 0);
-  --color-prettylights-syntax-markup-italic: oklch(0.92 0 0);
-  --color-prettylights-syntax-markup-bold: oklch(0.92 0 0);
-  --color-prettylights-syntax-markup-deleted-text: oklch(0.92 0 0);
-  --color-prettylights-syntax-markup-deleted-bg: oklch(0.68 0.21 27);
-  --color-prettylights-syntax-markup-inserted-text: oklch(0.92 0 0);
-  --color-prettylights-syntax-markup-inserted-bg: oklch(0.34 0 0);
-  --color-prettylights-syntax-markup-changed-text: oklch(0.92 0 0);
-  --color-prettylights-syntax-markup-changed-bg: oklch(0.34 0 0);
-  --color-prettylights-syntax-markup-ignored-text: oklch(0.92 0 0);
-  --color-prettylights-syntax-markup-ignored-bg: oklch(0.34 0 0);
-  --color-prettylights-syntax-meta-diff-range: oklch(0.92 0 0);
-  --color-prettylights-syntax-brackethighlighter-angle: oklch(0.708 0 0);
-  --color-prettylights-syntax-sublimelinter-gutter-mark: oklch(0.37 0 0);
-  --color-prettylights-syntax-constant-other-reference-link: oklch(0.708 0 0);
+  --color-prettylights-syntax-comment: #8b949e;
+  --color-prettylights-syntax-constant: #79c0ff;
+  --color-prettylights-syntax-entity: #d2a8ff;
+  --color-prettylights-syntax-storage-modifier-import: #c9d1d9;
+  --color-prettylights-syntax-entity-tag: #7ee787;
+  --color-prettylights-syntax-keyword: #ff7b72;
+  --color-prettylights-syntax-string: #a5d6ff;
+  --color-prettylights-syntax-variable: #ffa657;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #f85149;
+  --color-prettylights-syntax-invalid-illegal-text: #f0f6fc;
+  --color-prettylights-syntax-invalid-illegal-bg: #8e1519;
+  --color-prettylights-syntax-carriage-return-text: #f0f6fc;
+  --color-prettylights-syntax-carriage-return-bg: #b62324;
+  --color-prettylights-syntax-string-regexp: #7ee787;
+  --color-prettylights-syntax-markup-list: #f2cc60;
+  --color-prettylights-syntax-markup-heading: #1f6feb;
+  --color-prettylights-syntax-markup-italic: #c9d1d9;
+  --color-prettylights-syntax-markup-bold: #c9d1d9;
+  --color-prettylights-syntax-markup-deleted-text: #ffdcd7;
+  --color-prettylights-syntax-markup-deleted-bg: #67060c;
+  --color-prettylights-syntax-markup-inserted-text: #aff5b4;
+  --color-prettylights-syntax-markup-inserted-bg: #033a16;
+  --color-prettylights-syntax-markup-changed-text: #ffdfb6;
+  --color-prettylights-syntax-markup-changed-bg: #5a1e02;
+  --color-prettylights-syntax-markup-ignored-text: #c9d1d9;
+  --color-prettylights-syntax-markup-ignored-bg: #1158c7;
+  --color-prettylights-syntax-meta-diff-range: #d2a8ff;
+  --color-prettylights-syntax-brackethighlighter-angle: #8b949e;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58;
+  --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
+
   --color-btn-text: oklch(0.92 0 0);
-  --color-btn-bg: oklch(0.24 0 0);
-  --color-btn-border: oklch(0.37 0 0);
+  --color-btn-bg: oklch(0.3 0 0);
+  --color-btn-border: oklch(0.42 0 0);
   --color-btn-shadow: 0 0 transparent;
   --color-btn-inset-shadow: 0 0 transparent;
-  --color-btn-hover-bg: oklch(0.34 0 0);
+  --color-btn-hover-bg: oklch(0.38 0 0);
   --color-btn-hover-border: oklch(0.708 0 0);
-  --color-btn-active-bg: oklch(0.34 0 0);
+  --color-btn-active-bg: oklch(0.36 0 0);
   --color-btn-active-border: oklch(0.708 0 0);
   --color-btn-selected-bg: oklch(0.24 0 0);
-  --color-btn-primary-text: oklch(0.205 0 0);
-  --color-btn-primary-bg: oklch(0.92 0 0);
-  --color-btn-primary-border: oklch(0.37 0 0);
+
+  --color-btn-primary-text: oklch(0.98 0 0);
+  --color-btn-primary-bg: oklch(0.55 0.15 146);
+  --color-btn-primary-border: oklch(0.6 0.15 146);
   --color-btn-primary-shadow: 0 0 transparent;
   --color-btn-primary-inset-shadow: 0 0 transparent;
-  --color-btn-primary-hover-bg: oklch(0.72 0 0);
-  --color-btn-primary-hover-border: oklch(0.37 0 0);
-  --color-btn-primary-selected-bg: oklch(0.72 0 0);
+  --color-btn-primary-hover-bg: oklch(0.6 0.16 146);
+  --color-btn-primary-hover-border: oklch(0.62 0.15 146);
+  --color-btn-primary-selected-bg: oklch(0.55 0.15 146);
   --color-btn-primary-selected-shadow: 0 0 transparent;
-  --color-btn-primary-disabled-text: oklch(0.205 0 0 / 50%);
-  --color-btn-primary-disabled-bg: oklch(0.92 0 0 / 60%);
-  --color-btn-primary-disabled-border: oklch(0.37 0 0);
+  --color-btn-primary-disabled-text: oklch(0.98 0 0 / 50%);
+  --color-btn-primary-disabled-bg: oklch(0.55 0.15 146 / 60%);
+  --color-btn-primary-disabled-border: oklch(0.6 0.15 146 / 20%);
+
   --color-action-list-item-default-hover-bg: oklch(0.34 0 0 / 40%);
   --color-segmented-control-bg: oklch(0.3 0 0);
   --color-segmented-control-button-bg: oklch(0.205 0 0);
   --color-segmented-control-button-selected-border: oklch(0.708 0 0);
+
   --color-fg-default: oklch(0.92 0 0);
-  --color-fg-muted: oklch(0.708 0 0);
-  --color-fg-subtle: oklch(0.6 0 0);
+  --color-fg-muted: oklch(0.72 0 0);
+  --color-fg-subtle: oklch(0.64 0 0);
+
   --color-canvas-default: oklch(0.205 0 0);
-  --color-canvas-overlay: oklch(0.24 0 0);
+  --color-canvas-overlay: oklch(0.26 0 0);
   --color-canvas-inset: oklch(0.18 0 0);
   --color-canvas-subtle: oklch(0.24 0 0);
-  --color-border-default: oklch(0.37 0 0);
-  --color-border-muted: oklch(0.3 0 0);
-  --color-neutral-muted: oklch(0.3 0 0 / 40%);
-  --color-accent-fg: oklch(0.92 0 0);
-  --color-accent-emphasis: oklch(0.92 0 0);
-  --color-accent-muted: oklch(0.92 0 0 / 40%);
-  --color-accent-subtle: oklch(0.92 0 0 / 10%);
-  --color-success-fg: oklch(0.92 0 0);
-  --color-attention-fg: oklch(0.72 0 0);
-  --color-attention-muted: oklch(0.72 0 0 / 40%);
-  --color-attention-subtle: oklch(0.72 0 0 / 15%);
+
+  --color-border-default: oklch(0.5 0 0);
+  --color-border-muted: oklch(0.42 0 0);
+  --color-neutral-muted: oklch(0.4 0 0 / 40%);
+
+  --color-accent-fg: oklch(0.72 0.13 255);
+  --color-accent-emphasis: oklch(0.6 0.17 255);
+  --color-accent-muted: oklch(0.72 0.13 255 / 40%);
+  --color-accent-subtle: oklch(0.72 0.13 255 / 12%);
+
+  --color-success-fg: oklch(0.65 0.15 152);
+  --color-attention-fg: oklch(0.78 0.13 80);
+  --color-attention-muted: oklch(0.75 0.13 80 / 40%);
+  --color-attention-subtle: oklch(0.75 0.13 80 / 15%);
   --color-danger-fg: oklch(0.68 0.21 27);
   --color-danger-muted: oklch(0.68 0.21 27 / 40%);
   --color-danger-subtle: oklch(0.68 0.21 27 / 10%);
+
   --color-primer-shadow-inset: 0 0 transparent;
   --color-scale-gray-7: oklch(0.3 0 0);
-  --color-scale-blue-8: oklch(0.34 0 0);
+  --color-scale-blue-8: oklch(0.32 0.1 255);
 
-  --color-social-reaction-bg-hover: oklch(0.3 0 0);
-  --color-social-reaction-bg-reacted-hover: oklch(0.34 0 0);
+  --color-social-reaction-bg-hover: var(--color-scale-gray-7);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
 }
 
-/* 全站零圆角：与主站 globals.css 的 `*,::before,::after { border-radius: 0 }`
-   保持一致，giscus 的圆形头像/圆角按钮一并压成直角。 */
+main .pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg");
+}
+
+main .gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-dark.gif");
+}
+
 main,
 main * {
   border-radius: 0 !important;
