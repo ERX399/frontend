@@ -40,7 +40,7 @@ export const siteConfig = {
     ],
   },
   live: {
-    statusApi: 'https://b-live.2x.nz',
+    statusApi: '/building',
     roomUrl: '/building',
   },
   services: {
