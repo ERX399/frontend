@@ -28,7 +28,7 @@ export const NAV_LINKS: NavLink[] = [
   { label: '图片转换', icon: 'mdi:swap-horizontal-bold',href: '/convert' },
   { label: '文件',     icon: 'mdi:folder-open',         href: '/files' },
   { label: '从夯到拉', icon: 'mdi:podium-gold',          href: '/tier' },
-  { label: '状态',     icon: 'mdi:heart-pulse',          href: 'https://status.2x.nz' },
+  { label: '状态',     icon: 'mdi:heart-pulse',          href: 'https://399520.xyz/zt' },
   { label: '统计',     icon: 'mdi:chart-line',          href: 'https://umami.2x.nz/share/CdkXbGgZr6ECKOyK' },
 ];
 

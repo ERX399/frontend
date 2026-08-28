@@ -140,10 +140,6 @@ async function forumRequest<T>(
     } else if (res.status === 401 && !skipAuthRedirect) {
       if (typeof window !== 'undefined') {
         localStorage.removeItem('forum-auth-token');
-        // 2026-08-07：/forum/auth/login 已随论坛下线（404）。这条客户端在应急期
-        // 理论上不会被触发（论坛路由已从路由表移除），但旧 bundle 仍可能残留在
-        // 用户标签页里，留着一个 404 的跳转没有任何好处。
-        window.location.href = '/draw/login?next=' + encodeURIComponent(window.location.pathname);
       }
     }
 
