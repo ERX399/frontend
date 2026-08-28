@@ -18,6 +18,18 @@ export function PostBody({ slug, domain }: { slug: string; domain?: string }) {
 
   const baseDomain = domain || 'https://raw-posts.520pro.top';
 
+  // 线上 dist/posts/*.md 可能是未重写的旧产物，正文里图片仍是相对 /img/ 路径，
+  // 会解析到主站 520pro.top/img/ 导致 404。统一在渲染前把相对 /img/ 重写到数据源
+  // 域名（img/ 所在仓库），已绝对化的 URL 不受影响。放这里（而非 fetch 分支）是为了
+  // 内嵌 base64 直开预渲染页的那条路径也一起覆盖。
+  // 两种写法都覆盖：markdown 图片语法 `![..](/img/x)`，以及 html:true 透传的
+  // 原始 HTML `<img src="/img/x">`（含单/双引号）。只匹配相对前缀，不会碰
+  // `https://域名/img/` 这种已绝对化的 URL。
+  const rewriteImgPaths = (md: string) =>
+    md
+      .replace(/\]\(\/img\//g, `](${baseDomain}/img/`)
+      .replace(/(src=["'])\/img\//g, `$1${baseDomain}/img/`);
+
   useEffect(() => {
     if (markdown) return; // 内嵌数据已就绪，无需拉取
     let cancelled = false;
@@ -50,7 +62,7 @@ export function PostBody({ slug, domain }: { slug: string; domain?: string }) {
   const html = useMemo(() => {
     if (!markdown) return '';
     // eagerFirstImage 要和 app/lib/blog.server.ts 的正文渲染保持一致
-    const withIds = addHeadingIds(renderMarkdown(markdown, { eagerFirstImage: true }));
+    const withIds = addHeadingIds(renderMarkdown(rewriteImgPaths(markdown), { eagerFirstImage: true }));
     // target 要显式放行：DOMPurify 默认白名单没有它，renderMarkdown 给站外
     // 链接加的 target="_blank" 会被剥掉（rel 不受影响，会留下来）
     return DOMPurify.sanitize(withIds, { ADD_ATTR: ['id', 'target'] });
