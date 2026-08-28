@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Icon } from '@/components/ui/icon';
 import { Skeleton } from '@/components/ui/skeleton';
 import { coverThumb } from '@/lib/cover-thumb';
+import { RandomCoverImg, isRandomCover } from '@/components/random-cover';
 
 const DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.520pro.top';
 
@@ -223,9 +224,9 @@ export function PostsSearch() {
           {post.image && (
             <div className="shrink-0 self-center">
               {/* 与 app/routes/posts.tsx 的 PostCard 保持一致：走本站 /thumb 端点
-                  而不是原图，并补上 lazy / 尺寸 / 低优先级 */}
-              <img
-                src={coverThumb(post.image, 288)}
+                  而不是原图，并补上 lazy / 尺寸 / 低优先级；随机封面标记则走 /api/random */}
+              <RandomCoverImg
+                src={isRandomCover(post.image) ? post.image : coverThumb(post.image, 288)}
                 srcSet={`${coverThumb(post.image, 192)} 192w, ${coverThumb(post.image, 288)} 288w`}
                 sizes="(min-width: 640px) 144px, 96px"
                 alt={post.title}

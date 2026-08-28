@@ -9,6 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { applySeo } from '@/lib/seo/apply-seo';
 import { SITE_URL } from '@/lib/seo/route-meta';
 import { readEmbeddedPostData } from '@/lib/embedded-post-data';
+import { RandomCoverImg } from '@/components/random-cover';
 
 const POSTS_DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.520pro.top';
 /** 文章 markdown 源文件所在的开源仓库 */
@@ -221,7 +222,7 @@ export function PostDetailReader({ slug }: { slug: string }) {
               )}
             </div>
             {meta.image && (
-              <img
+              <RandomCoverImg
                 src={meta.image}
                 alt={meta.title}
                 data-lightbox
