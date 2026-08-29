@@ -171,7 +171,7 @@ export default function WatermarkPage() {
               type="text"
               value={watermarkText}
               onChange={(e) => setWatermarkText(e.target.value)}
-              placeholder="520pro.top"
+              placeholder="blog.520pro.top"
               className="flex h-9 w-full rounded-lg border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
             />
           </div>
