@@ -172,7 +172,7 @@ export function FriendsClient({ initial }: { initial?: Friend[] } = {}) {
           </li>
           <li>
             <span className="font-medium text-foreground">backlink</span> 必填。填写后系统会验证你的友链页是否包含本站链接（
-            <code className="rounded bg-muted px-1 py-0.5">href=https://520pro.top</code>），验证通过后自动合并
+            <code className="rounded bg-muted px-1 py-0.5">href=https://blog.520pro.top</code>），验证通过后自动合并
           </li>
           <li>
             如果 backlink 验证不通过，PR 不会自动合并，请确保你的友链页包含本站链接后 push 更新
