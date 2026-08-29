@@ -125,7 +125,7 @@ export function Giscus() {
 
   return (
     <div className="mt-12">
-      <div className="flex items-center justify-end gap-3 pb-6">
+      <div className="flex items-center gap-3 pb-6">
         <a
           href={`https://github.com/${siteConfig.giscus.repo}/discussions`}
           target="_blank"
