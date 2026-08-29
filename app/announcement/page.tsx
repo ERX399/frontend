@@ -97,8 +97,8 @@ export default function AnnouncementPage() {
           <p className="font-medium">仍有登录状态（打开网站未被要求重新登录）</p>
           <p className="mt-1 text-sm text-muted-foreground">
             直接补录即可：点击顶部横幅的「立即补录」，或访问{' '}
-            <Link to="/auth" className="underline">
-              520pro.top/auth
+            <Link to="/building" className="underline">
+              /building
             </Link>
             ，填写邮箱和一个新密码（至少 8 位），提交后即完成绑定。
           </p>
@@ -121,7 +121,7 @@ export default function AnnouncementPage() {
         </div>
       </div>
       <div className="mt-5">
-        <Link to="/auth" className={buttonVariants()}>
+        <Link to="/building" className={buttonVariants()}>
           立即补录账号
         </Link>
       </div>
