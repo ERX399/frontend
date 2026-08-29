@@ -3,14 +3,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router';
 import { Icon } from '@/components/ui/icon';
+import { siteConfig } from '@/lib/config/site';
 
 const STORAGE_KEY = 'cookie-consent-preferences';
 const CONSENT_VERSION = '2.0';
 
 /* 自定义主题（public/giscus-shell.css）。giscus 在 https iframe 内加载该样式表，
    主题地址必须能命中真正发布的 css：跟随当前页面 origin，本地 dev 指
-   http://127.0.0.1:5174/giscus-shell.css，线上指 https://blog.520pro.top/giscus-shell.css。
-   此前用 siteConfig.url（https://520pro.top）拼地址，主站域没这个文件，评论区一直回落默认样式。 */
+   http://127.0.0.1:5174/giscus-shell.css，线上指 https://blog.520pro.top/giscus-shell.css。 */
 const GISCUS_THEME = `${window.location.origin}/giscus-shell.css`;
 
 const GISCUS_CONFIG = {
