@@ -124,10 +124,10 @@ export function Giscus() {
   }, []);
 
   return (
-    <div className="mt-12 border-t pt-8">
-      <div className="flex items-center justify-between gap-3">
+    <div className="mt-12">
+      <div className="flex items-center justify-end gap-3 pb-6">
         <a
-          href={`https://github.com/${siteConfig.giscus.repo}`}
+          href={`https://github.com/${siteConfig.giscus.repo}/discussions`}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -136,29 +136,31 @@ export function Giscus() {
           跳转到讨论仓库
         </a>
       </div>
-      {!loaded && (
-        <div className="flex items-start gap-3 rounded-lg border p-4 text-sm">
-          <Icon
-            icon="mdi:information-outline"
-            className="mt-0.5 size-5 shrink-0 text-muted-foreground"
-          />
-          <div>
-            <p className="font-medium">评论功能需要启用功能性 Cookie</p>
-            <p className="text-muted-foreground mt-1">
-              请在{' '}
-              <a
-                href="#"
-                id="open_preferences_center"
-                className="text-primary underline"
-              >
-                Cookie 设置
-              </a>{' '}
-              中启用
-            </p>
+      <div className="border-t pt-8">
+        {!loaded && (
+          <div className="flex items-start gap-3 rounded-lg border p-4 text-sm">
+            <Icon
+              icon="mdi:information-outline"
+              className="mt-0.5 size-5 shrink-0 text-muted-foreground"
+            />
+            <div>
+              <p className="font-medium">评论功能需要启用功能性 Cookie</p>
+              <p className="text-muted-foreground mt-1">
+                请在{' '}
+                <a
+                  href="#"
+                  id="open_preferences_center"
+                  className="text-primary underline"
+                >
+                  Cookie 设置
+                </a>{' '}
+                中启用
+              </p>
+            </div>
           </div>
-        </div>
-      )}
-      <div ref={containerRef} />
+        )}
+      </div>
+      <div className="pt-6" ref={containerRef} />
     </div>
   );
 }
