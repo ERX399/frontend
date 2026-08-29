@@ -125,6 +125,17 @@ export function Giscus() {
 
   return (
     <div className="mt-12 border-t pt-8">
+      <div className="flex items-center justify-between gap-3">
+        <a
+          href={`https://github.com/${siteConfig.giscus.repo}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <Icon icon="mdi:github" className="size-4" />
+          跳转到讨论仓库
+        </a>
+      </div>
       {!loaded && (
         <div className="flex items-start gap-3 rounded-lg border p-4 text-sm">
           <Icon
