@@ -29,7 +29,7 @@ export const NAV_LINKS: NavLink[] = [
   { label: '文件',     icon: 'mdi:folder-open',         href: '/files' },
   { label: '从夯到拉', icon: 'mdi:podium-gold',          href: '/tier' },
   { label: '状态',     icon: 'mdi:heart-pulse',          href: 'https://399520.xyz/zt' },
-  { label: '统计',     icon: 'mdi:chart-line',          href: 'https://umami.2x.nz/share/CdkXbGgZr6ECKOyK' },
+  { label: '统计',     icon: 'mdi:chart-line',          href: 'https://umami.520pro.top/share/v2IzYZRzKhBwoorB' },
 ];
 
 export const PRIMARY_NAV = ['博客', '论坛', '友链', '赞助'];
