@@ -45,12 +45,12 @@ export const siteConfig = {
   },
   services: {
     nat: 'https://nat.2x.nz/api/analyze',
-    statsShare: 'https://umami.2x.nz/share/CdkXbGgZr6ECKOyK',
+    statsShare: 'https://umami.520pro.top/share/v2IzYZRzKhBwoorB',
     longDomain:
       'https://iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.in',
   },
   analytics: {
-    umami: { src: 'https://umami.2x.nz/script.js', websiteId: '5d710dbd-3a2e-43e3-a553-97b415090c63' },
+    umami: { src: 'https://umami.520pro.top/script.js', websiteId: '38b52ecd-ed90-4c37-9da1-c752312f8d53' },
     cfWebAnalytics: { token: '15fe148e91b34f10a15652e1a74ab26c' },
     baidu: { id: 'a87028bb5a1ed77d98f192bc12b56142' },
     google: { measurementId: 'G-RBZVQJCV26' },
@@ -85,7 +85,7 @@ export const siteConfig = {
     { label: '文件', icon: 'mdi:folder-open', href: '/files' },
     { label: '友链', icon: 'mdi:link-variant', href: '/friends' },
     { label: '赞助', icon: 'mdi:heart', href: '/sponsors' },
-    { label: '统计', icon: 'mdi:chart-line', href: 'https://umami.2x.nz/share/CdkXbGgZr6ECKOyK' },
+    { label: '统计', icon: 'mdi:chart-line', href: 'https://umami.520pro.top/share/v2IzYZRzKhBwoorB' },
   ] satisfies NavLink[],
 };
 
