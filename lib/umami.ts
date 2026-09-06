@@ -67,3 +67,35 @@ export async function getPostPageviews(slug: string): Promise<number | null> {
     return null;
   }
 }
+
+/**
+ * 获取全站总浏览量（不带 path，即整个 website 的 pageviews）。
+ */
+export async function getSitePageviews(): Promise<number | null> {
+  const ctx = await getShareContext();
+  if (!ctx) return null;
+  const params = new URLSearchParams({
+    startAt: '0',
+    endAt: String(Date.now()),
+    unit: 'hour',
+    timezone: 'Asia/Shanghai',
+    compare: 'prev',
+  });
+  try {
+    const res = await fetch(
+      `${API_BASE}/api/websites/${ctx.websiteId}/stats?${params.toString()}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          'x-umami-share-token': ctx.token,
+          'x-umami-share-context': '1',
+        },
+      },
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return typeof data?.pageviews === 'number' ? data.pageviews : null;
+  } catch {
+    return null;
+  }
+}
