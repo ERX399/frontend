@@ -210,6 +210,7 @@ export function PostDetailReader({ slug }: { slug: string }) {
                 </time>
               </span>
               <span aria-hidden>·</span>
+              <PostPageviews slug={slug} />
               {meta.category && (
                 <>
                   <span aria-hidden>·</span>
@@ -239,9 +240,6 @@ export function PostDetailReader({ slug }: { slug: string }) {
                   </span>
                 </>
               )}
-            </div>
-            <div className="mt-3">
-              <PostPageviews slug={slug} />
             </div>
             {meta.image && (
               <RandomCoverImg
