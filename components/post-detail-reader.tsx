@@ -10,6 +10,7 @@ import { applySeo } from '@/lib/seo/apply-seo';
 import { SITE_URL } from '@/lib/seo/route-meta';
 import { readEmbeddedPostData } from '@/lib/embedded-post-data';
 import { RandomCoverImg } from '@/components/random-cover';
+import { getPostPageviews } from '@/lib/umami';
 
 const POSTS_DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.520pro.top';
 /** 文章 markdown 源文件所在的开源仓库 */
@@ -40,6 +41,24 @@ function readEmbeddedMeta(slug: string): PostMeta | null {
   } catch {
     return null;
   }
+}
+
+function PostPageviews({ slug }: { slug: string }) {
+  const [views, setViews] = useState<number | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    getPostPageviews(slug).then((n) => {
+      if (!cancelled && typeof n === 'number') setViews(n);
+    }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [slug]);
+  if (views === null) return null;
+  return (
+    <span className="inline-flex items-center gap-1 text-xs text-muted-foreground/80">
+      <Icon icon="mdi:eye-outline" className="size-3" />
+      {views.toLocaleString()} 次浏览
+    </span>
+  );
 }
 
 export function PostDetailReader({ slug }: { slug: string }) {
@@ -220,6 +239,9 @@ export function PostDetailReader({ slug }: { slug: string }) {
                   </span>
                 </>
               )}
+            </div>
+            <div className="mt-3">
+              <PostPageviews slug={slug} />
             </div>
             {meta.image && (
               <RandomCoverImg
