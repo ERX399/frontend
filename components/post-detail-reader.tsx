@@ -54,7 +54,7 @@ function PostPageviews({ slug }: { slug: string }) {
   }, [slug]);
   if (views === null) return null;
   return (
-    <span className="inline-flex items-center gap-1 text-xs text-muted-foreground/80">
+    <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
       <Icon icon="mdi:eye-outline" className="size-3" />
       {views.toLocaleString()} 次浏览
     </span>
