@@ -4,6 +4,7 @@ import { Icon } from '@/components/ui/icon';
 import { Skeleton } from '@/components/ui/skeleton';
 import { coverThumb } from '@/lib/cover-thumb';
 import { RandomCoverImg, isRandomCover } from '@/components/random-cover';
+import { getPostPageviews } from '@/lib/umami';
 
 const DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.520pro.top';
 
@@ -52,6 +53,26 @@ function extractPosts(json: unknown): PostEntry[] {
   return Array.isArray(posts) ? posts : [];
 }
 
+function PostViews({ slug }: { slug: string }) {
+  const [views, setViews] = useState<number | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    getPostPageviews(slug).then((n) => {
+      if (!cancelled && typeof n === 'number') setViews(n);
+    }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [slug]);
+  if (views === null) return null;
+  return (
+    <>
+      <span aria-hidden>·</span>
+      <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+        <Icon icon="mdi:eye-outline" className="size-3" />
+        {views.toLocaleString()} 次浏览
+      </span>
+    </>
+  );
+}
 function sortForDisplay(posts: PostEntry[]): PostEntry[] {
   return [...posts].sort((a, b) => {
     if (a.pinned && !b.pinned) return -1;
@@ -257,6 +278,7 @@ export function PostsSearch() {
                   {post.published.slice(0, 10)}
                 </time>
               </span>
+              <PostViews slug={post.slug} />
               {post.category && (
                 <>
                   <span aria-hidden>·</span>
@@ -269,9 +291,6 @@ export function PostsSearch() {
                   <span className="min-w-0 truncate text-xs text-muted-foreground">{post.tags.join(' / ')}</span>
                 </>
               )}
-              <>
-                <span aria-hidden>·</span>
-              </>
             </div>
 
             {isSearching ? (
