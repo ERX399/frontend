@@ -1,6 +1,5 @@
 import { Navigate, useSearchParams } from 'react-router';
 import { PostsSearch } from '@/components/posts-search';
-import { SitePageviews } from '@/components/site-pageviews';
 import { Icon } from '@/components/ui/icon';
 
 export default function PostsPage() {
@@ -15,7 +14,6 @@ export default function PostsPage() {
     <main className="container mx-auto max-w-6xl px-4 py-8">
       <div className="flex items-center justify-between gap-3 mb-6">
         <h1 className="text-2xl font-bold">博客</h1>
-        <SitePageviews />
         <a
           href="/posts/rss.xml"
           target="_blank"
