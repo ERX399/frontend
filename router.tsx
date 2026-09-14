@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate, Outlet, useLocation } from 'react-router';
+import { createBrowserRouter, Link, Navigate, Outlet, useLocation } from 'react-router';
 import RootLayout from '@/layouts/root-layout';
 import { redirects } from '@/lib/redirects';
 import { RedirectPageClient } from '@/app/[...slug]/redirect-page-client';
@@ -11,12 +11,27 @@ import HomePage from '@/app/page';
 const page = (load: () => Promise<{ default: React.ComponentType }>) =>
   async () => ({ Component: (await load()).default });
 
+/**
+ * 空状态页（404 / 建设中 / 论坛装修中）共用的返回入口。
+ *
+ * 原来是个裸文字链接，夹在居中的标题和说明之间毫无可点感——用户在这些「哪儿都
+ * 去不了」的页面上唯一能做的事就是回首页，这个动作却长得像正文。套上 outline
+ * 按钮（1px 边框 + hover 反色）让它一眼是按钮，跟站内其它按钮同一套语法。
+ */
+function BackHome() {
+  return (
+    <Link to="/" className="inline-flex items-center justify-center border border-border bg-transparent px-4 py-2 text-sm font-medium transition-colors duration-75 hover:border-foreground hover:bg-foreground hover:text-background">
+      返回首页
+    </Link>
+  );
+}
+
 function NotFoundPage() {
   return (
     <main className="container mx-auto px-4 py-16 text-center">
       <h1 className="text-6xl font-bold mb-4">404</h1>
       <p className="text-muted-foreground mb-8">页面未找到</p>
-      <a href="/" className="text-primary hover:underline">返回首页</a>
+      <BackHome />
     </main>
   );
 }
@@ -26,7 +41,7 @@ function BuildingPage() {
     <main className="container mx-auto max-w-6xl px-4 py-24 text-center">
       <h1 className="text-3xl font-bold mb-3">建设中</h1>
       <p className="text-muted-foreground mb-8">该功能正在建设，敬请期待</p>
-      <a href="/" className="text-primary hover:underline">返回首页</a>
+      <BackHome />
     </main>
   );
 }
@@ -36,7 +51,7 @@ function ForumWipPage() {
     <main className="container mx-auto max-w-6xl px-4 py-24 text-center">
       <h1 className="text-3xl font-bold mb-3">论坛正在装修中</h1>
       <p className="text-muted-foreground mb-8">敬请期待</p>
-      <a href="/" className="text-primary hover:underline">返回首页</a>
+      <BackHome />
     </main>
   );
 }
