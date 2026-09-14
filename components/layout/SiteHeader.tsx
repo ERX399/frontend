@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Badge } from '@/components/ui/badge';
 import { Icon } from '@/components/ui/icon';
 import { SpaToggleItem, useDisableSpa } from '@/components/spa-toggle';
+import { SitePageviews } from '@/components/site-pageviews';
 import { SITE_ICON, SITE_NAME, NAV_LINKS, PRIMARY_NAV, TOOLS_NAV, EXTERNAL_NAV } from '@/lib/nav';
 
 const navLinkClass =
@@ -225,6 +226,14 @@ export function SiteHeader() {
                 onChange={setSpaDisabled}
                 className="gap-3 px-3 py-2.5"
               />
+            </div>
+
+            {/* 全站浏览量落到抽屉最底部：抽屉是手机上唯一能一眼看完全站入口的地方，
+                把总浏览数放这里跟其它全站级信息作伴，页面上不再单独占一行。
+                浏览数是纯展示、不可点，用底衬块把它和上面的开关分开，摸到空白处也
+                不会误以为点到了哪一项 */}
+            <div className="mt-4 border-t border-border bg-muted/40 px-3 py-2.5">
+              <SitePageviews className="flex items-center gap-2 text-sm text-muted-foreground" />
             </div>
           </div>
         </details>
