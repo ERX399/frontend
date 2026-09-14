@@ -4,7 +4,6 @@ import { Badge } from '@/components/ui/badge';
 import { Icon } from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { PulsatingButton } from '@/components/ui/pulsating-button';
-import { SitePageviews } from '@/components/site-pageviews';
 import { siteConfig } from '@/lib/config/site';
 
 // ─── 功能卡片数据 ─────────────────────────────────────────────────────────────
@@ -142,9 +141,6 @@ export function HomeClient() {
             才没报出来 */}
         <p className="text-base text-muted-foreground/80 mb-10 max-w-lg">
           <InlineIcon icon="mdi:post-outline" /> 技术博客 · <InlineIcon icon="mdi:forum" /> 社区论坛 · <InlineIcon icon="mdi:toolbox-outline" /> 实用在线工具集
-        </p>
-        <p className="text-sm text-muted-foreground/80 mb-10">
-          <SitePageviews />
         </p>
 
         {/* 主要 CTA */}

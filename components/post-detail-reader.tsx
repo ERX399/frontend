@@ -171,7 +171,9 @@ export function PostDetailReader({ slug }: { slug: string }) {
       <main className="container mx-auto max-w-2xl px-4 py-16 text-center">
         <h1 className="text-6xl font-bold mb-4">404</h1>
         <p className="text-muted-foreground mb-8">文章未找到</p>
-        <Link to="/posts" className="text-primary hover:underline">返回博客列表</Link>
+        <Link to="/posts" className="inline-flex items-center justify-center border border-border bg-transparent px-4 py-2 text-sm font-medium text-foreground transition-colors duration-75 hover:border-foreground hover:bg-foreground hover:text-background">
+          返回博客列表
+        </Link>
       </main>
     );
   }
