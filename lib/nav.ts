@@ -28,11 +28,10 @@ export const NAV_LINKS: NavLink[] = [
   { label: '图片转换', icon: 'mdi:swap-horizontal-bold',href: '/convert' },
   { label: '文件',     icon: 'mdi:folder-open',         href: '/files' },
   { label: '从夯到拉', icon: 'mdi:podium-gold',          href: '/tier' },
-  { label: '状态',     icon: 'mdi:heart-pulse',          href: 'https://u.520pro.top' },
-  { label: '统计',     icon: 'mdi:chart-line',          href: 'https://umami.520pro.top/share/v2IzYZRzKhBwoorB' },
+  { label: '统计',     icon: 'mdi:chart-line',          href: 'https://u.520pro.top' },
 ];
 
 export const PRIMARY_NAV = ['博客', '论坛', '友链', '赞助'];
 export const TOOLS_NAV   = ['封面制作', '水印', '图片转换', '文件', '从夯到拉'];
 // 外链（渲染在工具下拉/移动端菜单底部，带外链角标）
-export const EXTERNAL_NAV = ['状态', '统计'];
+export const EXTERNAL_NAV = ['统计'];
