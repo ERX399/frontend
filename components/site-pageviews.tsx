@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Icon } from '@/components/ui/icon';
-import { getSitePageviews, loadPageviews } from '@/lib/umami';
+import { getSitePageviews, loadPageviews } from '@/lib/pageviews';
 
 export function SitePageviews({ className }: { className?: string }) {
   const [views, setViews] = useState<number | null>(null);

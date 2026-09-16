@@ -51,7 +51,9 @@ export const siteConfig = {
     umami: {
       src: 'https://umami.520pro.top/script.js',
       websiteId: '38b52ecd-ed90-4c37-9da1-c752312f8d53',
-      shareToken: 'v2IzYZRzKhBwoorB',
+    },
+    pageviews: {
+      api: 'https://u.520pro.top',
     },
     cfWebAnalytics: { token: '15fe148e91b34f10a15652e1a74ab26c' },
     baidu: { id: 'a87028bb5a1ed77d98f192bc12b56142' },
