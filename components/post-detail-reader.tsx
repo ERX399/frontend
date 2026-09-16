@@ -10,7 +10,7 @@ import { applySeo } from '@/lib/seo/apply-seo';
 import { SITE_URL } from '@/lib/seo/route-meta';
 import { readEmbeddedPostData } from '@/lib/embedded-post-data';
 import { RandomCoverImg } from '@/components/random-cover';
-import { getPostPageviews, loadPageviews } from '@/lib/umami';
+import { getPostPageviews, loadPageviews } from '@/lib/pageviews';
 
 const POSTS_DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.520pro.top';
 /** 文章 markdown 源文件所在的开源仓库 */

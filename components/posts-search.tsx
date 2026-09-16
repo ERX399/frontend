@@ -4,7 +4,7 @@ import { Icon } from '@/components/ui/icon';
 import { Skeleton } from '@/components/ui/skeleton';
 import { coverThumb } from '@/lib/cover-thumb';
 import { RandomCoverImg, isRandomCover } from '@/components/random-cover';
-import { getPostPageviews } from '@/lib/umami';
+import { getPostPageviews } from '@/lib/pageviews';
 
 const DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.520pro.top';
 
