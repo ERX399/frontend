@@ -69,13 +69,12 @@
   --border: oklch(0.37 0 0);
   --input: oklch(0.42 0 0);
   --ring: oklch(0.92 0 0);
-  /* 触屏点击反馈（反色）——SSR+SPA 下点击后页面加载要等很久，触屏又没
-     hover，用户以为没点到。反馈不引入新彩色，直接复用本设计系统的反色语法
-     （同 ::selection / bg-primary 按钮 / mark）：被点元素就地翻成反色态，
-     白底黑字或黑底白字，再加粗、叠 1px 框，就是全站统一的「已命中」。 */
-  --tap-outline: oklch(0.92 0 0);
-  /* 反色底（bg-primary / bg-secondary）上再反色等于没反，它的字保持自身深色，
-     框也从白换成中灰才看得见。 */
+  /* 触屏点击反馈色——SSR+SPA 下点击后页面加载要等很久，触屏又没 hover，
+     用户以为没点到。这个色只在 tap-feedback 生效时出现，平时不进任何界面。
+     只描框 + 改字色，不动底色：带边框的空心按钮一铺底色就会看着像实心按钮。 */
+  --tap: oklch(0.92 0 0);
+  /* 白/浅灰底（bg-primary / bg-secondary 反色态）上，浅色框几乎看不见，
+     字和框一起换成这个中灰 */
   --tap-on-light: oklch(0.42 0 0);
   --chart-1: oklch(0.92 0 0);
   --chart-2: oklch(0.72 0 0);
@@ -348,12 +347,14 @@ pre.hljs > .code-copy,
 /* ── 触屏点击反馈 ─────────────────────────────────────────────────────────
    SSR+SPA 下点击按钮后页面要加载很久，触屏上又没有 hover，用户会反复点、
    或以为没点到。给触屏设备加两层反馈：
-   1. :active —— 按住瞬间文字加粗 + 1px 反色框（纯 CSS，禁用 JS 也有）；
+   1. :active —— 按住瞬间文字改色 + 1px 框（纯 CSS，禁用 JS 也有）；
    2. .tap-pending —— tap-feedback.tsx 在真实触屏点击后挂上，React Router
       导航进行中一直保持（旧页面在加载期间仍可见），页面换完元素卸载即消失；
       非导航动作由组件里的兜底计时器在 1.5s 后清除。
-   outline-offset:-1px 让反色框画在元素自身边缘上（不改变布局、不叠加成双线）；
-   有 border 的元素框住的就是边框，纯文字链接也有一个框。 */
+   outline-offset:-1px 让框画在元素自身边缘上（不改变布局、不叠加成双线）；
+   有 border 的元素框住的就是边框，纯文字链接也有一个框。
+   只改字色和框、不动底色与字重：空心按钮一旦被铺上底色，看着就跟站里的实心
+   按钮一样，分不出「按到了」还是「本来就是实心」。 */
 @media (hover: none) and (pointer: coarse) {
   button:active,
   a[href]:active,
@@ -364,32 +365,25 @@ pre.hljs > .code-copy,
   select:active,
   label:active,
   .tap-pending {
-    background-color: var(--foreground);
-    color: var(--background);
-    outline: 1px solid var(--tap-outline);
+    color: var(--tap);
+    outline: 1px solid var(--tap);
     outline-offset: -1px;
-    font-weight: 700;
   }
 
-  /* 反色底元素本身已是反色态，再铺白底会把底下的浅色字吃掉。这里把底色还原
-     成元素自己的反色底，只保留加粗 + 中灰框示意命中。 */
+  /* 白/浅灰底（bg-primary / bg-secondary 反色态）上，--tap 的浅色几乎看不见，
+     字和框一起换成中灰。其余底色（bg-background/bg-card/bg-accent 等）都是
+     深灰，浅色正常可见。 */
   .tap-pending.bg-primary,
-  button:active.bg-primary,
-  a[href]:active.bg-primary,
-  [role="button"]:active.bg-primary,
-  summary:active.bg-primary {
-    background-color: var(--primary);
-    color: var(--primary-foreground);
-    outline-color: var(--tap-on-light);
-  }
-
   .tap-pending.bg-secondary,
+  button:active.bg-primary,
   button:active.bg-secondary,
+  a[href]:active.bg-primary,
   a[href]:active.bg-secondary,
+  [role="button"]:active.bg-primary,
   [role="button"]:active.bg-secondary,
+  summary:active.bg-primary,
   summary:active.bg-secondary {
-    background-color: var(--secondary);
-    color: var(--secondary-foreground);
+    color: var(--tap-on-light);
     outline-color: var(--tap-on-light);
   }
 }
