@@ -33,8 +33,8 @@ async function requestJson<T>(url: string, missing: T | null = null): Promise<T 
 /** umami 写入本站访问通常在一秒内完成，留这个间隔补读一次，把自己的这次访问也算进去 */
 const PAGEVIEW_COMMIT_REREAD_MS = 3000;
 
-/** 停留期间每 5 秒补读一次，页面切到后台就停下，切回来立刻补读 */
-const PAGEVIEW_POLL_MS = 5000;
+/** 停留期间每 0.5 秒补读一次，页面切到后台就停下，切回来立刻补读 */
+const PAGEVIEW_POLL_MS = 500;
 
 export function loadPageviews(
   read: () => Promise<number | null>,
