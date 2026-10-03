@@ -62,13 +62,15 @@ function PostViews({ slug }: { slug: string }) {
     }).catch(() => {});
     return () => { cancelled = true; };
   }, [slug]);
-  if (views === null) return null;
   return (
     <>
       <span aria-hidden>·</span>
       <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
         <Icon icon="mdi:eye-outline" className="size-3" />
-        {views.toLocaleString()} 次浏览
+        <span className="tabular-nums">
+          {views === null ? '—' : views.toLocaleString()}
+        </span>
+        次浏览
       </span>
     </>
   );

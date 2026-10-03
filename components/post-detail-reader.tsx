@@ -46,11 +46,13 @@ function readEmbeddedMeta(slug: string): PostMeta | null {
 function PostPageviews({ slug }: { slug: string }) {
   const [views, setViews] = useState<number | null>(null);
   useEffect(() => loadPageviews(() => getPostPageviews(slug), setViews), [slug]);
-  if (views === null) return null;
   return (
     <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
       <Icon icon="mdi:eye-outline" className="size-3" />
-      {views.toLocaleString()} 次浏览
+      <span className="tabular-nums">
+        {views === null ? '—' : views.toLocaleString()}
+      </span>
+      次浏览
     </span>
   );
 }
