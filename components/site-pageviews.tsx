@@ -6,11 +6,13 @@ import { getSitePageviews, loadPageviews } from '@/lib/pageviews';
 export function SitePageviews({ className }: { className?: string }) {
   const [views, setViews] = useState<number | null>(null);
   useEffect(() => loadPageviews(getSitePageviews, setViews), []);
-  if (views === null) return null;
   return (
     <span className={className || 'inline-flex items-center gap-1 text-sm text-muted-foreground'}>
       <Icon icon="mdi:eye-outline" className="size-3.5" />
-      {views.toLocaleString()} 次浏览
+      <span className="tabular-nums">
+        {views === null ? '—' : views.toLocaleString()}
+      </span>
+      次浏览
     </span>
   );
 }
