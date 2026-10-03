@@ -239,30 +239,36 @@ export function PostsSearch() {
     return (
       <Link
         to={`/posts/${post.slug}`}
-        className="group block border-b border-r border-border bg-background p-3 sm:p-5 hover:bg-card transition-colors duration-75"
+        className="group flex h-full flex-col overflow-hidden border border-border bg-background transition-[transform,background-color,border-color,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:border-muted-foreground hover:bg-card hover:shadow-md"
       >
-        <article className="flex gap-3 sm:gap-4 items-center">
-          {post.image && (
-            <div className="shrink-0 self-center">
-              {/* 与 app/routes/posts.tsx 的 PostCard 保持一致：走本站 /thumb 端点
-                  而不是原图，并补上 lazy / 尺寸 / 低优先级；随机封面标记则走 /api/random */}
-              <RandomCoverImg
-                src={isRandomCover(post.image) ? post.image : coverThumb(post.image, 288)}
-                srcSet={`${coverThumb(post.image, 192)} 192w, ${coverThumb(post.image, 288)} 288w`}
-                sizes="(min-width: 640px) 144px, 96px"
-                alt={post.title}
-                width={144}
-                height={96}
-                className="h-16 w-24 sm:h-24 sm:w-36 rounded-md object-cover"
-                loading="lazy"
-                decoding="async"
-                fetchPriority="low"
-              />
-            </div>
+        {post.image && (
+          <div className="h-28 w-full shrink-0 overflow-hidden bg-muted">
+            {/* 与 app/routes/posts.tsx 的 PostCard 保持一致：走本站 /thumb 端点
+                而不是原图，并补上 lazy / 尺寸 / 低优先级；随机封面标记则走 /api/random */}
+            <RandomCoverImg
+              src={isRandomCover(post.image) ? post.image : coverThumb(post.image, 480)}
+              srcSet={`${coverThumb(post.image, 288)} 288w, ${coverThumb(post.image, 480)} 480w`}
+              sizes="(min-width: 1280px) 256px, (min-width: 768px) 320px, 45vw"
+              alt={post.title}
+              width={480}
+              height={288}
+              className="size-full object-cover"
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+            />
+          </div>
+        )}
+
+        <article className="flex min-w-0 flex-1 flex-col gap-2 p-3">
+          {showScore && post.score != null && (
+            <span className="text-xs tabular-nums text-muted-foreground/80">
+              {post.score} 匹配
+            </span>
           )}
 
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2 flex-wrap leading-none">
+            <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground mb-2 leading-none">
               {post.pinned && (
                 <>
                   <span className="inline-flex items-center gap-1 text-xs font-medium text-amber-600 dark:text-amber-400">
@@ -285,21 +291,15 @@ export function PostsSearch() {
                   <span className="text-xs text-muted-foreground">{post.category}</span>
                 </>
               )}
-              {post.tags.length > 0 && (
-                <>
-                  <span aria-hidden>·</span>
-                  <span className="min-w-0 truncate text-xs text-muted-foreground">{post.tags.join(' / ')}</span>
-                </>
-              )}
             </div>
 
             {isSearching ? (
               <h2
-                className="text-base sm:text-lg font-semibold group-hover:text-primary transition-colors leading-snug"
+                className="text-base font-medium group-hover:text-foreground transition-colors leading-snug"
                 dangerouslySetInnerHTML={{ __html: highlight(post.title, query) }}
               />
             ) : (
-              <h2 className="text-base sm:text-lg font-semibold group-hover:text-primary transition-colors leading-snug">
+              <h2 className="text-base font-medium group-hover:text-foreground transition-colors leading-snug line-clamp-2">
                 {post.title}
               </h2>
             )}
@@ -316,10 +316,17 @@ export function PostsSearch() {
             )}
           </div>
 
-          {showScore && post.score != null && (
-            <span className="shrink-0 self-start text-xs tabular-nums text-muted-foreground/80 pt-1">
-              {post.score} 匹配
-            </span>
+          {post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex w-fit items-center bg-foreground/10 px-2 py-0.5 text-xs font-medium text-foreground"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           )}
         </article>
       </Link>
@@ -328,12 +335,12 @@ export function PostsSearch() {
 
   if (loading) {
     return (
-      <div className="grid md:grid-cols-2 border-t border-l border-border">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="flex gap-3 sm:gap-4 border-b border-r border-border p-3 sm:p-5">
-            <Skeleton className="h-16 w-24 shrink-0 sm:h-24 sm:w-36" />
-            <div className="min-w-0 flex-1 space-y-2.5 py-1">
-              <Skeleton className="h-3 w-2/5" />
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,15rem),1fr))] gap-3">
+        {Array.from({ length: 10 }).map((_, i) => (
+          <div key={i} className="overflow-hidden border border-border">
+            <Skeleton className="h-28 w-full" />
+            <div className="space-y-2.5 p-3">
+              <Skeleton className="h-3 w-3/5" />
               <Skeleton className="h-5 w-4/5" />
               <Skeleton className="h-3 w-full" />
             </div>
@@ -383,7 +390,7 @@ export function PostsSearch() {
                 没有找到匹配的文章
               </p>
             ) : (
-              <div className="grid md:grid-cols-2 border-t border-l border-border">
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,15rem),1fr))] gap-3">
                 {results?.map((post) => (
                   <PostCard key={post.slug} post={post} showScore />
                 ))}
@@ -395,7 +402,7 @@ export function PostsSearch() {
         <p className="text-muted-foreground">暂无文章</p>
       ) : (
         <>
-          <div className={`grid md:grid-cols-2 border-t border-l border-border transition-opacity ${pageLoading ? 'opacity-50' : ''}`}>
+          <div className={`grid grid-cols-[repeat(auto-fill,minmax(min(100%,15rem),1fr))] gap-3 transition-opacity ${pageLoading ? 'opacity-50' : ''}`}>
             {currentPosts.map((post) => (
               <PostCard key={post.slug} post={post} />
             ))}
