@@ -62,8 +62,10 @@ export function Icon({ icon, className, ...props }: Props) {
   const data = ICONS[icon];
 
   if (data) {
+    // ...props 必须一起摊到外层 span：调用点会传 style（如社交图标的品牌色）、
+    // data-* 等，此前只在回退分支传了，于是子集路径上这些属性全部静默丢失。
     return (
-      <span className={wrapper}>
+      <span className={wrapper} {...props}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox={`${data.left} ${data.top} ${data.width} ${data.height}`}
