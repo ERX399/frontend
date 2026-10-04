@@ -78,6 +78,14 @@ export const STATIC_ROUTE_META: Record<string, RouteMeta> = {
     title: '用户协议',
     description: '夏之网站用户协议：使用本站服务前请阅读的条款与说明。',
   },
+  '/stack': {
+    title: '技术栈',
+    description: '夏之网站的技术栈总览：前后端框架、依赖清单、数据流与基础设施。',
+  },
+  '/tools': {
+    title: '工具集',
+    description: '夏之网站的在线工具汇总：封面制作、图片水印、格式转换、层级排名，全部浏览器本地处理。',
+  },
   '/redirect-preview': {
     title: '重定向预览',
     description: '短链接重定向预览页。',

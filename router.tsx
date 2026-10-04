@@ -96,6 +96,8 @@ export const router = createBrowserRouter([
           { path: 'tier', lazy: page(() => import('@/app/tier/page')) },
           { path: 'privacy', lazy: page(() => import('@/app/privacy/page')) },
           { path: 'agree', lazy: page(() => import('@/app/agree/page')) },
+          { path: 'stack', lazy: page(() => import('@/app/stack/page')) },
+          { path: 'tools', lazy: page(() => import('@/app/tools/page')) },
           { path: 'building', element: <BuildingPage /> },
           {
             path: 'forum',
