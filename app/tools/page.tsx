@@ -52,7 +52,7 @@ export default function ToolsPage() {
     <main className="container mx-auto max-w-6xl px-4 py-8">
       <Link
         to="/"
-        className="inline-flex items-center gap-1 border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent mb-4 transition-colors"
+        className="flex items-center gap-1 border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent mb-4 transition-colors"
       >
         <Icon icon="mdi:arrow-left" className="size-4" />
         返回首页
@@ -70,6 +70,7 @@ export default function ToolsPage() {
           <Link
             key={tool.href}
             to={tool.href}
+            draggable={false}
             className="group flex h-full flex-col border border-border bg-card p-4 transition-colors duration-200 ease-out hover:bg-muted/30"
           >
             <div className="flex size-8 items-center justify-center border border-border bg-muted text-foreground">

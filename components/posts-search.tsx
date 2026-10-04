@@ -241,6 +241,7 @@ export function PostsSearch() {
     return (
       <Link
         to={`/posts/${post.slug}`}
+        draggable={false}
         className="group flex h-full flex-col overflow-hidden border border-border bg-background transition-[transform,background-color,border-color,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:border-muted-foreground hover:bg-card hover:shadow-md"
       >
         {post.image && (

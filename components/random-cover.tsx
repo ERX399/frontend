@@ -52,5 +52,7 @@ export function RandomCoverImg({
 }) {
   const resolved = useRandomCover(src);
   if (!resolved) return null;
-  return <img src={resolved} srcSet={isRandomCover(src) ? undefined : srcSet} {...props} />;
+  // draggable={false}：Firefox 不认 -webkit-user-drag，得靠 HTML 属性兜底，
+  // 否则按住卡片封面会拖出虚影。调用点若显式传了 draggable 则以传入的为准。
+  return <img draggable={false} src={resolved} srcSet={isRandomCover(src) ? undefined : srcSet} {...props} />;
 }

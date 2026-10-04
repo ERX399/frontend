@@ -28,7 +28,7 @@ export default function AgreePage() {
     <main className="container mx-auto max-w-3xl px-4 py-8">
       <Link
         to="/"
-        className="inline-flex items-center gap-1 border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent mb-4 transition-colors"
+        className="flex items-center gap-1 border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent mb-4 transition-colors"
       >
         <Icon icon="mdi:arrow-left" className="size-4" />
         返回首页
