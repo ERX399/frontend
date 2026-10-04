@@ -168,6 +168,90 @@ input[type="color"]::-moz-color-swatch {
   cursor: zoom-in;
 }
 
+/* 工具集网格：auto-fill 撑满当前宽度，窄屏自动退化成单列。
+   下限 16rem 是密集度旋钮，想更密调小、想更疏调大。 */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: 0.75rem;
+}
+.tools-grid > * {
+  min-width: 0;
+}
+
+/* 正文表格：prose 默认是极简风（只有横线、首末列 padding 归零），横竖对不齐
+   也不便扫读。这里补成一圈完整边框 + 表头底衬，并给单元格留内边距。
+   横向溢出用 table 自身的 overflow-x 承接（不用 display:block —— 那会让滚动条
+   常驻，内容不宽时也占一条），窄屏把表撑出容器时才会出现滚动条。 */
+.prose table {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-collapse: collapse;
+}
+.prose table th,
+.prose table td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+}
+.prose table thead th {
+  background: var(--muted);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* /stack 页的表格：给每列补右竖线（最后一列除外），表头底色兜一层。
+   bg 写在 th 上而不是 tr —— border-collapse 下 tr 的背景会被单元格盖住。 */
+.stack-table table th,
+.stack-table table td {
+  border-right: 1px solid var(--border);
+}
+.stack-table table th:last-child,
+.stack-table table td:last-child {
+  border-right: 0;
+}
+.stack-table table thead th {
+  background: var(--muted);
+}
+
+/* Toast 图标按类型着色。Icon 组件渲染的是 <svg fill="currentColor">，
+   在 sonner 的 [data-icon] 容器里 currentColor 拿不到外层 span 的 text-* 类，
+   所以这里直接按 data-type 指定 color。 */
+[data-sonner-toast][data-type="success"] [data-icon],
+[data-sonner-toast][data-type="success"] [data-icon] svg,
+[data-sonner-toast][data-type="success"] [data-icon] path {
+  color: var(--color-success, #96b075);
+  fill: currentColor;
+}
+[data-sonner-toast][data-type="info"] [data-icon],
+[data-sonner-toast][data-type="info"] [data-icon] svg,
+[data-sonner-toast][data-type="info"] [data-icon] path {
+  color: var(--color-blue-400, #6a9bcc);
+  fill: currentColor;
+}
+[data-sonner-toast][data-type="warning"] [data-icon],
+[data-sonner-toast][data-type="warning"] [data-icon] svg,
+[data-sonner-toast][data-type="warning"] [data-icon] path {
+  color: var(--color-warning, #d8b25c);
+  fill: currentColor;
+}
+[data-sonner-toast][data-type="error"] [data-icon],
+[data-sonner-toast][data-type="error"] [data-icon] svg,
+[data-sonner-toast][data-type="error"] [data-icon] path {
+  color: var(--destructive);
+  fill: currentColor;
+}
+
+/* Toast 是纯提示，文字不该像正文那样可选中/可复制：拖蓝会留下选区，
+   鼠标悬停变 I 型光标也会暗示"这里能选"。
+   tabindex="0"（sonner 为屏幕阅读器保留）不动 —— 无障碍要它。 */
+[data-sonner-toast] [data-content],
+[data-sonner-toast] [data-title],
+[data-sonner-toast] [data-description] {
+  user-select: none;
+  cursor: default;
+}
+
 /* 代码块 —— 头部一行（语言 + copy）+ 代码一行，结构见 render-markdown.ts。
    chrome **不要**再改回绝对定位压在 pre 角上：pre 自己是 overflow-x:auto 的
    滚动容器，绝对定位算的是滚动内容的坐标系而不是可视区，横向一滑就被带走，
