@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 本站原生即深色，告知浏览器与深色扩展不要二次加工：
+         color-scheme 是标准信号（Chrome 原生深色、多款扩展都认，
+         且在 CSS 加载前的空白期就已生效）；
+         darkreader-lock 是 Dark Reader 专用标记，两者一起用。 -->
+    <meta name="color-scheme" content="dark" />
+    <meta name="supported-color-schemes" content="dark" />
     <meta name="darkreader-lock" />
     <title>《夏之》官方网站</title>
     <link rel="icon" href="https://ker.520pro.top/awa.jpg" referrerpolicy="no-referrer">

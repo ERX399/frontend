@@ -1,6 +1,7 @@
 import { useTheme } from "@/components/theme/ThemeProvider"
 import { Toaster as Sonner, type ToasterProps } from "sonner"
 import { Spinner } from "@/components/ui/spinner"
+import { Icon } from "@/components/ui/icon"
 
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()
@@ -10,19 +11,19 @@ const Toaster = ({ ...props }: ToasterProps) => {
       theme={theme as ToasterProps["theme"]}
       className="toaster group"
       icons={{
-        success: <span className="font-mono text-sm">✓</span>,
-        info: <span className="font-mono text-sm">i</span>,
-        warning: <span className="font-mono text-sm">!</span>,
-        error: <span className="font-mono text-sm text-destructive">✕</span>,
-        loading: <Spinner className="size-3.5" />,
+        success: <Icon icon="mdi:check-circle-outline" className="size-4 text-emerald-500" />,
+        info: <Icon icon="mdi:information-outline" className="size-4 text-sky-400" />,
+        warning: <Icon icon="mdi:alert-outline" className="size-4 text-amber-500" />,
+        error: <Icon icon="mdi:alert-circle-outline" className="size-4 text-destructive" />,
+        loading: <Spinner className="size-4" />,
       }}
       style={
         {
-          "--normal-bg": "var(--popover)",
-          "--normal-text": "var(--popover-foreground)",
-          "--normal-border": "var(--foreground)",
+          "--normal-bg": "var(--card)",
+          "--normal-text": "var(--card-foreground)",
+          "--normal-border": "var(--border)",
           "--border-radius": "0px",
-          fontFamily: "var(--font-geist-mono)",
+          fontFamily: "var(--font-geist-sans)",
         } as React.CSSProperties
       }
       toastOptions={{
@@ -30,6 +31,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           toast: "cn-toast",
         },
       }}
+      swipeDirections={['left', 'right']}
       closeButton
       {...props}
     />
