@@ -23,15 +23,17 @@ export const NAV_LINKS: NavLink[] = [
   { label: '论坛',     icon: 'mdi:forum',               href: '/forum' },
   { label: '友链',     icon: 'mdi:link-variant',        href: '/friends' },
   { label: '赞助',     icon: 'mdi:heart',               href: '/sponsors' },
+  { label: '全部工具', icon: 'mdi:toolbox-outline',      href: '/tools' },
   { label: '封面制作', icon: 'mdi:image-edit',          href: '/cover' },
   { label: '水印',     icon: 'mdi:water',               href: '/watermark' },
   { label: '图片转换', icon: 'mdi:swap-horizontal-bold',href: '/convert' },
   { label: '文件',     icon: 'mdi:folder-open',         href: '/files' },
   { label: '从夯到拉', icon: 'mdi:podium-gold',          href: '/tier' },
+  { label: '技术栈',   icon: 'mdi:layers-triple',        href: '/stack' },
   { label: '统计',     icon: 'mdi:chart-line',          href: 'https://u.520pro.top' },
 ];
 
 export const PRIMARY_NAV = ['博客', '论坛', '友链', '赞助'];
-export const TOOLS_NAV   = ['封面制作', '水印', '图片转换', '文件', '从夯到拉'];
+export const TOOLS_NAV   = ['全部工具', '封面制作', '水印', '图片转换', '文件', '从夯到拉', '技术栈'];
 // 外链（渲染在工具下拉/移动端菜单底部，带外链角标）
 export const EXTERNAL_NAV = ['统计'];
