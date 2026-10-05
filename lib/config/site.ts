@@ -11,7 +11,7 @@ export const siteConfig = {
   title: '《夏之》官方网站',
   subtitle: 'ERX399',
   url: 'https://blog.520pro.top',
-  icon: `https://ker.520pro.top/awa.jpg`,
+  icon: '/awa.jpg',
   description:
     '夏之的个人网站 —— 包含技术博客、实用在线工具等，记录分享技术与生活。',
   keywords: [
@@ -25,8 +25,8 @@ export const siteConfig = {
     url: 'https://blog.520pro.top',
   },
   bio: {
-    avatar: `https://ker.520pro.top/awa.jpg`,
-    avatar2x: `https://ker.520pro.top/awa.jpg`,
+    avatar: '/awa.jpg',
+    avatar2x: '/awa.jpg',
     name: '夏之',
     bio: 'Protect What You Love.',
     links: [

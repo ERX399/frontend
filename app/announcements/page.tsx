@@ -52,14 +52,6 @@ export default function AnnouncementsPage() {
 
   return (
     <main className="container mx-auto max-w-6xl px-4 py-8">
-      <Link
-        to="/"
-        className="flex items-center gap-1 border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent mb-4 transition-colors"
-      >
-        <Icon icon="lucide:arrow-left" className="size-4" />
-        返回首页
-      </Link>
-
       <div className="flex flex-col gap-6 lg:flex-row">
         <aside className="lg:w-72 lg:shrink-0">
           <h1 className="mb-3 border-b border-border pb-2 text-xl font-bold">公告</h1>

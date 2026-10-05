@@ -38,7 +38,7 @@ const FEATURES: Array<{
     icon: 'lucide:wrench',
     title: '实用工具集',
     desc: '封面制作、B站封面下载、图片水印、格式转换——一站式解决创作周边需求',
-    href: null,
+    href: '/tools',
     cta: '使用工具',
     tags: ['封面制作', '水印', '图片转换', 'B站封面'],
   },
@@ -231,20 +231,6 @@ export function HomeClient() {
                   <div key={f.title} className={cardClass.replace('group ', '')}>
                     {inner}
                   </div>
-                );
-              }
-
-              if (f.href === null) {
-                return (
-                  <button
-                    key={f.title}
-                    className={cardClass}
-                    onClick={() => {
-                      window.dispatchEvent(new CustomEvent('open-tools-dropdown'));
-                    }}
-                  >
-                    {inner}
-                  </button>
                 );
               }
 
