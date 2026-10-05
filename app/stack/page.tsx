@@ -152,9 +152,9 @@ const UI: Row[] = [
 
 export default function StackPage() {
   return (
-    <main className="container mr-auto max-w-6xl px-4 py-8 xl:ml-[6vw]">
-      <div className="flex gap-8 relative">
-        <aside className="hidden xl:block w-[320px] flex-shrink-0">
+    <main className="container mr-auto max-w-6xl px-4 py-8 xl:ml-[4vw]">
+      <div className="flex gap-10 relative">
+        <aside className="-ml-2 hidden xl:block w-[320px] flex-shrink-0">
           <div className="sticky top-20 space-y-8">
             <div className="border border-border bg-card p-4">
               <TableOfContents />
