@@ -125,7 +125,7 @@ export default function ConvertPage() {
   return (
     <main className="w-full max-w-lg mx-auto px-4 py-6 space-y-4">
       <div className="flex items-center gap-2">
-        <Icon icon="mdi:swap-horizontal-bold" className="size-6 text-primary" />
+        <Icon icon="lucide:arrow-left-right" className="size-6 text-primary" />
         <h1 className="text-xl font-bold">图片转换</h1>
       </div>
 
@@ -148,7 +148,7 @@ export default function ConvertPage() {
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center justify-between gap-1 w-full h-8 rounded-lg border border-input bg-transparent px-3 text-sm text-left select-none focus-visible:outline-none focus:outline-none">
                   {getFormatLabel(targetFormat)}
-                  <Icon icon="mdi:chevron-down" className="size-4 text-muted-foreground shrink-0" />
+                  <Icon icon="lucide:chevron-down" className="size-4 text-muted-foreground shrink-0" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-full min-w-[160px]">
                   {FORMATS.map((fmt) => (
@@ -166,7 +166,7 @@ export default function ConvertPage() {
             onClick={convertAll}
             disabled={!files.length || converting}
           >
-            {converting ? <Spinner className="size-4 mr-1" /> : <Icon icon="mdi:swap-horizontal-bold" className="size-4 mr-1" />}
+            {converting ? <Spinner className="size-4 mr-1" /> : <Icon icon="lucide:arrow-left-right" className="size-4 mr-1" />}
             {converting
               ? `转换中 ${currentIndex}/${totalCount}`
               : `转换 ${files.length} 个文件为 ${getFormatLabel(targetFormat)}`}

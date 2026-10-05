@@ -26,19 +26,19 @@ export interface NavGroup {
 // 2026-10-04：论坛已整体移除（前后端 + 数据），相关代码不再保留。
 // 2026-10-05：导航从「顶部横排 + 工具下拉」改为左侧栏分组。
 export const NAV_LINKS: NavLink[] = [
-  { label: '首页',     icon: 'mdi:home-variant-outline', href: '/' },
-  { label: '博客',     icon: 'mdi:post-outline',         href: '/posts' },
-  { label: '公告',     icon: 'mdi:bullhorn-outline',     href: '/announcements' },
-  { label: '友链',     icon: 'mdi:link-variant',         href: '/friends' },
-  { label: '赞助',     icon: 'mdi:heart',                href: '/sponsors' },
-  { label: '工具集',   icon: 'mdi:toolbox-outline',      href: '/tools' },
-  { label: '封面制作', icon: 'mdi:image-edit',           href: '/cover' },
-  { label: '水印',     icon: 'mdi:water',                href: '/watermark' },
-  { label: '图片转换', icon: 'mdi:swap-horizontal-bold', href: '/convert' },
-  { label: '从夯到拉', icon: 'mdi:podium-gold',          href: '/tier' },
-  { label: '文件',     icon: 'mdi:folder-open',          href: '/files' },
-  { label: '技术栈',   icon: 'mdi:layers-triple',        href: '/stack' },
-  { label: '统计',     icon: 'mdi:chart-line',           href: 'https://u.520pro.top' },
+  { label: '首页',     icon: 'lucide:house', href: '/' },
+  { label: '博客',     icon: 'lucide:file-text',         href: '/posts' },
+  { label: '公告',     icon: 'lucide:bell',          href: '/announcements' },
+  { label: '友链',     icon: 'lucide:link',         href: '/friends' },
+  { label: '赞助',     icon: 'lucide:heart',                href: '/sponsors' },
+  { label: '工具集',   icon: 'lucide:wrench',      href: '/tools' },
+  { label: '封面制作', icon: 'lucide:image',           href: '/cover' },
+  { label: '水印',     icon: 'lucide:droplet',                href: '/watermark' },
+  { label: '图片转换', icon: 'lucide:arrow-left-right', href: '/convert' },
+  { label: '从夯到拉', icon: 'lucide:trophy',          href: '/tier' },
+  { label: '文件',     icon: 'lucide:folder-open',          href: '/files' },
+  { label: '技术栈',   icon: 'lucide:layers',        href: '/stack' },
+  { label: '统计',     icon: 'lucide:chart-line',           href: 'https://u.520pro.top' },
 ];
 
 /** 侧栏分组。顺序即渲染顺序；空组会被自动跳过。

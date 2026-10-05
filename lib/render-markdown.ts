@@ -57,11 +57,11 @@ const CALLOUT_TITLES: Record<string, string> = {
    **图标名必须写成字面量**：子集构建器是拿正则扫源码里的 'prefix:name' 字面量来
    决定收录哪些图标的，拼接出来的名字它扫不到，线上查表就是空。 */
 const LANG_ICONS: Record<string, string> = {
-  bash: 'mdi:console-line',
-  sh: 'mdi:console-line',
-  shell: 'mdi:console-line',
-  zsh: 'mdi:console-line',
-  console: 'mdi:console-line',
+  bash: 'lucide:terminal',
+  sh: 'lucide:terminal',
+  shell: 'lucide:terminal',
+  zsh: 'lucide:terminal',
+  console: 'lucide:terminal',
   javascript: 'simple-icons:javascript',
   js: 'simple-icons:javascript',
   jsx: 'simple-icons:javascript',
@@ -70,29 +70,29 @@ const LANG_ICONS: Record<string, string> = {
   tsx: 'simple-icons:typescript',
   python: 'simple-icons:python',
   py: 'simple-icons:python',
-  json: 'mdi:code-json',
+  json: 'lucide:braces',
   yaml: 'simple-icons:yaml',
   yml: 'simple-icons:yaml',
-  xml: 'mdi:xml',
-  html: 'mdi:xml',
-  css: 'mdi:language-css3',
+  xml: 'lucide:code',
+  html: 'lucide:code',
+  css: 'lucide:file-code',
   php: 'simple-icons:php',
   rust: 'simple-icons:rust',
   rs: 'simple-icons:rust',
-  sql: 'mdi:database',
+  sql: 'lucide:database',
   dockerfile: 'simple-icons:docker',
   docker: 'simple-icons:docker',
-  ini: 'mdi:cog-outline',
-  conf: 'mdi:cog-outline',
-  toml: 'mdi:cog-outline',
+  ini: 'lucide:settings',
+  conf: 'lucide:settings',
+  toml: 'lucide:settings',
   nginx: 'simple-icons:nginx',
-  markdown: 'mdi:language-markdown',
-  md: 'mdi:language-markdown',
+  markdown: 'lucide:file-text',
+  md: 'lucide:file-text',
 };
 /** 没声明语言、或声明了但不在上表里时的通用图标 */
-const FALLBACK_LANG_ICON = 'mdi:code-tags';
-const COPY_ICON = 'mdi:content-copy';
-const COPIED_ICON = 'mdi:check';
+const FALLBACK_LANG_ICON = 'lucide:code';
+const COPY_ICON = 'lucide:copy';
+const COPIED_ICON = 'lucide:check';
 
 type IconEntry = { body?: string; width?: number; height?: number; left?: number; top?: number };
 type IconCollection = { icons: Record<string, IconEntry>; width?: number; height?: number };

@@ -50,7 +50,7 @@ export function FilesClient({ initial }: { initial?: FileItem[] | null } = {}) {
       <div>
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
           <h1 className="flex items-center gap-2 text-2xl font-bold">
-            <Icon icon="mdi:folder-open" className="size-6 text-primary" />
+            <Icon icon="lucide:folder-open" className="size-6 text-primary" />
             文件索引
           </h1>
         </div>
@@ -59,7 +59,7 @@ export function FilesClient({ initial }: { initial?: FileItem[] | null } = {}) {
           <div className="space-y-1 text-sm text-muted-foreground">
             <p>这里展示了本站托管的各项公开资源，你可以点击查看并下载。</p>
             <div className="flex items-start gap-2 -mx-4 border-y border-destructive/50 bg-destructive/10 px-4 py-3 sm:mx-0 sm:border text-destructive">
-              <Icon icon="mdi:alert-outline" className="mt-0.5 size-4 shrink-0" />
+              <Icon icon="lucide:triangle-alert" className="mt-0.5 size-4 shrink-0" />
               <p className="text-xs">
                 免责声明：本站不对任何文件的安全性做保证，请在下载或运行前自行核实，风险自担。
               </p>

@@ -246,7 +246,7 @@ export function ImageLightbox({
         className="fixed top-4 right-4 z-[60] text-white/70 hover:text-white transition-colors"
         aria-label="关闭"
       >
-        <Icon icon="mdi:close" className="size-6" />
+        <Icon icon="lucide:x" className="size-6" />
       </button>
 
       {/* Image */}
@@ -266,9 +266,9 @@ export function ImageLightbox({
       >
         {/* Zoom controls */}
         <div className="flex items-center gap-3 bg-black/40 backdrop-blur-sm rounded-lg px-3 py-1.5">
-          <button onClick={(e) => { e.stopPropagation(); setAnimate(true); setScale((s) => clampScale(s - 0.25)); }} className="hover:text-white"><Icon icon="mdi:minus" className="size-5" /></button>
+          <button onClick={(e) => { e.stopPropagation(); setAnimate(true); setScale((s) => clampScale(s - 0.25)); }} className="hover:text-white"><Icon icon="lucide:minus" className="size-5" /></button>
           <span className="min-w-[4ch] text-center tabular-nums">{Math.round(scale * 100)}%</span>
-          <button onClick={(e) => { e.stopPropagation(); setAnimate(true); setScale((s) => clampScale(s + 0.25)); }} className="hover:text-white"><Icon icon="mdi:plus" className="size-5" /></button>
+          <button onClick={(e) => { e.stopPropagation(); setAnimate(true); setScale((s) => clampScale(s + 0.25)); }} className="hover:text-white"><Icon icon="lucide:plus" className="size-5" /></button>
           <span className="w-px h-4 bg-white/20" />
           <button onClick={(e) => { e.stopPropagation(); setAnimate(true); setScale(1); setOffset({ x: 0, y: 0 }); }} className="hover:text-white">重置</button>
         </div>
@@ -292,7 +292,7 @@ export function ImageLightbox({
                     className="hover:text-sky-400 flex items-center gap-1 transition-colors disabled:opacity-50"
                     title="用这张图的参数生成"
                   >
-                    {forking ? <Spinner className="size-4" /> : <Icon icon="mdi:source-fork" className="size-4" />}
+                    {forking ? <Spinner className="size-4" /> : <Icon icon="lucide:git-fork" className="size-4" />}
                     <span className="hidden sm:inline">复刻</span>
                   </button>
                   <span className="w-px h-4 bg-white/20" />
@@ -304,7 +304,7 @@ export function ImageLightbox({
                   className="hover:text-yellow-400 flex items-center gap-1 transition-colors"
                   title="自荐到精选"
                 >
-                  <Icon icon="mdi:star-plus-outline" className="size-4" />
+                  <Icon icon="lucide:star" className="size-4" />
                   <span className="hidden sm:inline">自荐</span>
                 </button>
               )}
@@ -314,7 +314,7 @@ export function ImageLightbox({
                 className="hover:text-white flex items-center gap-1"
                 title="下载原图（不经过 Webp 转换）"
               >
-                <Icon icon="mdi:download" className="size-4" />
+                <Icon icon="lucide:download" className="size-4" />
                 <span className="hidden sm:inline">下载原图</span>
               </button>
             </div>

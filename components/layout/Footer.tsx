@@ -9,7 +9,7 @@ export function Footer() {
       <div className="container mx-auto flex flex-col items-center gap-2 text-sm text-muted-foreground">
         {/* 一行信息：窄屏必须能换行，否则链接会顶出容器 */}
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-          <a href="#" id="open_preferences_center" className="inline-flex shrink-0 items-center gap-1 underline hover:text-foreground transition-colors"><Icon icon="mdi:cookie-outline" className="size-3.5" />
+          <a href="#" id="open_preferences_center" className="inline-flex shrink-0 items-center gap-1 underline hover:text-foreground transition-colors"><Icon icon="lucide:cookie" className="size-3.5" />
             {COOKIE_PREFERENCES_LABEL}
           </a>
         </div>

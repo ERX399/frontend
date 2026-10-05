@@ -508,7 +508,7 @@ export default function TierPage() {
             className="hidden"
           />
           <span className="inline-flex h-9 cursor-pointer items-center gap-1.5 border border-primary bg-primary px-3 text-sm font-medium text-primary-foreground hover:opacity-90">
-            <Icon icon="mdi:image-plus" className="size-4" />
+            <Icon icon="lucide:image-plus" className="size-4" />
             上传图片
           </span>
         </label>
@@ -518,7 +518,7 @@ export default function TierPage() {
           disabled={totalCount === 0 || exporting}
           className="gap-1.5"
         >
-          <Icon icon="mdi:download" className="size-4" />
+          <Icon icon="lucide:download" className="size-4" />
           {exporting ? '生成中…' : '保存图片'}
         </Button>
         <Button
@@ -527,7 +527,7 @@ export default function TierPage() {
           disabled={totalCount === 0}
           className="gap-1.5"
         >
-          <Icon icon="mdi:delete-outline" className="size-4" />
+          <Icon icon="lucide:trash-2" className="size-4" />
           清空
         </Button>
       </div>
@@ -535,7 +535,7 @@ export default function TierPage() {
       {/* 图片池 */}
       <div>
         <div className="mb-2 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground/60">
-          <Icon icon="mdi:tray-full" className="size-3.5" />
+          <Icon icon="lucide:inbox" className="size-3.5" />
           待排图片（{board.pool.length}）
         </div>
         <div
