@@ -41,7 +41,7 @@ export default function PrivacyPage() {
       <H2>信息收集与使用</H2>
       <P>你使用本站服务时，我们可能收集以下类型的信息：</P>
       <Ol>
-        <li><strong>账号信息：</strong> 注册论坛时你提供的用户名、邮箱地址及头像。</li>
+        <li><strong>账号信息：</strong> 你在本站注册时提供的用户名与邮箱地址（如适用）。</li>
         <li><strong>使用数据：</strong> 访问记录、页面浏览量、操作日志、生成的图片记录及提示词历史。</li>
         <li><strong>设备信息：</strong> 浏览器类型、操作系统、IP 地址及设备标识符（通过第三方分析服务收集）。</li>
       </Ol>
@@ -68,7 +68,6 @@ export default function PrivacyPage() {
       <Ul>
         <li><InlineCode>cookie-consent-preferences</InlineCode> — Cookie 同意偏好设置</li>
         <li><InlineCode>theme</InlineCode> — 用户主题偏好（亮色/暗色/跟随系统）</li>
-        <li>论坛相关键名 — 登录凭证及环境配置</li>
       </Ul>
 
       <H2>第三方服务</H2>
@@ -96,7 +95,7 @@ export default function PrivacyPage() {
 
       <H2>数据存储与安全</H2>
       <P>
-        你生成的内容（包括图片及提示词）存储在本站运营者控制的服务器上。我们采取合理的技术措施保护你的数据安全，但互联网传输无法保证绝对安全。论坛账号密码经过加密存储，但我们建议你不要在多个站点使用相同的密码。
+        你生成的内容（包括图片及提示词）存储在本站运营者控制的服务器上。我们采取合理的技术措施保护你的数据安全，但互联网传输无法保证绝对安全。
       </P>
 
       <H2>数据保留与删除</H2>
@@ -110,7 +109,7 @@ export default function PrivacyPage() {
       <Ul>
         <li><strong>知情权：</strong> 本隐私政策向您说明了我们收集哪些信息及如何使用。</li>
         <li><strong>选择权：</strong> 您可以通过页面底部的「Cookie 与偏好设置」选择是否允许功能 Cookie 及分析 Cookie。</li>
-        <li><strong>删除权：</strong> 您可以通过论坛设置删除您的账号（功能开发中），或通过清除浏览器 localStorage 删除本地存储的数据。</li>
+        <li><strong>删除权：</strong> 您可以通过清除浏览器 localStorage 删除本地存储的数据。</li>
         <li><strong>撤回同意：</strong> 您随时可以通过页面底部的「Cookie 与偏好设置」按钮撤回 Cookie 同意（撤回不影响撤回前基于同意的处理的合法性）。</li>
       </Ul>
 

@@ -140,7 +140,7 @@ export function HomeClient() {
             /60 是 3.3:1，都不到 4.5:1。此前满屏 canvas 盖着，axe 判不出背景色
             才没报出来 */}
         <p className="text-base text-muted-foreground/80 mb-10 max-w-lg">
-          <InlineIcon icon="mdi:post-outline" /> 技术博客 · <InlineIcon icon="mdi:forum" /> 社区论坛 · <InlineIcon icon="mdi:toolbox-outline" /> 实用在线工具集
+          <InlineIcon icon="mdi:post-outline" /> 技术博客 · <InlineIcon icon="mdi:toolbox-outline" /> 实用在线工具集
         </p>
 
         {/* 主要 CTA */}
@@ -151,10 +151,10 @@ export function HomeClient() {
               阅读博客
             </Button>
           </Link>
-          <Link to="/forum">
+          <Link to="/tools">
             <Button size="lg" variant="outline" className="gap-2">
-              <Icon icon="mdi:forum" className="size-4" />
-              进入论坛
+              <Icon icon="mdi:toolbox-outline" className="size-4" />
+              浏览工具集
             </Button>
           </Link>
         </div>
@@ -271,7 +271,7 @@ export function HomeClient() {
             每一行代码都是 AI 生成的——我只做最轻松的部分：想点子。
           </p>
           <p className="text-muted-foreground leading-relaxed text-base">
-            这个网站是我的数字花园——<InlineIcon icon="mdi:post-outline" /> 技术博客记录探索过程，<InlineIcon icon="mdi:forum" /> 论坛沉淀交流内容，
+            这个网站是我的数字花园——<InlineIcon icon="mdi:post-outline" /> 技术博客记录探索过程，
             <InlineIcon icon="mdi:toolbox-outline" /> 实用在线工具集是日常开发的副产品，开放给有需要的人使用。
           </p>
         </div>
@@ -290,7 +290,7 @@ export function HomeClient() {
               const isInternal = link.url.startsWith('/');
               const iconNode = isLocalImage
                 ? <img src={link.icon} alt={link.name} className="w-4 h-4" />
-                : <Icon icon={link.icon} className="w-4 h-4" style={link.color ? { color: link.color } : undefined} />;
+                : <Icon icon={link.icon} className="w-4 h-4" />;
 
               if (isInternal) {
                 return (

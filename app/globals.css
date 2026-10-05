@@ -1,5 +1,7 @@
 @import '@fontsource-variable/geist';
 @import '@fontsource-variable/geist-mono';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/lora';
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -13,9 +15,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: 'Lora Variable', 'Songti SC', 'SimSun', Georgia, serif;
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
@@ -50,6 +52,7 @@
 
 :root {
   --font-geist-sans: 'Geist Variable', sans-serif;
+  --font-inter-sans: 'Inter Variable', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --font-geist-mono: 'Geist Mono Variable', monospace;
   --background: oklch(0.205 0 0);
   --foreground: oklch(0.92 0 0);
@@ -82,6 +85,26 @@
   --chart-4: oklch(0.38 0 0);
   --chart-5: oklch(0.68 0.21 27);
   --radius: 0px;
+  /* 侧栏配色：比 --background 更暗一档，让侧栏与主内容靠明度分层，
+     而不是靠一条边框硬切。accent 用于 hover / 选中；边框用半透明白。 */
+  --sidebar: oklch(0.165 0 0);
+  --sidebar-foreground: oklch(0.92 0 0);
+  --sidebar-muted-foreground: oklch(0.64 0 0);
+  --sidebar-accent: oklch(0.26 0 0);
+  --sidebar-accent-foreground: oklch(0.96 0 0);
+  --sidebar-border: oklch(1 0 0 / 12%);
+}
+
+/* 侧栏尺寸：展开态放图标 + 文字，折叠态只留图标居中。
+   --site-header-height 是主内容区顶栏的高度（折叠按钮 + 当前页标题），
+   比原先的全宽导航矮很多 —— 侧栏顶部自己有一份 logo/标题。 */
+:root {
+  --sidebar-width: 14rem;
+  --sidebar-width-icon: 3rem;
+  --site-header-height: 2.75rem;
+  /* 折叠按钮占位：按钮 fixed 在视口右上角，侧栏顶部要留出这么宽的空隙，
+     否则展开时 logo 那一行右侧的文字会被按钮压住。 */
+  --sidebar-toggle-size: 2.5rem;
 }
 
 /* 根字号 14.96px（默认 16px 的 93.5%）：全站 rem 等比缩到 93.5%，
@@ -212,6 +235,18 @@ input[type="color"]::-moz-color-swatch {
 }
 .stack-table table thead th {
   background: var(--muted);
+}
+
+/* 侧栏内的滚动条：折叠态侧栏只有 3rem 宽，全局那条 10px 的滑块会吃掉近四分之一，
+   图标和折叠按钮全被挤到一边。整块隐藏滑块，滚轮 / 触摸滚动不受影响。 */
+[data-slot="sidebar"],
+[data-slot="sidebar"] * {
+  scrollbar-width: none;
+}
+[data-slot="sidebar"]::-webkit-scrollbar,
+[data-slot="sidebar"] *::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 /* Toast 图标按类型着色。Icon 组件渲染的是 <svg fill="currentColor">，
@@ -406,24 +441,14 @@ pre.hljs > .code-copy,
     background: oklch(0 0 0 / 0.72);
   }
 
-  /* 方形滚动条：中灰滑块保证在黑底上可读 */
+  /* 滚动条整体隐藏：内容用滚轮 / 触摸 / 键盘照常滚动，只是不画滑块。
+     深色终端风里那条灰滑块始终比内容抢眼，且与侧栏边缘叠在一起显脏。 */
   * {
-    scrollbar-color: oklch(0.5 0 0) var(--background);
+    scrollbar-width: none;
   }
   ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--background);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: oklch(0.5 0 0);
-    border: 2px solid var(--background);
-    border-radius: 0;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: oklch(0.72 0 0);
+    width: 0;
+    height: 0;
   }
 
   /* 网格子项默认允许收缩到 0（对抗 CSS Grid 的隐式最小宽度）：
