@@ -117,7 +117,7 @@ export function FloatingActions() {
     <>
       {/* 阅读进度条：详情页专属，贴在顶部导航栏下沿 */}
       {isDetailPage && (
-        <div className="fixed top-14 left-0 right-0 h-0.5 z-40 pointer-events-none" aria-hidden>
+        <div className="fixed top-[var(--site-header-height)] left-0 right-0 h-0.5 z-40 pointer-events-none" aria-hidden>
           <div
             className="h-full bg-foreground origin-left transition-transform duration-100 ease-linear"
             style={{ transform: `scaleX(${progress})` }}

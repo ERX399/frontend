@@ -85,14 +85,15 @@
   --chart-4: oklch(0.38 0 0);
   --chart-5: oklch(0.68 0.21 27);
   --radius: 0px;
-  /* 侧栏配色：比 --background 更暗一档，让侧栏与主内容靠明度分层，
-     而不是靠一条边框硬切。accent 用于 hover / 选中；边框用半透明白。 */
-  --sidebar: oklch(0.165 0 0);
-  --sidebar-foreground: oklch(0.92 0 0);
-  --sidebar-muted-foreground: oklch(0.64 0 0);
-  --sidebar-accent: oklch(0.26 0 0);
-  --sidebar-accent-foreground: oklch(0.96 0 0);
-  --sidebar-border: oklch(1 0 0 / 12%);
+  /* 侧栏配色：取自参考站 AcoFork（暖黑 + 暖白 + 透明边框）。
+     background 比主区更暗，靠明度分层而不是一条实线硬切；
+     accent 用于 hover / 选中，色值与其 --color-sidebar-accent 一致。 */
+  --sidebar: #141413;
+  --sidebar-foreground: #faf9f5;
+  --sidebar-muted-foreground: #b0aea5;
+  --sidebar-accent: #2e2e2c;
+  --sidebar-accent-foreground: #faf9f5;
+  --sidebar-border: rgb(255 255 255 / 24%);
 }
 
 /* 侧栏尺寸：展开态放图标 + 文字，折叠态只留图标居中。
