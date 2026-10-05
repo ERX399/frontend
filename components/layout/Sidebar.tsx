@@ -31,7 +31,7 @@ export function useSidebarMode(): [SidebarMode, () => void] {
 }
 
 const itemBase =
-  'flex items-center gap-2.5 overflow-hidden px-3 py-2 font-heading text-sm font-semibold whitespace-nowrap transition-colors duration-100 active:bg-[var(--sidebar-accent)]';
+  'flex items-center gap-2.5 overflow-hidden px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors duration-100 active:bg-[var(--sidebar-accent)]';
 
 export function Sidebar({ mode }: { mode: SidebarMode }) {
   const { pathname } = useLocation();
@@ -62,13 +62,13 @@ export function Sidebar({ mode }: { mode: SidebarMode }) {
         <div className="relative flex size-full flex-col overflow-hidden bg-[var(--sidebar)] text-[var(--sidebar-foreground)]">
           <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-x-hidden overflow-y-auto">
 
-            <div className="relative flex w-full min-w-0 flex-col p-2">
+            <div className="relative flex w-full min-w-0 flex-col px-2 pb-2">
               {/* logo 行。这一行的高度始终保留 —— 折叠按钮 fixed 在视口右上角、
                   不随侧栏移动，行高一旦塌掉，第一个导航项就会顶上来跟按钮重叠。
                   折叠态不显示内容（3rem 里放不下站名）。
                   展开态右侧留出 --sidebar-toggle-size，避免文字被按钮压住。
                   下方加一条分隔线，与后面各组的分隔线呼应。 */}
-              <div className="flex h-9 shrink-0 items-center border-b border-[var(--sidebar-border)] px-3 pe-[var(--sidebar-toggle-size)]">
+              <div className="flex h-[var(--site-header-height)] shrink-0 items-center border-b border-[var(--sidebar-border)] px-3 pe-[var(--sidebar-toggle-size)]">
                 {!collapsed && (
                   <Link
                     to="/"
@@ -82,7 +82,7 @@ export function Sidebar({ mode }: { mode: SidebarMode }) {
                       referrerPolicy="no-referrer"
                       className="size-6 shrink-0 rounded-full"
                     />
-                    <span className="truncate font-heading text-sm font-semibold tracking-tight">{SITE_NAME}</span>
+                    <span className="truncate text-sm font-semibold tracking-tight">{SITE_NAME}</span>
                   </Link>
                 )}
               </div>
@@ -100,7 +100,7 @@ export function Sidebar({ mode }: { mode: SidebarMode }) {
                 {!collapsed && (
                   // 贴左对齐：缩进量 = 导航项的 px-3，与图标左边缘、上方分割线同一条竖线。
                   // 不跟导航文字对齐（那要多缩进 26px），标题会显得孤零零飘在中间。
-                  <div className="flex h-7 shrink-0 items-center px-3 font-heading text-xs font-medium text-[var(--sidebar-muted-foreground)]">
+                  <div className="flex h-7 shrink-0 items-center px-3 text-xs font-medium text-[var(--sidebar-foreground)]/70">
                     <span>{group.label}</span>
                   </div>
                 )}
@@ -113,7 +113,7 @@ export function Sidebar({ mode }: { mode: SidebarMode }) {
                       (collapsed ? ' justify-center px-0' : '') +
                       (active
                         ? ' bg-[var(--sidebar-accent)] font-medium text-[var(--sidebar-accent-foreground)]'
-                        : ' text-[var(--sidebar-muted-foreground)] hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)]');
+                        : ' text-[var(--sidebar-foreground)]/70 hover:bg-[var(--sidebar-accent)] hover:text-[var(--sidebar-accent-foreground)]');
 
                     const inner = (
                       <>
@@ -154,7 +154,7 @@ export function Sidebar({ mode }: { mode: SidebarMode }) {
 
           {!collapsed && (
             <div className="flex flex-col gap-2 border-t border-[var(--sidebar-border)] p-4">
-              <SitePageviews className="flex items-center gap-2 text-xs text-[var(--sidebar-muted-foreground)]" />
+              <SitePageviews className="flex items-center gap-2 text-xs text-[var(--sidebar-foreground)]/70" />
             </div>
           )}
         </div>
