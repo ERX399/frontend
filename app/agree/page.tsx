@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import { Icon } from '@/components/ui/icon';
 
 function H2({ children }: { children: React.ReactNode }) {
@@ -26,13 +25,6 @@ function Ol({ start, children }: { start?: number; children: React.ReactNode }) 
 export default function AgreePage() {
   return (
     <main className="container mx-auto max-w-3xl px-4 py-8">
-      <Link
-        to="/"
-        className="flex items-center gap-1 border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent mb-4 transition-colors"
-      >
-        <Icon icon="lucide:arrow-left" className="size-4" />
-        返回首页
-      </Link>
       <h1 className="mt-4 text-3xl font-bold tracking-tight">用户协议</h1>
       <p className="mt-2 font-mono text-sm text-muted-foreground">
         最后更新：<time dateTime="2026-05-27">2026-05-27</time>
@@ -58,7 +50,6 @@ export default function AgreePage() {
       <P>
         本站所有生成内容由人工智能自动生成，不代表本站运营者的观点、立场或意见。生成内容的准确性、完整性、合法性及实用性本站不作任何保证。你应对你生成、发布及传播的内容承担全部责任。
       </P>
-
 
       <H2>未成年人条款</H2>
       <P>
