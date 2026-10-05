@@ -65,7 +65,7 @@ export function FileExplorer({ items, baseUrl = '' }: FileExplorerProps) {
       </div>
 
       {/* Header */}
-      <div className="mb-1 flex items-center border-b px-0 sm:px-3 py-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+      <div className="mb-1 flex items-center border-b px-0 sm:px-3 py-2 font-display text-xs font-bold uppercase tracking-wider text-muted-foreground">
         <span className="flex-1">名称</span>
         <span className="w-24 text-right">大小</span>
         <span className="w-12" />

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Icon } from '@/components/ui/icon';
 import { TableOfContents } from '@/components/table-of-contents';
+import { FontShowcase } from '@/components/stack/font-showcase';
+import { MarkdownShowcase } from '@/components/stack/markdown-showcase';
 import { getPostPageviews, loadPageviews } from '@/lib/pageviews';
 
 /** 浏览量：与文章详情页同源（u.520 按路径统计），本页路径是 /stack */
@@ -123,8 +125,13 @@ const STYLE: Row[] = [
   { name: '@tailwindcss/typography', version: '0.5.20', note: '文章正文排版（prose）' },
   { name: 'clsx', version: '2.1.1', note: '条件类名拼接' },
   { name: 'tailwind-merge', version: '3.7.0', note: '合并冲突类名，与 clsx 组成 cn()' },
-  { name: '@fontsource-variable/geist', version: '5.3.0', note: '正文可变字体' },
-  { name: '@fontsource-variable/geist-mono', version: '5.3.0', note: '等宽字体，用于代码块' },
+];
+
+const FONTS: Row[] = [
+  { name: '@fontsource-variable/inter', version: '5.3.0', note: '正文无衬线，全站默认' },
+  { name: '@fontsource-variable/geist-mono', version: '5.3.0', note: '等宽，代码块与表格数字' },
+  { name: '@fontsource-variable/lora', version: '5.3.0', note: '衬线，标题与按钮' },
+  { name: '@fontsource-variable/geist', version: '5.3.0', note: '小标题与 Toast 提示' },
 ];
 
 const CONTENT: Row[] = [
@@ -145,9 +152,17 @@ const UI: Row[] = [
 
 export default function StackPage() {
   return (
-    <main className="container mx-auto max-w-6xl px-4 py-8">
+    <main className="container mr-auto max-w-6xl px-4 py-8 xl:ml-[6vw]">
       <div className="flex gap-8 relative">
-        <article className="flex-1 min-w-0 max-w-3xl mx-auto">
+        <aside className="hidden xl:block w-[320px] flex-shrink-0">
+          <div className="sticky top-20 space-y-8">
+            <div className="border border-border bg-card p-4">
+              <TableOfContents />
+            </div>
+          </div>
+        </aside>
+
+        <article className="flex-1 min-w-0 max-w-3xl">
           <div className="border border-border bg-card p-4 sm:p-6">
           <header className="mb-8 border-b border-border pb-6">
             <h1 className="text-3xl font-bold tracking-tight">技术栈</h1>
@@ -164,7 +179,7 @@ export default function StackPage() {
               <span aria-hidden>·</span>
               <span>6 个仓库</span>
               <span aria-hidden>·</span>
-              <span>23 个依赖</span>
+              <span>24 个依赖</span>
             </div>
           </header>
 
@@ -185,6 +200,31 @@ export default function StackPage() {
             根字号压到 <Mono>93.5%</Mono>，全站 rem 等比缩一档。
           </P>
           <Table head={['依赖', '版本', '作用']} rows={STYLE} />
+
+          <H2 id="前端--字体">前端 · 字体</H2>
+          <P>
+            四个可变字体包，各自绑定一个 CSS 变量，互不重叠。
+            中文字形不在这些包里，靠回退链落到系统字体：正文走 <Mono>PingFang SC</Mono>、
+            <Mono>Microsoft YaHei</Mono>，标题走 <Mono>Songti SC</Mono>、<Mono>SimSun</Mono>。
+          </P>
+          <Table head={['依赖', '版本', '作用']} rows={FONTS} />
+          <div className="mt-4 border border-border bg-muted/30 p-4 font-mono text-xs leading-relaxed text-muted-foreground">
+            <div>--font-inter-sans&nbsp;&nbsp;Inter Variable → PingFang SC → Microsoft YaHei → sans-serif</div>
+            <div>--font-geist-mono&nbsp;&nbsp;Geist Mono Variable → monospace</div>
+            <div>--font-heading&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lora Variable → Songti SC → SimSun → Georgia → serif</div>
+            <div>--font-geist-sans&nbsp;&nbsp;&nbsp;Geist Variable → sans-serif</div>
+          </div>
+          <FontShowcase />
+
+          <H2 id="前端--排版">前端 · 排版</H2>
+          <P>
+            文章正文交给 <Mono>@tailwindcss/typography</Mono> 的 <Mono>prose</Mono>，
+            配合 <Mono>prose-zinc dark:prose-invert</Mono> 接管标题、列表、引用与表格。
+            代码块不走 prose 的 <Mono>pre</Mono> —— <Mono>lib/render-markdown.ts</Mono> 重写了
+            fence 渲染，输出「语言标签 + 复制按钮」的独立头部，再套一层 <Mono>highlight.js</Mono> 高亮，
+            Atom One Dark 配色。
+          </P>
+          <MarkdownShowcase />
 
           <H2 id="前端--内容渲染">前端 · 内容渲染</H2>
           <Table head={['依赖', '版本', '作用']} rows={CONTENT} />
@@ -222,14 +262,6 @@ export default function StackPage() {
           />
           </div>
         </article>
-
-        <aside className="hidden xl:block w-[320px] flex-shrink-0">
-          <div className="sticky top-20 space-y-8">
-            <div className="border border-border bg-card p-4">
-              <TableOfContents />
-            </div>
-          </div>
-        </aside>
       </div>
     </main>
   );

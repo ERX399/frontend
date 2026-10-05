@@ -534,7 +534,7 @@ export default function TierPage() {
 
       {/* 图片池 */}
       <div>
-        <div className="mb-2 flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground/60">
+        <div className="mb-2 flex items-center gap-2 font-display text-xs font-medium uppercase tracking-wider text-muted-foreground/60">
           <Icon icon="lucide:inbox" className="size-3.5" />
           待排图片（{board.pool.length}）
         </div>

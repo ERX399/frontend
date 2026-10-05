@@ -113,7 +113,7 @@ export function Sidebar({ mode }: { mode: SidebarMode }) {
                   // 贴左对齐：缩进量 = 导航项的文字缩进（外层 px-2 + 链接自身 px-3 = 20px），
                   // 与图标左边缘、上方分割线同一条竖线。
                   // 不跟导航文字对齐（那要多缩进 26px），标题会显得孤零零飘在中间。
-                  <div className="flex h-7 shrink-0 items-center px-5 text-xs font-medium text-[var(--sidebar-foreground)]/70">
+                  <div className="flex h-7 shrink-0 items-center px-5 font-display text-xs font-medium text-[var(--sidebar-foreground)]/70">
                     <span>{group.label}</span>
                   </div>
                 )}

@@ -18,6 +18,7 @@
   --font-sans: var(--font-inter-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: 'Lora Variable', 'Songti SC', 'SimSun', Georgia, serif;
+  --font-display: var(--font-geist-sans);
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
@@ -236,6 +237,26 @@ input[type="color"]::-moz-color-swatch {
 }
 .stack-table table thead th {
   background: var(--muted);
+}
+
+/* /stack 的 Markdown 样例：prose 的标题样式与页面真实章节完全同款，
+   渲染出来会被当成"技术栈又讲了一节"。这里把样例内的标题压回"样品"尺寸，
+   字号、字重、间距都收一档，并加一条左边线标注它是被展示的内容。 */
+.markdown-showcase .prose h1,
+.markdown-showcase .prose h2,
+.markdown-showcase .prose h3,
+.markdown-showcase .prose h4 {
+  margin-top: 1.25em;
+  padding-left: 0.5rem;
+  border-left: 2px solid var(--border);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.markdown-showcase .prose h1:first-child,
+.markdown-showcase .prose h2:first-child,
+.markdown-showcase .prose h3:first-child {
+  margin-top: 0;
 }
 
 /* 侧栏内的滚动条：折叠态侧栏只有 3rem 宽，全局那条 10px 的滑块会吃掉近四分之一，
