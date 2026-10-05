@@ -155,7 +155,7 @@ export function CookieConsent() {
             <Card className="mx-0 max-w-3xl border-b-0 md:mx-auto md:border">
               <CardHeader className="pb-2">
                 <CardTitle className="flex items-center gap-2">
-                  <Icon icon="mdi:cookie" className="h-5 w-5" />
+                  <Icon icon="lucide:cookie" className="h-5 w-5" />
                   隐私与协议
                 </CardTitle>
               </CardHeader>
@@ -201,7 +201,7 @@ export function CookieConsent() {
 
                   <div className="flex flex-wrap gap-3">
                     <Button onClick={acceptAll} disabled={!agreed}>
-                      <Icon icon="mdi:check-all" className="mr-2 h-4 w-4" />
+                      <Icon icon="lucide:check-check" className="mr-2 h-4 w-4" />
                       接受全部
                     </Button>
                     <Button
@@ -216,7 +216,7 @@ export function CookieConsent() {
                       onClick={goToSettings}
                       disabled={!agreed}
                     >
-                      <Icon icon="mdi:cog" className="mr-2 h-4 w-4" />
+                      <Icon icon="lucide:settings" className="mr-2 h-4 w-4" />
                       自定义设置
                     </Button>
                   </div>
@@ -238,7 +238,7 @@ export function CookieConsent() {
                 className="text-muted-foreground hover:text-background p-2 rounded-md hover:bg-foreground"
                 onClick={closeSettings}
               >
-                <Icon icon="mdi:close" className="size-7" />
+                <Icon icon="lucide:x" className="size-7" />
               </button>
             </div>
             <p className="text-sm text-muted-foreground mb-6">
@@ -345,7 +345,7 @@ export function CookieConsent() {
                 className="w-full max-w-xs"
                 onClick={withdrawConsent}
               >
-                <Icon icon="mdi:close-circle-outline" className="size-4 mr-1" />
+                <Icon icon="lucide:circle-x" className="size-4 mr-1" />
                 撤回同意
               </Button>
               <Button

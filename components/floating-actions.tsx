@@ -142,7 +142,7 @@ export function FloatingActions() {
         tabIndex={hasContent && collapsed ? 0 : -1}
         title="展开操作按钮"
       >
-        <Icon icon="mdi:chevron-left" className="size-5" />
+        <Icon icon="lucide:chevron-left" className="size-5" />
       </button>
 
       <div
@@ -161,7 +161,7 @@ export function FloatingActions() {
             aria-label="回到顶部"
             title="回到顶部"
           >
-            <Icon icon="mdi:arrow-up" className="size-5" />
+            <Icon icon="lucide:arrow-up" className="size-5" />
           </button>
         )}
         {isDetailPage && (
@@ -173,7 +173,7 @@ export function FloatingActions() {
               aria-label={commentCount ? `直达评论区（${commentCount} 条评论）` : '直达评论区'}
               title="直达评论区"
             >
-              <Icon icon="mdi:comment-outline" className="size-5" />
+              <Icon icon="lucide:message-square" className="size-5" />
               {commentCount !== null && commentCount > 0 && (
                 /* aria-hidden：角标数字是 aria-label 的重复信息，留着会让无障碍名
                    与可见文字对不上（WCAG 2.5.3），计数已并入上面的 aria-label */
@@ -189,7 +189,7 @@ export function FloatingActions() {
               aria-label="复制本页链接"
               title="复制本页链接"
             >
-              <Icon icon="mdi:link-variant" className="size-5" />
+              <Icon icon="lucide:link" className="size-5" />
             </button>
             {/* 目录按钮：仅在详情页且屏幕小于 lg 时显示（>=lg 有侧栏目录） */}
             <button
@@ -199,7 +199,7 @@ export function FloatingActions() {
               aria-label="打开目录"
               title="打开目录"
             >
-              <Icon icon="mdi:format-list-bulleted" className="size-5" />
+              <Icon icon="lucide:list" className="size-5" />
             </button>
           </>
         )}
@@ -211,7 +211,7 @@ export function FloatingActions() {
           aria-label="隐藏操作按钮"
           title="隐藏操作按钮"
         >
-          <Icon icon="mdi:chevron-right" className="size-5" />
+          <Icon icon="lucide:chevron-right" className="size-5" />
         </button>
       </div>
 

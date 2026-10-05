@@ -21,7 +21,7 @@ export default function PostsPage() {
           className="inline-flex items-center gap-1.5 border border-border bg-card px-3 py-1.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
           title="订阅 RSS"
         >
-          <Icon icon="mdi:rss" className="size-4" />
+          <Icon icon="lucide:rss" className="size-4" />
           RSS
         </a>
       </div>

@@ -8,7 +8,7 @@ export function SitePageviews({ className }: { className?: string }) {
   useEffect(() => loadPageviews(getSitePageviews, setViews), []);
   return (
     <span className={className || 'inline-flex items-center gap-1 text-sm text-muted-foreground'}>
-      <Icon icon="mdi:eye-outline" className="size-3.5" />
+      <Icon icon="lucide:eye" className="size-3.5" />
       <span className="tabular-nums">
         {views === null ? '—' : views.toLocaleString()}
       </span>

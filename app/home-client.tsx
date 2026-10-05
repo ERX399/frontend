@@ -28,14 +28,14 @@ const FEATURES: Array<{
   tags?: string[];
 }> = [
   {
-    icon: 'mdi:post-outline',
+    icon: 'lucide:file-text',
     title: '技术博客',
-    desc: <>记录前端、后端、DevOps、ServerLess 与 <CFIcon /> Cloudflare 的技术探索，定期更新，支持 <Icon icon="mdi:rss" className="size-3 inline-block align-middle" /> RSS 订阅</>,
+    desc: <>记录前端、后端、DevOps、ServerLess 与 <CFIcon /> Cloudflare 的技术探索，定期更新，支持 <Icon icon="lucide:rss" className="size-3 inline-block align-middle" /> RSS 订阅</>,
     href: '/posts',
     cta: '阅读文章',
   },
     {
-    icon: 'mdi:toolbox-outline',
+    icon: 'lucide:wrench',
     title: '实用工具集',
     desc: '封面制作、B站封面下载、图片水印、格式转换——一站式解决创作周边需求',
     href: null,
@@ -43,7 +43,7 @@ const FEATURES: Array<{
     tags: ['封面制作', '水印', '图片转换', 'B站封面'],
   },
   {
-    icon: 'mdi:link-variant',
+    icon: 'lucide:link',
     title: '友链 & 赞助',
     desc: '与志同道合的创作者互换友链；如果这里的内容帮到了你，欢迎考虑赞助支持',
     href: '/friends',
@@ -140,20 +140,20 @@ export function HomeClient() {
             /60 是 3.3:1，都不到 4.5:1。此前满屏 canvas 盖着，axe 判不出背景色
             才没报出来 */}
         <p className="text-base text-muted-foreground/80 mb-10 max-w-lg">
-          <InlineIcon icon="mdi:post-outline" /> 技术博客 · <InlineIcon icon="mdi:toolbox-outline" /> 实用在线工具集
+          <InlineIcon icon="lucide:file-text" /> 技术博客 · <InlineIcon icon="lucide:wrench" /> 实用在线工具集
         </p>
 
         {/* 主要 CTA */}
         <div className="flex flex-wrap gap-3 justify-center">
           <Link to="/posts">
             <Button size="lg" className="gap-2">
-              <Icon icon="mdi:post-outline" className="size-4" />
+              <Icon icon="lucide:file-text" className="size-4" />
               阅读博客
             </Button>
           </Link>
           <Link to="/tools">
             <Button size="lg" variant="outline" className="gap-2">
-              <Icon icon="mdi:toolbox-outline" className="size-4" />
+              <Icon icon="lucide:wrench" className="size-4" />
               浏览工具集
             </Button>
           </Link>
@@ -271,8 +271,8 @@ export function HomeClient() {
             每一行代码都是 AI 生成的——我只做最轻松的部分：想点子。
           </p>
           <p className="text-muted-foreground leading-relaxed text-base">
-            这个网站是我的数字花园——<InlineIcon icon="mdi:post-outline" /> 技术博客记录探索过程，
-            <InlineIcon icon="mdi:toolbox-outline" /> 实用在线工具集是日常开发的副产品，开放给有需要的人使用。
+            这个网站是我的数字花园——<InlineIcon icon="lucide:file-text" /> 技术博客记录探索过程，
+            <InlineIcon icon="lucide:wrench" /> 实用在线工具集是日常开发的副产品，开放给有需要的人使用。
           </p>
         </div>
       </section>
@@ -284,13 +284,10 @@ export function HomeClient() {
           <p className="text-muted-foreground text-sm mb-8">在这些平台上找到我</p>
           <div className="flex flex-wrap gap-3 justify-center">
             {siteConfig.bio.links.map((link) => {
-              const isLocalImage = link.icon.startsWith('/');
               const isBilibili = link.name === 'B站主页';
               // 站内路径（/building 等）走 React Router 导航，不开新标签；外链才 target=_blank
               const isInternal = link.url.startsWith('/');
-              const iconNode = isLocalImage
-                ? <img src={link.icon} alt={link.name} className="w-4 h-4" />
-                : <Icon icon={link.icon} className="w-4 h-4" />;
+              const iconNode = <Icon icon={link.icon} className="w-4 h-4" />;
 
               if (isInternal) {
                 return (

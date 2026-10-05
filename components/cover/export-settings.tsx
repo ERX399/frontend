@@ -170,7 +170,7 @@ export function ExportSettings({
             className="w-full"
             size="lg"
           >
-            <Icon icon="mdi:download" className="mr-2 h-5 w-5" />
+            <Icon icon="lucide:download" className="mr-2 h-5 w-5" />
             导出图片
           </Button>
         </CardContent>

@@ -10,7 +10,7 @@ function StackPageviews({ slug }: { slug: string }) {
   useEffect(() => loadPageviews(() => getPostPageviews(slug), setViews), [slug]);
   return (
     <span className="inline-flex items-center gap-1">
-      <Icon icon="mdi:eye-outline" className="size-3" />
+      <Icon icon="lucide:eye" className="size-3" />
       <span className="tabular-nums">
         {views === null ? '—' : views.toLocaleString()}
       </span>
@@ -153,7 +153,7 @@ export default function StackPage() {
             to="/"
             className="flex items-center gap-1 border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent mb-4 transition-colors"
           >
-            <Icon icon="mdi:arrow-left" className="size-4" />
+            <Icon icon="lucide:arrow-left" className="size-4" />
             返回首页
           </Link>
 
@@ -165,7 +165,7 @@ export default function StackPage() {
             </p>
             <div className="mt-3 flex flex-wrap items-center gap-2 text-xs leading-none text-muted-foreground">
               <span className="inline-flex items-center gap-1">
-                <Icon icon="mdi:calendar" className="size-3" />
+                <Icon icon="lucide:calendar" className="size-3" />
                 <time dateTime="2026-10-04">2026-10-04</time>
               </span>
               <span aria-hidden>·</span>

@@ -75,7 +75,7 @@ export function BackToList({
         'inline-flex items-center gap-1 py-2 mb-2 text-sm text-muted-foreground hover:text-foreground transition-colors'
       }
     >
-      <Icon icon="mdi:arrow-left" className="size-4" />
+      <Icon icon="lucide:arrow-left" className="size-4" />
       {describe(search, label, pageBase)}
     </Link>
   );

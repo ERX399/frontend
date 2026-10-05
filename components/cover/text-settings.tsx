@@ -138,7 +138,7 @@ export function TextSettings({
               className="flex items-center justify-center w-full h-16 border-2 border-dashed rounded-lg cursor-pointer hover:border-primary"
             >
               <div className="flex flex-col items-center gap-1 text-muted-foreground">
-                <Icon icon="mdi:font-download" className="h-5 w-5" />
+                <Icon icon="lucide:type" className="h-5 w-5" />
                 <span className="text-xs">{customFontName || '点击上传字体'}</span>
               </div>
             </Label>
@@ -167,7 +167,7 @@ export function TextSettings({
                       </>
                     ) : (
                       <>
-                        <Icon icon="mdi:folder-open" className="mr-2 h-4 w-4" />
+                        <Icon icon="lucide:folder-open" className="mr-2 h-4 w-4" />
                         获取系统字体
                       </>
                     )}
@@ -214,7 +214,7 @@ export function TextSettings({
                           onClick={() => setCurrentPage(1)}
                           disabled={currentPage === 1}
                         >
-                          <Icon icon="mdi:chevron-double-left" className="h-4 w-4" />
+                          <Icon icon="lucide:chevrons-left" className="h-4 w-4" />
                         </Button>
                         <Button
                           variant="outline"
@@ -222,7 +222,7 @@ export function TextSettings({
                           onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                           disabled={currentPage === 1}
                         >
-                          <Icon icon="mdi:chevron-left" className="h-4 w-4" />
+                          <Icon icon="lucide:chevron-left" className="h-4 w-4" />
                         </Button>
                         <Button
                           variant="outline"
@@ -230,7 +230,7 @@ export function TextSettings({
                           onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                           disabled={currentPage === totalPages}
                         >
-                          <Icon icon="mdi:chevron-right" className="h-4 w-4" />
+                          <Icon icon="lucide:chevron-right" className="h-4 w-4" />
                         </Button>
                         <Button
                           variant="outline"
@@ -238,7 +238,7 @@ export function TextSettings({
                           onClick={() => setCurrentPage(totalPages)}
                           disabled={currentPage === totalPages}
                         >
-                          <Icon icon="mdi:chevron-double-right" className="h-4 w-4" />
+                          <Icon icon="lucide:chevrons-right" className="h-4 w-4" />
                         </Button>
                       </div>
                     </div>

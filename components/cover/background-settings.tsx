@@ -56,7 +56,7 @@ export function BackgroundSettings({
             onDrop={onBgDrop}
           >
             <div className="flex flex-col items-center gap-1 text-muted-foreground">
-              <Icon icon="mdi:upload" className="h-6 w-6" />
+              <Icon icon="lucide:upload" className="h-6 w-6" />
               <span className="text-xs">
                 {isBgDragOver ? '松开上传' : bgImage ? '点击或拖拽更换' : '点击或拖拽上传'}
               </span>
@@ -69,7 +69,7 @@ export function BackgroundSettings({
             <div className="flex items-center justify-between">
               <Label>模糊: {bgBlur}px</Label>
               <Button variant="destructive" size="sm" onClick={onBgImageRemove}>
-                <Icon icon="mdi:delete" className="h-4 w-4" />
+                <Icon icon="lucide:trash-2" className="h-4 w-4" />
               </Button>
             </div>
             <div className="flex items-center gap-3">

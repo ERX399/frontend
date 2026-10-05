@@ -32,9 +32,9 @@ export const siteConfig = {
     links: [
       { name: '爱发电', icon: 'simple-icons:afdian', url: 'https://www.ifdian.net/a/ERX399' },
       { name: 'B站主页', icon: 'simple-icons:bilibili', url: 'https://space.bilibili.com/1009057001' },
-      { name: 'QQ群', icon: '/icon/QQ.svg', url: '/building' },
+      { name: 'QQ群', icon: 'simple-icons:tencentqq', url: '/building' },
       { name: 'Telegram群', icon: 'simple-icons:telegram', url: '/building' },
-      { name: 'GitHub', icon: 'mdi:github', url: 'https://github.com/ERX399' },
+      { name: 'GitHub', icon: 'lucide:github', url: 'https://github.com/ERX399' },
     ],
   },
   live: {
@@ -78,14 +78,14 @@ export const siteConfig = {
   // 2026-08-07：论坛与交互小说随 Oracle VPS 下线且不再恢复，入口一并摘除；
   // B站封面需要服务端代请求 B 站接口，应急期同样不可用。
   navLinks: [
-    { label: '博客', icon: 'mdi:post-outline', href: '/posts' },
-    { label: '封面制作', icon: 'mdi:image-edit', href: '/cover' },
-    { label: '水印', icon: 'mdi:water', href: '/watermark' },
-    { label: '图片转换', icon: 'mdi:swap-horizontal-bold', href: '/convert' },
-    { label: '文件', icon: 'mdi:folder-open', href: '/files' },
-    { label: '友链', icon: 'mdi:link-variant', href: '/friends' },
-    { label: '赞助', icon: 'mdi:heart', href: '/sponsors' },
-    { label: '统计', icon: 'mdi:chart-line', href: 'https://umami.520pro.top/share/v2IzYZRzKhBwoorB' },
+    { label: '博客', icon: 'lucide:file-text', href: '/posts' },
+    { label: '封面制作', icon: 'lucide:image', href: '/cover' },
+    { label: '水印', icon: 'lucide:droplet', href: '/watermark' },
+    { label: '图片转换', icon: 'lucide:arrow-left-right', href: '/convert' },
+    { label: '文件', icon: 'lucide:folder-open', href: '/files' },
+    { label: '友链', icon: 'lucide:link', href: '/friends' },
+    { label: '赞助', icon: 'lucide:heart', href: '/sponsors' },
+    { label: '统计', icon: 'lucide:chart-line', href: 'https://umami.520pro.top/share/v2IzYZRzKhBwoorB' },
   ] satisfies NavLink[],
 };
 export type SiteConfig = typeof siteConfig;

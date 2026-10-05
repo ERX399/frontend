@@ -132,7 +132,7 @@ export function Giscus() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
-          <Icon icon="mdi:github" className="size-4" />
+          <Icon icon="lucide:github" className="size-4" />
           跳转到讨论仓库
         </a>
       </div>
@@ -140,7 +140,7 @@ export function Giscus() {
         {!loaded && (
           <div className="flex items-start gap-3 rounded-lg border p-4 text-sm">
             <Icon
-              icon="mdi:information-outline"
+              icon="lucide:info"
               className="mt-0.5 size-5 shrink-0 text-muted-foreground"
             />
             <div>

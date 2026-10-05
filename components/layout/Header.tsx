@@ -53,7 +53,7 @@ export function Header() {
           {/* Mobile nav */}
           <Sheet>
             <SheetTrigger className="inline-flex items-center justify-center h-8 w-8 rounded-md hover:bg-accent transition-colors md:hidden">
-              <Icon icon="mdi:menu" className="size-4" />
+              <Icon icon="lucide:menu" className="size-4" />
               <span className="sr-only">菜单</span>
             </SheetTrigger>
             <SheetContent side="right" className="w-64">

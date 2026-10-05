@@ -66,7 +66,7 @@ function PostViews({ slug }: { slug: string }) {
     <>
       <span aria-hidden>·</span>
       <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-        <Icon icon="mdi:eye-outline" className="size-3" />
+        <Icon icon="lucide:eye" className="size-3" />
         <span className="tabular-nums">
           {views === null ? '—' : views.toLocaleString()}
         </span>
@@ -275,14 +275,14 @@ export function PostsSearch() {
               {post.pinned && (
                 <>
                   <span className="inline-flex items-center gap-1 text-xs font-medium text-amber-600 dark:text-amber-400">
-                    <Icon icon="mdi:pin" className="size-3" />
+                    <Icon icon="lucide:pin" className="size-3" />
                     置顶
                   </span>
                   <span aria-hidden>·</span>
                 </>
               )}
               <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                <Icon icon="mdi:calendar" className="size-3" />
+                <Icon icon="lucide:calendar" className="size-3" />
                 <time dateTime={post.published}>
                   {post.published.slice(0, 10)}
                 </time>
@@ -358,7 +358,7 @@ export function PostsSearch() {
       {/* Search input */}
       <div className="relative mb-8">
         <Icon
-          icon="mdi:magnify"
+          icon="lucide:search"
           className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none"
         />
         <input
@@ -374,7 +374,7 @@ export function PostsSearch() {
             onClick={() => setQuery('')}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Icon icon="mdi:close" className="size-4" />
+            <Icon icon="lucide:x" className="size-4" />
           </button>
         )}
       </div>
@@ -419,7 +419,7 @@ export function PostsSearch() {
                 className="flex size-9 items-center justify-center border border-border bg-card text-muted-foreground hover:bg-accent hover:text-foreground disabled:opacity-40 disabled:pointer-events-none transition-colors"
                 aria-label="上一页"
               >
-                <Icon icon="mdi:chevron-left" className="size-4" />
+                <Icon icon="lucide:chevron-left" className="size-4" />
               </button>
               {pageWindow(currentPage, pageCount).map((p, i) =>
                 p === '…' ? (
@@ -446,7 +446,7 @@ export function PostsSearch() {
                 className="flex size-9 items-center justify-center border border-border bg-card text-muted-foreground hover:bg-accent hover:text-foreground disabled:opacity-40 disabled:pointer-events-none transition-colors"
                 aria-label="下一页"
               >
-                <Icon icon="mdi:chevron-right" className="size-4" />
+                <Icon icon="lucide:chevron-right" className="size-4" />
               </button>
             </nav>
           )}

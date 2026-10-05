@@ -144,7 +144,7 @@ export default function WatermarkPage() {
   return (
     <main className="w-full max-w-lg mx-auto px-4 py-6 space-y-4">
       <div className="flex items-center gap-2">
-        <Icon icon="mdi:water" className="size-6 text-primary" />
+        <Icon icon="lucide:droplet" className="size-6 text-primary" />
         <h1 className="text-xl font-bold">图片水印</h1>
       </div>
 
@@ -161,7 +161,7 @@ export default function WatermarkPage() {
               />
             </div>
             <Button variant="outline" size="icon-lg" onClick={resetDefaults}>
-              <Icon icon="mdi:restore" className="size-4" />
+              <Icon icon="lucide:rotate-ccw" className="size-4" />
             </Button>
           </div>
 
@@ -182,7 +182,7 @@ export default function WatermarkPage() {
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center justify-between gap-1 w-full h-8 rounded-lg border border-input bg-transparent px-3 text-sm text-left select-none focus-visible:outline-none focus:outline-none">
                   {mode === 'single' ? '单个水印' : mode === 'tile' ? '全屏平铺' : '斜向全屏平铺'}
-                  <Icon icon="mdi:chevron-down" className="size-4 text-muted-foreground shrink-0" />
+                  <Icon icon="lucide:chevron-down" className="size-4 text-muted-foreground shrink-0" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start" className="w-full min-w-[140px]">
                   <DropdownMenuItem onClick={() => setMode('single')}>单个水印</DropdownMenuItem>
@@ -215,7 +215,7 @@ export default function WatermarkPage() {
                   <DropdownMenu>
                     <DropdownMenuTrigger className="flex items-center justify-between gap-1 w-full h-8 rounded-lg border border-input bg-transparent px-3 text-sm text-left select-none focus-visible:outline-none focus:outline-none">
                       {position}
-                      <Icon icon="mdi:chevron-down" className="size-4 text-muted-foreground shrink-0" />
+                      <Icon icon="lucide:chevron-down" className="size-4 text-muted-foreground shrink-0" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="start" className="w-full min-w-[100px]">
                       <DropdownMenuItem onClick={() => setPosition('左上')}>左上</DropdownMenuItem>
@@ -283,7 +283,7 @@ export default function WatermarkPage() {
             />
             {processedUrl && (
               <Button className="w-full" variant="default" onClick={handleDownload}>
-                <Icon icon="mdi:download" className="size-4 mr-1" />
+                <Icon icon="lucide:download" className="size-4 mr-1" />
                 下载图片
               </Button>
             )}

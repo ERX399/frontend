@@ -48,7 +48,7 @@ function PostPageviews({ slug }: { slug: string }) {
   useEffect(() => loadPageviews(() => getPostPageviews(slug), setViews), [slug]);
   return (
     <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-      <Icon icon="mdi:eye-outline" className="size-3" />
+      <Icon icon="lucide:eye" className="size-3" />
       <span className="tabular-nums">
         {views === null ? '—' : views.toLocaleString()}
       </span>
@@ -182,7 +182,7 @@ export function PostDetailReader({ slug }: { slug: string }) {
             to="/posts"
             className="flex items-center gap-1 border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent mb-4 transition-colors"
           >
-            <Icon icon="mdi:arrow-left" className="size-4" />
+            <Icon icon="lucide:arrow-left" className="size-4" />
             返回博客列表
           </Link>
 
@@ -190,7 +190,7 @@ export function PostDetailReader({ slug }: { slug: string }) {
           <header className="mb-8 pb-6 border-b border-border">
             {meta.pinned && (
               <div className="inline-flex items-center gap-1 text-xs font-medium text-amber-600 dark:text-amber-400 mb-3">
-                <Icon icon="mdi:pin" className="size-3" />
+                <Icon icon="lucide:pin" className="size-3" />
                 置顶
               </div>
             )}
@@ -202,7 +202,7 @@ export function PostDetailReader({ slug }: { slug: string }) {
             )}
             <div className="flex items-center gap-2 mt-3 text-xs text-muted-foreground flex-wrap leading-none">
               <span className="inline-flex items-center gap-1">
-                <Icon icon="mdi:calendar" className="size-3" />
+                <Icon icon="lucide:calendar" className="size-3" />
                 <time dateTime={meta.published}>
                   {meta.published.slice(0, 10)}
                 </time>
@@ -259,7 +259,7 @@ export function PostDetailReader({ slug }: { slug: string }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                <Icon icon="mdi:github" className="size-4" />
+                <Icon icon="lucide:github" className="size-4" />
                 在 GitHub 编辑此文章
               </a>
             </div>

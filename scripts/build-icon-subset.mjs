@@ -48,7 +48,10 @@ function collectUsed() {
     if (/\.(tsx?|jsx?)$/.test(f)) files.push(join(ROOT, f));
   }
 
-  const re = /icon=\{?["'`]([a-z0-9-]+:[a-z0-9-]+)["'`]/g;
+  // 两种写法都要覆盖：
+  //   JSX 属性  icon="lucide:house" / icon={'lucide:house'}
+  //   对象属性  icon: 'lucide:house'  （lib/nav.ts 用的是这种）
+  const re = /icon\s*[:=]\s*\{?\s*["'`]([a-z0-9-]+:[a-z0-9-]+)["'`]/g;
   for (const file of files) {
     const src = readFileSync(file, 'utf-8');
     let m;

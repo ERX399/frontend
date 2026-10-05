@@ -130,7 +130,7 @@ export function FriendsClient({ initial }: { initial?: Friend[] } = {}) {
           文字会直接贴在色块边缘上。sm 起恢复正常盒子 */}
       <div className="mb-8 -mx-4 border-y border-primary/30 bg-primary/5 px-4 py-4 sm:mx-0 sm:border">
         <div className="mb-2 flex items-start gap-3">
-          <Icon icon="mdi:link-variant" className="mt-0.5 size-5 shrink-0 text-primary" />
+          <Icon icon="lucide:link" className="mt-0.5 size-5 shrink-0 text-primary" />
           <div>
             <p className="font-semibold text-primary">申请友链</p>
             <p className="text-sm text-primary/80">
@@ -179,7 +179,7 @@ export function FriendsClient({ initial }: { initial?: Friend[] } = {}) {
           </li>
         </ul>
         <div className="ml-8 mt-3 flex items-start gap-3 rounded-lg border border-amber-500/30 bg-amber-500/10 p-3">
-          <Icon icon="mdi:lightbulb-outline" className="mt-0.5 size-4 shrink-0 text-amber-600" />
+          <Icon icon="lucide:lightbulb" className="mt-0.5 size-4 shrink-0 text-amber-600" />
           <div className="text-xs text-amber-700">
             <p className="font-medium">双向链接验证</p>
             <p className="mt-0.5">
@@ -211,7 +211,7 @@ export function FriendsClient({ initial }: { initial?: Friend[] } = {}) {
         <Form method="get" action="/friends" className="mb-6 flex gap-2">
           <div className="relative flex-1">
             <Icon
-              icon="mdi:magnify"
+              icon="lucide:search"
               className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
             />
             <input
@@ -235,7 +235,7 @@ export function FriendsClient({ initial }: { initial?: Friend[] } = {}) {
               aria-label="清空搜索"
               className={buttonVariants({ variant: 'ghost', size: 'icon-lg', className: 'shrink-0' })}
             >
-              <Icon icon="mdi:close" className="size-4" />
+              <Icon icon="lucide:x" className="size-4" />
             </Link>
           )}
         </Form>
@@ -292,7 +292,7 @@ export function FriendsClient({ initial }: { initial?: Friend[] } = {}) {
                         )}
                         {friend.vip && (
                           <div className="absolute -right-0.5 -top-0.5 flex size-5 items-center justify-center rounded-full bg-amber-400 text-white shadow">
-                            <Icon icon="mdi:crown" className="size-3" />
+                            <Icon icon="lucide:crown" className="size-3" />
                           </div>
                         )}
                       </div>

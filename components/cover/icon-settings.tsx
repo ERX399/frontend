@@ -53,7 +53,7 @@ export function IconSettings({
               htmlFor="icon-upload"
               className="flex items-center justify-center h-10 border-2 border-dashed rounded-lg cursor-pointer hover:border-primary"
             >
-              <Icon icon="mdi:image" className="mr-2 h-4 w-4" />
+              <Icon icon="lucide:image" className="mr-2 h-4 w-4" />
               <span className="text-xs">{localIcon ? '更换图片' : '上传图标'}</span>
             </Label>
           </div>

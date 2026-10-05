@@ -61,7 +61,7 @@ export default function BiliCoverPage({ result }: { result?: BiliCoverResult } =
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-2xl">
-            <Icon icon="mdi:image-search" className="size-6 text-primary" />
+            <Icon icon="lucide:image" className="size-6 text-primary" />
             B站封面提取
           </CardTitle>
         </CardHeader>
@@ -104,7 +104,7 @@ export default function BiliCoverPage({ result }: { result?: BiliCoverResult } =
             </div>
 
             <Button type="submit" disabled={loading}>
-              <Icon icon="mdi:search" className="size-4" />
+              <Icon icon="lucide:search" className="size-4" />
               {loading ? '获取中...' : '提取封面'}
             </Button>
           </Form>
@@ -113,7 +113,7 @@ export default function BiliCoverPage({ result }: { result?: BiliCoverResult } =
 
       {error && (
         <p className="text-sm text-destructive flex items-center gap-2 border-y border-border py-4 sm:border sm:p-4">
-          <Icon icon="mdi:alert-circle-outline" className="size-4 shrink-0" />
+          <Icon icon="lucide:circle-alert" className="size-4 shrink-0" />
           {error}
         </p>
       )}
@@ -134,12 +134,12 @@ export default function BiliCoverPage({ result }: { result?: BiliCoverResult } =
           <div className="flex gap-2">
             <a href={pic} target="_blank" rel="noopener noreferrer" className="flex-1">
               <Button className="w-full">
-                <Icon icon="mdi:open-in-new" className="size-4" />
+                <Icon icon="lucide:external-link" className="size-4" />
                 打开原图
               </Button>
             </a>
             <Button variant="outline" onClick={copyToClipboard}>
-              <Icon icon={copied ? 'mdi:check' : 'mdi:content-copy'} className="size-4" />
+              <Icon icon={copied ? 'lucide:check' : 'lucide:copy'} className="size-4" />
               {copied ? '已复制' : '复制链接'}
             </Button>
           </div>

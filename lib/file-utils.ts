@@ -27,36 +27,36 @@ export function getFileIcon(filename: string): string {
     case 'svg':
     case 'webp':
     case 'avif':
-      return 'mdi:file-image-outline';
+      return 'lucide:file-image';
     case 'mp4':
     case 'webm':
     case 'mkv':
     case 'mov':
     case 'avi':
-      return 'mdi:file-video-outline';
+      return 'lucide:file-video';
     case 'mp3':
     case 'wav':
     case 'flac':
     case 'ogg':
-      return 'mdi:file-music-outline';
+      return 'lucide:file-audio';
     case 'zip':
     case 'rar':
     case '7z':
     case 'tar':
     case 'gz':
     case 'zpaq':
-      return 'mdi:folder-zip-outline';
+      return 'lucide:folder-archive';
     case 'pdf':
-      return 'mdi:file-pdf-box';
+      return 'lucide:file-text';
     case 'doc':
     case 'docx':
-      return 'mdi:file-word-outline';
+      return 'lucide:file-text';
     case 'xls':
     case 'xlsx':
-      return 'mdi:file-excel-outline';
+      return 'lucide:file-spreadsheet';
     case 'ppt':
     case 'pptx':
-      return 'mdi:file-powerpoint-outline';
+      return 'lucide:file-text';
     case 'js':
     case 'ts':
     case 'html':
@@ -65,14 +65,14 @@ export function getFileIcon(filename: string): string {
     case 'go':
     case 'json':
     case 'md':
-      return 'mdi:file-code-outline';
+      return 'lucide:file-code';
     case 'exe':
     case 'msi':
     case 'iso':
-      return 'mdi:application-cog-outline';
+      return 'lucide:settings';
     case 'txt':
-      return 'mdi:file-document-outline';
+      return 'lucide:file-text';
     default:
-      return 'mdi:file-outline';
+      return 'lucide:file';
   }
 }

@@ -128,11 +128,11 @@ export function Pagination({
     >
       {current > 1 ? (
         <Link to={hrefFor(current - 1)} rel="prev" aria-label="上一页" className={`inline-flex ${CELL} ${IDLE}`}>
-          <Icon icon="mdi:chevron-left" className="size-4" />
+          <Icon icon="lucide:chevron-left" className="size-4" />
         </Link>
       ) : (
         <span aria-hidden className={`inline-flex ${CELL} ${DISABLED}`}>
-          <Icon icon="mdi:chevron-left" className="size-4" />
+          <Icon icon="lucide:chevron-left" className="size-4" />
         </span>
       )}
 
@@ -159,11 +159,11 @@ export function Pagination({
 
       {current < pageCount ? (
         <Link to={hrefFor(current + 1)} rel="next" aria-label="下一页" className={`inline-flex ${CELL} ${IDLE}`}>
-          <Icon icon="mdi:chevron-right" className="size-4" />
+          <Icon icon="lucide:chevron-right" className="size-4" />
         </Link>
       ) : (
         <span aria-hidden className={`inline-flex ${CELL} ${DISABLED}`}>
-          <Icon icon="mdi:chevron-right" className="size-4" />
+          <Icon icon="lucide:chevron-right" className="size-4" />
         </span>
       )}
     </nav>

@@ -24,9 +24,9 @@ export function ShadowSettings({
   const currentShadow = shadowTarget === 'icon' ? iconShadow : textShadow;
 
   const targets = [
-    { id: 'both' as const, icon: 'mdi:layers', label: '全部' },
-    { id: 'text' as const, icon: 'mdi:format-text', label: '文字' },
-    { id: 'icon' as const, icon: 'mdi:star', label: '图标' },
+    { id: 'both' as const, icon: 'lucide:layers', label: '全部' },
+    { id: 'text' as const, icon: 'lucide:type', label: '文字' },
+    { id: 'icon' as const, icon: 'lucide:star', label: '图标' },
   ];
 
   return (

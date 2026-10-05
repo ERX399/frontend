@@ -12,35 +12,35 @@ interface Tool {
 const TOOLS: Tool[] = [
   {
     label: '视频封面制作',
-    icon: 'mdi:image-edit',
+    icon: 'lucide:image',
     href: '/cover',
     category: '图片工具',
     desc: '自定义文字、字体与布局，快速生成 B 站等平台风格的视频封面图',
   },
   {
     label: '图片水印',
-    icon: 'mdi:water',
+    icon: 'lucide:droplet',
     href: '/watermark',
     category: '图片工具',
     desc: '批量为图片添加文字水印，自定义内容、透明度与平铺方式',
   },
   {
     label: '图片格式转换',
-    icon: 'mdi:swap-horizontal-bold',
+    icon: 'lucide:arrow-left-right',
     href: '/convert',
     category: '图片工具',
     desc: 'JPG、PNG、WebP、AVIF 等格式互转，浏览器本地处理不上传',
   },
   {
     label: '从夯到拉',
-    icon: 'mdi:podium-gold',
+    icon: 'lucide:trophy',
     href: '/tier',
     category: '排名工具',
     desc: '上传图片后拖放排名，生成一张可保存的层级榜单',
   },
   {
     label: '技术栈',
-    icon: 'mdi:layers-triple',
+    icon: 'lucide:layers',
     href: '/stack',
     category: '关于本站',
     desc: '本站的前后端框架、依赖清单与数据流',
@@ -54,7 +54,7 @@ export default function ToolsPage() {
         to="/"
         className="flex items-center gap-1 border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent mb-4 transition-colors"
       >
-        <Icon icon="mdi:arrow-left" className="size-4" />
+        <Icon icon="lucide:arrow-left" className="size-4" />
         返回首页
       </Link>
 
