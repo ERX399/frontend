@@ -46,16 +46,6 @@ function BuildingPage() {
   );
 }
 
-function ForumWipPage() {
-  return (
-    <main className="container mx-auto max-w-6xl px-4 py-24 text-center">
-      <h1 className="text-3xl font-bold mb-3">论坛正在装修中</h1>
-      <p className="text-muted-foreground mb-8">敬请期待</p>
-      <BackHome />
-    </main>
-  );
-}
-
 /**
  * 全站规范形态为「无尾斜杠」：/posts/x 而非 /posts/x/。
  * 边缘 Worker 已对带斜杠请求做 301，这里只兜底 SPA 内部导航（history API 不经边缘）。
@@ -98,22 +88,9 @@ export const router = createBrowserRouter([
           { path: 'agree', lazy: page(() => import('@/app/agree/page')) },
           { path: 'stack', lazy: page(() => import('@/app/stack/page')) },
           { path: 'tools', lazy: page(() => import('@/app/tools/page')) },
+          { path: 'announcements', lazy: page(() => import('@/app/announcements/page')) },
+          { path: 'announcements/:slug', lazy: page(() => import('@/app/announcements/page')) },
           { path: 'building', element: <BuildingPage /> },
-          {
-            path: 'forum',
-            element: <ForumWipPage />,
-            children: [
-              { path: 'post/new' },
-              { path: 'post/:id' },
-              { path: 'auth/login' },
-              { path: 'auth/register' },
-              { path: 'auth/forgot-password' },
-              { path: 'auth/reset-password' },
-              { path: 'me' },
-              { path: 'u' },
-              { path: 'admin' },
-            ],
-          },
           ...redirectRoutes,
           { path: '*', element: <NotFoundPage /> },
         ],

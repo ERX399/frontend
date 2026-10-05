@@ -13,27 +13,51 @@ export interface NavLink {
   icon: string;
   href: string;
   badge?: string;
+  /** 侧栏折叠成图标栏时，用原生 title 兜住可读性 */
+  title?: string;
+}
+
+export interface NavGroup {
+  label: string;
+  links: NavLink[];
 }
 
 // 2026-08-07：论坛与交互小说随 Oracle VPS 下线且不再恢复，入口已摘除；
-// B站封面需要服务端代请求 B 站接口（浏览器直连会被 CORS 拦），应急期同样不可用。
-// 恢复时把对应条目加回 NAV_LINKS 与下面的分组数组即可。
+// 2026-10-04：论坛已整体移除（前后端 + 数据），相关代码不再保留。
+// 2026-10-05：导航从「顶部横排 + 工具下拉」改为左侧栏分组。
 export const NAV_LINKS: NavLink[] = [
-  { label: '博客',     icon: 'mdi:post-outline',        href: '/posts' },
-  { label: '论坛',     icon: 'mdi:forum',               href: '/forum' },
-  { label: '友链',     icon: 'mdi:link-variant',        href: '/friends' },
-  { label: '赞助',     icon: 'mdi:heart',               href: '/sponsors' },
-  { label: '全部工具', icon: 'mdi:toolbox-outline',      href: '/tools' },
-  { label: '封面制作', icon: 'mdi:image-edit',          href: '/cover' },
-  { label: '水印',     icon: 'mdi:water',               href: '/watermark' },
-  { label: '图片转换', icon: 'mdi:swap-horizontal-bold',href: '/convert' },
-  { label: '文件',     icon: 'mdi:folder-open',         href: '/files' },
+  { label: '首页',     icon: 'mdi:home-variant-outline', href: '/' },
+  { label: '博客',     icon: 'mdi:post-outline',         href: '/posts' },
+  { label: '公告',     icon: 'mdi:bullhorn-outline',     href: '/announcements' },
+  { label: '友链',     icon: 'mdi:link-variant',         href: '/friends' },
+  { label: '赞助',     icon: 'mdi:heart',                href: '/sponsors' },
+  { label: '工具集',   icon: 'mdi:toolbox-outline',      href: '/tools' },
+  { label: '封面制作', icon: 'mdi:image-edit',           href: '/cover' },
+  { label: '水印',     icon: 'mdi:water',                href: '/watermark' },
+  { label: '图片转换', icon: 'mdi:swap-horizontal-bold', href: '/convert' },
   { label: '从夯到拉', icon: 'mdi:podium-gold',          href: '/tier' },
+  { label: '文件',     icon: 'mdi:folder-open',          href: '/files' },
   { label: '技术栈',   icon: 'mdi:layers-triple',        href: '/stack' },
-  { label: '统计',     icon: 'mdi:chart-line',          href: 'https://u.520pro.top' },
+  { label: '统计',     icon: 'mdi:chart-line',           href: 'https://u.520pro.top' },
 ];
 
-export const PRIMARY_NAV = ['博客', '论坛', '友链', '赞助'];
-export const TOOLS_NAV   = ['全部工具', '封面制作', '水印', '图片转换', '文件', '从夯到拉', '技术栈'];
-// 外链（渲染在工具下拉/移动端菜单底部，带外链角标）
-export const EXTERNAL_NAV = ['统计'];
+/** 侧栏分组。顺序即渲染顺序；空组会被自动跳过。
+ *  各工具只从「工具集」页进入，侧栏不再逐项铺开。 */
+export const NAV_GROUPS: NavGroup[] = [
+  {
+    label: '主页面',
+    links: ['首页', '博客', '公告', '友链', '赞助'].map(
+      (label) => NAV_LINKS.find((l) => l.label === label)!,
+    ),
+  },
+  {
+    label: '关于',
+    links: ['工具集', '技术栈'].map(
+      (label) => NAV_LINKS.find((l) => l.label === label)!,
+    ),
+  },
+  {
+    label: '外部',
+    links: ['统计'].map((label) => NAV_LINKS.find((l) => l.label === label)!),
+  },
+];

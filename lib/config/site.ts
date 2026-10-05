@@ -30,11 +30,11 @@ export const siteConfig = {
     name: '夏之',
     bio: 'Protect What You Love.',
     links: [
-      { name: '爱发电', icon: 'simple-icons:afdian', url: 'https://www.ifdian.net/a/ERX399', color: '#946ce6' },
-      { name: 'B站主页', icon: 'simple-icons:bilibili', url: 'https://space.bilibili.com/1009057001', color: '#fb7299' },
+      { name: '爱发电', icon: 'simple-icons:afdian', url: 'https://www.ifdian.net/a/ERX399' },
+      { name: 'B站主页', icon: 'simple-icons:bilibili', url: 'https://space.bilibili.com/1009057001' },
       { name: 'QQ群', icon: '/icon/QQ.svg', url: '/building' },
-      { name: 'Telegram群', icon: 'simple-icons:telegram', url: '/building', color: '#0088cc' },
-      { name: 'GitHub', icon: 'mdi:github', url: 'https://github.com/ERX399', color: '' },
+      { name: 'Telegram群', icon: 'simple-icons:telegram', url: '/building' },
+      { name: 'GitHub', icon: 'mdi:github', url: 'https://github.com/ERX399' },
     ],
   },
   live: {
@@ -67,13 +67,9 @@ export const siteConfig = {
     categoryId: 'DIC_kwDOUCZmN84DEEGn',
   },
   repos: {
-    // frontend / af_forum-backend 均为私有仓库，这两条仅作记录，不要渲染成站内链接
+    // frontend 为私有仓库，这条仅作记录，不要渲染成站内链接
     frontend: 'https://github.com/ERX399/frontend',
-    backend: 'https://github.com/ERX399/af_forum-backend',
     natTool: 'https://github.com/ERX399/webrtc_check_nat',
-  },
-  forum: {
-    totpIssuer: 'ERX399 Forum',
   },
   links: {
     // 指向个人主页而非具体仓库：前端仓库已转私有，直链会 404

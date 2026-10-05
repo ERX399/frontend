@@ -58,7 +58,7 @@ function buttonVariants({
   className?: string
 } = {}) {
   return cn(
-    "inline-flex shrink-0 items-center justify-center whitespace-nowrap border font-mono text-sm font-medium tracking-tight transition-colors duration-75 outline-none select-none focus-visible:outline-2 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+    "inline-flex shrink-0 items-center justify-center whitespace-nowrap border font-heading text-sm font-semibold tracking-tight transition-colors duration-75 outline-none select-none focus-visible:outline-2 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
     VARIANT_CLASSES[variant],
     SIZE_CLASSES[size],
     className

@@ -99,13 +99,12 @@ function Table({ head, rows }: { head: string[]; rows: (string | Row)[] }) {
 
 const REPOS: (string | Row)[] = [
   '主站',
-  { name: 'frontend', version: 'TypeScript', note: '博客主站：文章、论坛、工具页' },
+  { name: 'frontend', version: 'TypeScript', note: '博客主站：文章与工具页' },
   '数据',
   { name: 'blog-data', version: 'JavaScript', note: '文章源（Markdown）→ posts.json 分页索引' },
   { name: 'friends-data', version: 'JavaScript', note: '友链与赞助数据，社区 PR 自动审核' },
   { name: 'comments-data', version: '—', note: 'giscus 评论数据仓库' },
-  '后端与统计',
-  { name: 'forum-backend', version: 'TypeScript', note: '论坛后端：D1 + R2 + Turnstile + SMTP + TOTP' },
+  '统计',
   { name: 'u-page', version: 'Python', note: '浏览量看板，从 umami 聚合后写成静态 JSON' },
   '静态资源',
   { name: 'ker', version: 'HTML', note: '图片、音乐等静态资源（ker.520pro.top）' },
@@ -145,12 +144,6 @@ const UI: Row[] = [
   { name: '@marsidev/react-turnstile', version: '1.6.1', note: '人机验证' },
 ];
 
-const BACKEND: Row[] = [
-  { name: 'aws4fetch', version: '1.0.20', note: '签名 R2 / S3 请求' },
-  { name: 'jose', version: '6.1.3', note: 'JWT 签发与校验' },
-  { name: 'otpauth', version: '9.4.1', note: 'TOTP 双因素认证' },
-];
-
 export default function StackPage() {
   return (
     <main className="container mx-auto max-w-6xl px-4 py-8">
@@ -178,7 +171,7 @@ export default function StackPage() {
               <span aria-hidden>·</span>
               <StackPageviews slug="stack" />
               <span aria-hidden>·</span>
-              <span>7 个仓库</span>
+              <span>6 个仓库</span>
               <span aria-hidden>·</span>
               <span>23 个依赖</span>
             </div>
@@ -213,13 +206,6 @@ export default function StackPage() {
           </P>
           <Table head={['依赖', '版本', '作用']} rows={UI} />
 
-          <H2 id="论坛后端">论坛后端</H2>
-          <P>
-            跑在 Cloudflare Workers 上，依赖只有三个，配套 D1（SQLite）、R2（对象存储）、Turnstile
-            与 SMTP。
-          </P>
-          <Table head={['依赖', '版本', '作用']} rows={BACKEND} />
-
           <H2 id="数据流">数据流</H2>
           <P>浏览量不直连 umami，而是走自建服务的中转，umami 不会随访问量受压：</P>
           <pre className="mt-4 overflow-x-auto border border-border bg-muted/30 p-3 font-mono text-xs leading-relaxed text-muted-foreground">
@@ -237,9 +223,9 @@ export default function StackPage() {
             head={['组件', '作用']}
             rows={[
               { name: 'Cloudflare Pages', note: 'frontend / friends-data 静态托管' },
-              { name: 'Cloudflare Workers', note: 'blog-data / forum-backend' },
+              { name: 'Cloudflare Workers', note: 'blog-data / imgapi / llm-null' },
               { name: 'Cloudflare Tunnel', note: '把自建服务暴露到公网，隐藏真实 IP' },
-              { name: 'D1 / R2', note: '论坛数据库与对象存储' },
+              
               { name: '自建服务器', note: 'u-page 浏览量聚合、umami 统计' },
             ]}
           />
