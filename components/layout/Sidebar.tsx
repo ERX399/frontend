@@ -93,22 +93,21 @@ export function Sidebar({ mode }: { mode: SidebarMode }) {
                   顶栏的线画在 41px 高的盒子内侧（占 40.2~41），这条线是从 41
                   往下新增的，不往上提 1px 就会比顶栏低一像素 */}
               <div className="-mt-px h-px shrink-0 bg-[var(--sidebar-border)]" />
-              <div className="h-2 shrink-0" />
             </div>
 
             {NAV_GROUPS.map((group, gi) => (
               <div
                 key={group.label}
                 className={
-                  'relative flex w-full min-w-0 flex-col pb-2' +
-                  (gi > 0 ? ' mt-1 pt-3' : '')
+                  'relative flex w-full min-w-0 flex-col' +
+                  (gi > 0 ? ' mt-1 pt-2' : '')
                 }
               >
                 {gi > 0 && (
                   // 组间分隔线单独成一条，不挂在容器 border 上：容器带 border 时
                   // 线的左右端点被容器的 padding 牵着走，没法单独调缩进。
                   // 只有侧栏最顶上那条（logo 行下方）通栏，其余组间线统一缩进 7px
-                  <div className="mb-3 h-px shrink-0 bg-[var(--sidebar-border)] mx-[7px]" />
+                  <div className="mb-2 h-px shrink-0 bg-[var(--sidebar-border)] mx-[7px]" />
                 )}
                 {!collapsed && (
                   // 贴左对齐：缩进量 = 导航项的文字缩进（外层 px-2 + 链接自身 px-3 = 20px），
