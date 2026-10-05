@@ -62,13 +62,14 @@ export function Sidebar({ mode }: { mode: SidebarMode }) {
         <div className="relative flex size-full flex-col overflow-hidden bg-[var(--sidebar)] text-[var(--sidebar-foreground)]">
           <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-x-hidden overflow-y-auto">
 
-            <div className="relative flex w-full min-w-0 flex-col px-2 pb-2">
+            <div className="relative flex w-full min-w-0 flex-col">
               {/* logo 行。这一行的高度始终保留 —— 折叠按钮 fixed 在视口右上角、
                   不随侧栏移动，行高一旦塌掉，第一个导航项就会顶上来跟按钮重叠。
                   折叠态不显示内容（3rem 里放不下站名）。
                   展开态右侧留出 --sidebar-toggle-size，避免文字被按钮压住。
-                  下方加一条分隔线，与后面各组的分隔线呼应。 */}
-              <div className="flex h-[var(--site-header-height)] shrink-0 items-center border-b border-[var(--sidebar-border)] px-3 pe-[var(--sidebar-toggle-size)]">
+                  下方加一条分隔线，与后面各组的分隔线呼应。
+                  分隔线通栏：左右缩进不能放在外层容器上，否则线会被一起缩进去 */}
+              <div className="flex h-[var(--site-header-height)] shrink-0 items-center px-3 pe-[var(--sidebar-toggle-size)]">
                 {!collapsed && (
                   <Link
                     to="/"
@@ -86,25 +87,38 @@ export function Sidebar({ mode }: { mode: SidebarMode }) {
                   </Link>
                 )}
               </div>
+              {/* 用实体 div 画线而不是 border-b：border 的粗细受 DPR 影响会舍入，
+                  跟组间线的粗细对不齐。
+                  -mt-px 让这条线和主区顶栏的 border-b 落在同一条水平线上：
+                  顶栏的线画在 41px 高的盒子内侧（占 40.2~41），这条线是从 41
+                  往下新增的，不往上提 1px 就会比顶栏低一像素 */}
+              <div className="-mt-px h-px shrink-0 bg-[var(--sidebar-border)]" />
+              <div className="h-2 shrink-0" />
             </div>
 
             {NAV_GROUPS.map((group, gi) => (
               <div
                 key={group.label}
                 className={
-                  'relative flex w-full min-w-0 flex-col p-2' +
-                  // 从第二组起，上方加一条分隔线把它和上一组分开
-                  (gi > 0 ? ' mt-1 border-t border-[var(--sidebar-border)] pt-3' : '')
+                  'relative flex w-full min-w-0 flex-col pb-2' +
+                  (gi > 0 ? ' mt-1 pt-3' : '')
                 }
               >
+                {gi > 0 && (
+                  // 组间分隔线单独成一条，不挂在容器 border 上：容器带 border 时
+                  // 线的左右端点被容器的 padding 牵着走，没法单独调缩进。
+                  // 只有侧栏最顶上那条（logo 行下方）通栏，其余组间线统一缩进 7px
+                  <div className="mb-3 h-px shrink-0 bg-[var(--sidebar-border)] mx-[7px]" />
+                )}
                 {!collapsed && (
-                  // 贴左对齐：缩进量 = 导航项的 px-3，与图标左边缘、上方分割线同一条竖线。
+                  // 贴左对齐：缩进量 = 导航项的文字缩进（外层 px-2 + 链接自身 px-3 = 20px），
+                  // 与图标左边缘、上方分割线同一条竖线。
                   // 不跟导航文字对齐（那要多缩进 26px），标题会显得孤零零飘在中间。
-                  <div className="flex h-7 shrink-0 items-center px-3 text-xs font-medium text-[var(--sidebar-foreground)]/70">
+                  <div className="flex h-7 shrink-0 items-center px-5 text-xs font-medium text-[var(--sidebar-foreground)]/70">
                     <span>{group.label}</span>
                   </div>
                 )}
-                <ul className="flex w-full min-w-0 flex-col">
+                <ul className="flex w-full min-w-0 flex-col px-2">
                   {group.links.map((link) => {
                     const external = link.href.startsWith('http');
                     const active = !external && isActive(link.href);
@@ -153,8 +167,11 @@ export function Sidebar({ mode }: { mode: SidebarMode }) {
           </div>
 
           {!collapsed && (
-            <div className="flex flex-col gap-2 border-t border-[var(--sidebar-border)] p-4">
-              <SitePageviews className="flex items-center gap-2 text-xs text-[var(--sidebar-foreground)]/70" />
+            <div className="flex flex-col">
+              {/* 分隔线拎在 p-4 外面：放在里面的话 p-4 的 16px 会和 mx 叠在一起，
+                  缩进量就不是 7px 了。 */}
+              <div className="h-px shrink-0 bg-[var(--sidebar-border)] mx-[7px]" />
+              <SitePageviews className="flex items-center gap-2 p-4 text-xs text-[var(--sidebar-foreground)]/70" />
             </div>
           )}
         </div>
