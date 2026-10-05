@@ -87,7 +87,7 @@ export function SiteHeader() {
             >
               {NAV_GROUPS.map((group) => (
                 <div key={group.label} className="flex flex-col gap-1">
-                  <div className="mt-3 mb-1 px-3 text-xs font-medium uppercase tracking-wider text-muted-foreground/80">
+                  <div className="mt-3 mb-1 px-3 font-display text-xs font-medium uppercase tracking-wider text-muted-foreground/80">
                     {group.label}
                   </div>
                   {group.links.map((link) => {

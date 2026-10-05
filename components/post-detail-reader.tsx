@@ -129,9 +129,19 @@ export function PostDetailReader({ slug }: { slug: string }) {
 
   if (loading) {
     return (
-      <main className="container mx-auto max-w-6xl px-4 py-8">
+      <main className="container mr-auto max-w-6xl px-4 py-8 xl:ml-[6vw]">
         <div className="flex gap-8">
-          <div className="flex-1 min-w-0 max-w-3xl mx-auto">
+          <aside className="hidden xl:block w-[320px] flex-shrink-0">
+            <div className="sticky top-20 border border-border bg-card p-4 space-y-3">
+              <Skeleton className="h-4 w-24" />
+              <Skeleton className="h-3 w-full" />
+              <Skeleton className="h-3 w-5/6" />
+              <Skeleton className="h-3 w-4/6" />
+              <Skeleton className="h-3 w-5/6" />
+            </div>
+          </aside>
+
+          <div className="flex-1 min-w-0 max-w-3xl">
             <p className="mb-6 font-mono text-xs text-muted-foreground">
               loading post<span className="ml-1 inline-block h-[1em] w-[0.55em] translate-y-px bg-muted-foreground [animation:shell-blink_1s_step-end_infinite]" />
             </p>
@@ -148,15 +158,6 @@ export function PostDetailReader({ slug }: { slug: string }) {
               </div>
             </div>
           </div>
-          <aside className="hidden xl:block w-[320px] flex-shrink-0">
-            <div className="sticky top-20 border border-border bg-card p-4 space-y-3">
-              <Skeleton className="h-4 w-24" />
-              <Skeleton className="h-3 w-full" />
-              <Skeleton className="h-3 w-5/6" />
-              <Skeleton className="h-3 w-4/6" />
-              <Skeleton className="h-3 w-5/6" />
-            </div>
-          </aside>
         </div>
       </main>
     );
@@ -175,9 +176,17 @@ export function PostDetailReader({ slug }: { slug: string }) {
   }
 
   return (
-    <main className="container mx-auto max-w-6xl px-4 py-8">
+    <main className="container mr-auto max-w-6xl px-4 py-8 xl:ml-[6vw]">
       <div className="flex gap-8 relative">
-        <article className="flex-1 min-w-0 max-w-3xl mx-auto">
+        <aside className="hidden xl:block w-[320px] flex-shrink-0">
+          <div className="sticky top-20 space-y-8">
+            <div className="border border-border bg-card p-4">
+              <TableOfContents />
+            </div>
+          </div>
+        </aside>
+
+        <article className="flex-1 min-w-0 max-w-3xl">
           <Link
             to="/posts"
             className="flex items-center gap-1 border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent mb-4 transition-colors"
@@ -289,14 +298,6 @@ export function PostDetailReader({ slug }: { slug: string }) {
             <Giscus />
           </div>
         </article>
-
-        <aside className="hidden xl:block w-[320px] flex-shrink-0">
-          <div className="sticky top-20 space-y-8">
-            <div className="border border-border bg-card p-4">
-              <TableOfContents />
-            </div>
-          </div>
-        </aside>
       </div>
       <ImageLightbox />
     </main>

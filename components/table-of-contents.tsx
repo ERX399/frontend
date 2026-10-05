@@ -102,7 +102,7 @@ export function TableOfContents({ className, onNavigate }: TableOfContentsProps)
 
   return (
     <div className={cn("font-mono", className)}>
-      <h4 className="mb-3 border-b border-border pb-2 text-xs font-medium tracking-widest text-muted-foreground uppercase">
+      <h4 className="mb-3 border-b border-border pb-2 font-display text-xs font-medium tracking-widest text-muted-foreground uppercase">
         本页目录
       </h4>
       <nav>
