@@ -338,46 +338,81 @@ export function PostsSearch() {
 
   if (loading) {
     return (
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,15rem),1fr))] gap-3">
-        {Array.from({ length: 10 }).map((_, i) => (
-          <div key={i} className="overflow-hidden border border-border">
-            <Skeleton className="h-28 w-full" />
-            <div className="space-y-2.5 p-3">
-              <Skeleton className="h-3 w-3/5" />
-              <Skeleton className="h-5 w-4/5" />
-              <Skeleton className="h-3 w-full" />
-            </div>
+      <>
+        <div className="mb-6 flex flex-col gap-3">
+          <h1 className="sr-only">博客</h1>
+          <div className="flex w-full items-center gap-3">
+            <Skeleton className="h-9 min-w-0 flex-1" />
+            <Skeleton className="size-9 shrink-0" />
           </div>
-        ))}
-      </div>
+        </div>
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,15rem),1fr))] gap-3">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div key={i} className="overflow-hidden border border-border">
+              <Skeleton className="h-28 w-full" />
+              <div className="space-y-2.5 p-3">
+                <Skeleton className="h-3 w-3/5" />
+                <Skeleton className="h-5 w-4/5" />
+                <Skeleton className="h-3 w-full" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
     );
   }
 
   return (
     <>
-      {/* Search input */}
-      <div className="relative mb-8">
-        <Icon
-          icon="lucide:search"
-          className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none"
-        />
-        <input
-          ref={inputRef}
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder={`搜索文章… (${typeof navigator !== 'undefined' && /Mac|iP(hone|ad|od)/.test(navigator.platform) ? 'Cmd' : 'Ctrl'}+K)`}
-          className="w-full h-10 pl-9 pr-4 rounded-lg border bg-background text-sm placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring"
-        />
-        {isSearching && (
-          <button
-            onClick={() => setQuery('')}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+      <header className="mb-6 flex flex-col gap-3">
+        <h1 className="sr-only">博客</h1>
+
+        {/* 搜索框与 RSS 并排同一行：输入框撑满剩余宽度，RSS 固定方块。
+            高度用 h-9 而不是原站的 h-8 —— 本站根字号 93.5%，h-8 只有 29.9px，
+            比原站 32px 矮一截；h-9 加回字号缩掉的那部分。 */}
+        <div className="flex w-full items-center gap-3">
+          <div className="relative min-w-0 flex-1">
+            <Icon
+              icon="lucide:search"
+              className="pointer-events-none absolute inset-y-0 start-3 my-auto size-4 text-muted-foreground"
+            />
+            <input
+              ref={inputRef}
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              aria-label="搜索文章"
+              placeholder="搜索标题、摘要、标签和正文…"
+              className="h-9 w-full min-w-0 border border-transparent bg-foreground/10 ps-9 pe-10 text-sm transition-[color,box-shadow] duration-200 outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30"
+            />
+            {isSearching && (
+              <button
+                type="button"
+                onClick={() => setQuery('')}
+                aria-label="清空搜索"
+                className="absolute inset-y-0 end-3 my-auto flex size-4 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <Icon icon="lucide:x" className="size-4" />
+              </button>
+            )}
+          </div>
+
+          <a
+            href="/posts/rss.xml"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="订阅 RSS"
+            title="订阅 RSS"
+            className="inline-flex size-9 shrink-0 items-center justify-center border border-transparent bg-foreground/10 text-foreground transition-colors hover:bg-foreground/20"
           >
-            <Icon icon="lucide:x" className="size-4" />
-          </button>
-        )}
-      </div>
+            <Icon icon="lucide:rss" className="size-4" />
+          </a>
+        </div>
+
+        <p aria-live="polite" className="text-sm text-muted-foreground empty:hidden">
+          {isSearching && searchIndexReady ? `找到 ${results?.length ?? 0} 篇文章` : ''}
+        </p>
+      </header>
 
       {/* Results */}
       {isSearching ? (
@@ -385,9 +420,6 @@ export function PostsSearch() {
           <p className="text-sm text-muted-foreground py-8 text-center">正在加载全部文章以供搜索…</p>
         ) : (
           <>
-            <p className="text-xs text-muted-foreground mb-4">
-              找到 {results?.length ?? 0} 篇文章
-            </p>
             {results && results.length === 0 ? (
               <p className="text-sm text-muted-foreground py-8 text-center">
                 没有找到匹配的文章

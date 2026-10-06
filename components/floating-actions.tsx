@@ -113,6 +113,12 @@ export function FloatingActions() {
   const btnClass =
     'flex size-10 items-center justify-center border border-border bg-card text-muted-foreground transition-colors hover:bg-accent hover:text-foreground';
 
+  // 右侧侧栏（md 以上）占着视口右边，浮动按钮若仍贴 right-0 / right-6 会压在侧栏上。
+  // 偏移量由 CSS 变量给：窄屏（侧栏隐藏）为 0、宽屏取侧栏宽度，折叠态取图标宽度，
+  // 见 globals.css 的 --floating-actions-offset。变量缺失时退到展开态宽度，
+  // 宁可靠左也不贴右 —— 贴右会被侧栏盖住，连 hover 都点不到。
+  const offsetVar = 'var(--floating-actions-offset, var(--sidebar-width, 14rem))';
+
   return (
     <>
       {/* 阅读进度条：详情页专属，贴在顶部导航栏下沿 */}
@@ -132,7 +138,8 @@ export function FloatingActions() {
       <button
         type="button"
         onClick={showThenHide}
-        className={`fixed bottom-24 right-0 z-40 flex h-12 w-6 items-center justify-center border border-r-0 border-border bg-card text-muted-foreground transition-all duration-300 ease-out hover:bg-accent hover:text-foreground ${
+        style={{ right: offsetVar }}
+        className={`fixed bottom-24 z-40 flex h-12 w-6 items-center justify-center border border-r-0 border-border bg-card text-muted-foreground transition-all duration-300 ease-out hover:bg-accent hover:text-foreground ${
           hasContent && collapsed
             ? 'translate-x-0 opacity-100'
             : 'pointer-events-none invisible translate-x-12 opacity-0'
@@ -146,7 +153,8 @@ export function FloatingActions() {
       </button>
 
       <div
-        className={`fixed bottom-6 right-6 z-40 flex flex-col gap-2 transition-all duration-300 ease-out ${
+        style={{ right: `calc(${offsetVar} + 1.5rem)` }}
+        className={`fixed bottom-6 z-40 flex flex-col gap-2 transition-all duration-300 ease-out ${
           hasContent && !collapsed
             ? 'translate-x-0 scale-100 opacity-100'
             : 'pointer-events-none invisible translate-x-7 scale-95 opacity-0'

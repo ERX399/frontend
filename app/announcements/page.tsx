@@ -54,7 +54,7 @@ export default function AnnouncementsPage() {
     <main className="container mx-auto max-w-6xl px-4 py-8">
       <div className="flex flex-col gap-6 lg:flex-row">
         <aside className="lg:w-72 lg:shrink-0">
-          <h1 className="mb-3 border-b border-border pb-2 text-xl font-bold">公告</h1>
+          <h1 className="mb-3 border-b border-border pb-2 text-xl font-bold">公告列表</h1>
           {list === null ? (
             <p className="text-sm text-muted-foreground">加载中…</p>
           ) : list.length === 0 ? (

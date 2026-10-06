@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Outlet } from 'react-router';
 import { ThemeProvider } from '@/components/theme/ThemeProvider';
 import { Analytics } from '@/components/analytics';
@@ -13,6 +14,12 @@ import { CodeCopyListener } from '@/components/code-copy-listener';
 export default function RootLayout() {
   const [mode, toggleMode] = useSidebarMode();
   const collapsed = mode === 'icon';
+
+  // 侧栏宽度写在 CSS 变量里，浮动按钮靠它让位。折叠态是另一套宽度，
+  // 用根元素属性切换（React state 进不了纯 CSS 选择器）。
+  useEffect(() => {
+    document.documentElement.dataset.sidebar = mode;
+  }, [mode]);
 
   return (
     <ThemeProvider>

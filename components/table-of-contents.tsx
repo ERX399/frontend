@@ -41,13 +41,13 @@ export function TableOfContents({ className, onNavigate }: TableOfContentsProps)
     // 初始扫描
     scan();
 
-    // 监听文章内容变化（PostBody 是客户端动态渲染的）
-    const article = document.querySelector("article");
-    if (article) {
-      const observer = new MutationObserver(() => scan());
-      observer.observe(article, { childList: true, subtree: true });
-      return () => observer.disconnect();
-    }
+    // 监听内容变化（PostBody 是客户端动态渲染的）。
+    // 观察 document.body 而不是 article：本组件在布局层（浮动抽屉）也会挂载，
+    // 那时 <article> 还没渲染出来，绑 article 会直接跳过监听、标题永远为空。
+    // 正文晚于组件出现，只能靠观察整个 body 兜住。
+    const observer = new MutationObserver(() => scan());
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {

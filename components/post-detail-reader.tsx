@@ -129,9 +129,9 @@ export function PostDetailReader({ slug }: { slug: string }) {
 
   if (loading) {
     return (
-      <main className="container mr-auto max-w-6xl px-4 py-8 xl:ml-[4vw]">
-        <div className="flex gap-10">
-          <aside className="-ml-2 hidden xl:block w-[320px] flex-shrink-0">
+      <main className="container mx-auto max-w-6xl px-4 py-8 xl:ml-[4vw]">
+        <div className="flex gap-6 xl:gap-10">
+          <aside className="-ml-2 hidden lg:block w-56 flex-shrink-0 xl:w-80">
             <div className="sticky top-20 border border-border bg-card p-4 space-y-3">
               <Skeleton className="h-4 w-24" />
               <Skeleton className="h-3 w-full" />
@@ -141,7 +141,7 @@ export function PostDetailReader({ slug }: { slug: string }) {
             </div>
           </aside>
 
-          <div className="flex-1 min-w-0 max-w-3xl">
+          <div className="flex-1 min-w-0 max-w-3xl mx-auto lg:mx-0">
             <p className="mb-6 font-mono text-xs text-muted-foreground">
               loading post<span className="ml-1 inline-block h-[1em] w-[0.55em] translate-y-px bg-muted-foreground [animation:shell-blink_1s_step-end_infinite]" />
             </p>
@@ -176,20 +176,20 @@ export function PostDetailReader({ slug }: { slug: string }) {
   }
 
   return (
-    <main className="container mr-auto max-w-6xl px-4 py-8 xl:ml-[4vw]">
-      <div className="flex gap-10 relative">
-        <aside className="-ml-2 hidden xl:block w-[320px] flex-shrink-0">
-          <div className="sticky top-20 space-y-8">
+    <main className="container mx-auto max-w-6xl px-4 py-8 xl:ml-[4vw]">
+      <div className="flex gap-6 relative xl:gap-10">
+        <aside className="-ml-2 hidden lg:block w-56 flex-shrink-0 pt-[6.75rem] xl:w-80">
+          <div className="sticky top-20">
             <div className="border border-border bg-card p-4">
               <TableOfContents />
             </div>
           </div>
         </aside>
 
-        <article className="flex-1 min-w-0 max-w-3xl">
+        <article className="flex-1 min-w-0 max-w-3xl mx-auto lg:mx-0">
           <Link
             to="/posts"
-            className="flex items-center gap-1 border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-accent mb-4 transition-colors"
+            className="inline-flex h-9 items-center gap-1.5 px-4 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-foreground/15 mb-4 -ml-4 transition-colors"
           >
             <Icon icon="lucide:arrow-left" className="size-4" />
             返回博客列表

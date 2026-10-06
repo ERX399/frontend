@@ -91,6 +91,8 @@ export const router = createBrowserRouter([
           { path: 'agree', lazy: page(() => import('@/app/agree/page')) },
           { path: 'stack', lazy: page(() => import('@/app/stack/page')) },
           { path: 'tools', lazy: page(() => import('@/app/tools/page')) },
+          // 隐藏测试页：不加入导航 / 首页 / tools 列表，仅直接输入地址可进
+          { path: 'music', lazy: page(() => import('@/app/music/page')) },
           { path: 'announcements', lazy: page(() => import('@/app/announcements/page')) },
           { path: 'announcements/:slug', lazy: page(() => import('@/app/announcements/page')) },
           { path: 'building', element: <BuildingPage /> },
