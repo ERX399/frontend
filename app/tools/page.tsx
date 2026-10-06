@@ -38,13 +38,6 @@ const TOOLS: Tool[] = [
     category: '排名工具',
     desc: '上传图片后拖放排名，生成一张可保存的层级榜单',
   },
-  {
-    label: '技术栈',
-    icon: 'lucide:layers',
-    href: '/stack',
-    category: '关于本站',
-    desc: '本站的前后端框架、依赖清单与数据流',
-  },
 ];
 
 export default function ToolsPage() {

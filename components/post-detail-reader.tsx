@@ -189,7 +189,7 @@ export function PostDetailReader({ slug }: { slug: string }) {
         <article className="flex-1 min-w-0 max-w-3xl mx-auto lg:mx-0">
           <Link
             to="/posts"
-            className="inline-flex h-9 items-center gap-1.5 px-4 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-foreground/15 mb-4 -ml-4 transition-colors"
+            className="inline-flex h-9 items-center gap-1.5 px-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-foreground/15 mb-4 transition-colors"
           >
             <Icon icon="lucide:arrow-left" className="size-4" />
             返回博客列表

@@ -337,6 +337,14 @@ a.group {
   user-select: none;
 }
 
+/* 导航区（侧栏、抽屉目录、公告列表卡片所在的 aside）：全是跳转入口，不是内容。
+   鼠标划过或点按时很容易拖出一片反色选区，看着像页面出故障。
+   只命中 aside / 侧栏，正文 .prose 与 article 不受影响 —— 那里要能正常选中复制。 */
+[data-slot="sidebar"],
+aside {
+  user-select: none;
+}
+
 /* 代码块 —— 头部一行（语言 + copy）+ 代码一行，结构见 render-markdown.ts。
    chrome **不要**再改回绝对定位压在 pre 角上：pre 自己是 overflow-x:auto 的
    滚动容器，绝对定位算的是滚动内容的坐标系而不是可视区，横向一滑就被带走，

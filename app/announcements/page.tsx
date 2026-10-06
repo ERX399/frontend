@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { useEffect, useMemo, useState } from 'react';
 import { Icon } from '@/components/ui/icon';
 import { renderMarkdown } from '@/lib/render-markdown';
@@ -22,7 +22,6 @@ interface Announcement {
  */
 export default function AnnouncementsPage() {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const [list, setList] = useState<Announcement[] | null>(null);
 
   useEffect(() => {
@@ -43,24 +42,19 @@ export default function AnnouncementsPage() {
     return list.find((a) => a.slug === slug) ?? null;
   }, [list, slug]);
 
-  // 访问 /announcements 时把 URL 补成最新一条，保证可分享、可刷新
-  useEffect(() => {
-    if (!slug && current) navigate(`/announcements/${current.slug}`, { replace: true });
-  }, [slug, current, navigate]);
-
   const html = useMemo(() => (current ? renderMarkdown(current.body) : ''), [current]);
 
   return (
     <main className="container mx-auto max-w-6xl px-4 py-8">
       <div className="flex flex-col gap-6 lg:flex-row">
-        <aside className="lg:w-72 lg:shrink-0">
+        <aside className={`lg:w-72 lg:shrink-0 ${slug ? 'hidden lg:block' : ''}`}>
           <h1 className="mb-3 border-b border-border pb-2 text-xl font-bold">公告列表</h1>
           {list === null ? (
             <p className="text-sm text-muted-foreground">加载中…</p>
           ) : list.length === 0 ? (
             <p className="text-sm text-muted-foreground">暂无公告</p>
           ) : (
-            <nav className="flex flex-col">
+            <nav className="flex flex-col gap-1.5">
               {list.map((a) => {
                 const active = current?.slug === a.slug;
                 return (
@@ -69,11 +63,11 @@ export default function AnnouncementsPage() {
                     to={`/announcements/${a.slug}`}
                     draggable={false}
                     className={
-                      'flex flex-col gap-1 border-b border-border px-3 py-2.5 transition-colors ' +
+                      'flex flex-col border border-border px-3 py-2.5 transition-colors ' +
                       (active ? 'bg-muted text-foreground' : 'text-muted-foreground hover:bg-card')
                     }
                   >
-                    <div className="flex flex-wrap items-center gap-2 text-xs">
+                    <div className="flex flex-wrap items-center gap-2 border-b border-border pb-2 text-xs">
                       {a.category && <span className="text-foreground/80">{a.category}</span>}
                       {a.status && (
                         <span className="border border-border px-1 text-[0.6875rem]">{a.status}</span>
@@ -82,7 +76,7 @@ export default function AnnouncementsPage() {
                         {a.published.slice(0, 10)}
                       </time>
                     </div>
-                    <span className="text-sm font-medium leading-snug">{a.title}</span>
+                    <span className="pt-2 text-sm font-medium leading-snug">{a.title}</span>
                   </Link>
                 );
               })}
@@ -90,9 +84,18 @@ export default function AnnouncementsPage() {
           )}
         </aside>
 
-        <article className="min-w-0 flex-1">
+        <article className={`min-w-0 flex-1 ${slug ? '' : 'hidden lg:block'}`}>
           {current ? (
-            <div className="border border-border bg-card p-4 sm:p-6">
+            <>
+              <Link
+                to="/announcements"
+                draggable={false}
+                className="mb-4 inline-flex h-9 items-center gap-1.5 px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-foreground/15 hover:text-foreground lg:hidden"
+              >
+                <Icon icon="lucide:arrow-left" className="size-4" />
+                返回公告列表
+              </Link>
+              <div className="border border-border bg-card p-4 sm:p-6">
               <header className="mb-6 border-b border-border pb-4">
                 <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                   {current.category && <span>{current.category}</span>}
@@ -113,7 +116,8 @@ export default function AnnouncementsPage() {
                 className="prose prose-zinc dark:prose-invert max-w-none prose-code:before:content-none prose-code:after:content-none"
                 dangerouslySetInnerHTML={{ __html: html }}
               />
-            </div>
+              </div>
+            </>
           ) : list !== null && slug ? (
             <p className="text-muted-foreground">公告不存在</p>
           ) : null}
