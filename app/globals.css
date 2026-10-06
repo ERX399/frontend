@@ -107,6 +107,18 @@
   /* 折叠按钮占位：按钮 fixed 在视口右上角，侧栏顶部要留出这么宽的空隙，
      否则展开时 logo 那一行右侧的文字会被按钮压住。 */
   --sidebar-toggle-size: 2.5rem;
+  /* 浮动操作按钮要让开右侧侧栏。窄屏侧栏隐藏，偏移归零；
+     md 以上侧栏出现，偏移取侧栏实际宽度（由根元素上的 data-sidebar 切换）。 */
+  --floating-actions-offset: 0px;
+}
+
+@media (width >= 48rem) {
+  :root {
+    --floating-actions-offset: var(--sidebar-width);
+  }
+  :root[data-sidebar='icon'] {
+    --floating-actions-offset: var(--sidebar-width-icon);
+  }
 }
 
 /* 根字号 14.96px（默认 16px 的 93.5%）：全站 rem 等比缩到 93.5%，

@@ -105,3 +105,36 @@ main,
 main * {
   border-radius: 0 !important;
 }
+
+/* 反应区默认排布是「N 个表情」在顶、下面一行 [笑脸 + 表情] 挤在一起。
+   改成三行：笑脸在上、计数居中、表情行在下，三行都水平居中。
+   giscus 的 DOM 改不了（跨域 iframe），只能在 main 作用域下用 CSS 重排。
+   结构：.gsc-reactions
+           ├─ h4.gsc-reactions-count           「N 个表情」
+           └─ div                              （居中列容器，无类名）
+                ├─ details.gsc-reactions-menu  笑脸按钮（A11y 名「添加回应」）
+                └─ div.gsc-direct-reaction-buttons  已有表情
+
+   要让笑脸和计数交错、就得跨层排序，而 order 只在同一父级内生效。
+   中间那层 div 用 display:contents 从布局里摘掉，它的两个孩子就提升到
+   .gsc-reactions 这一层，三个元素才能按 order 排成 笑脸 → 计数 → 表情行。
+   row-gap 给三行之间留出上下间距（中间层 display:contents 后，giscus 自带的
+   mt-2 会失效，不补间距三行会挤在一起）。 */
+.gsc-reactions {
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.5rem;
+}
+.gsc-reactions > div {
+  display: contents !important;
+}
+.gsc-reactions-count {
+  order: 2;
+  text-align: center;
+}
+.gsc-reactions-menu {
+  order: 1;
+}
+.gsc-direct-reaction-buttons {
+  order: 3;
+}

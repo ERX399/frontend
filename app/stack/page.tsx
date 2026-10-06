@@ -152,17 +152,17 @@ const UI: Row[] = [
 
 export default function StackPage() {
   return (
-    <main className="container mr-auto max-w-6xl px-4 py-8 xl:ml-[4vw]">
-      <div className="flex gap-10 relative">
-        <aside className="-ml-2 hidden xl:block w-[320px] flex-shrink-0">
-          <div className="sticky top-20 space-y-8">
+    <main className="container mx-auto max-w-6xl px-4 py-8 xl:ml-[4vw]">
+      <div className="flex gap-6 relative xl:gap-10">
+        <aside className="-ml-2 hidden lg:block w-56 flex-shrink-0 pt-[1.5rem] xl:w-80">
+          <div className="sticky top-20">
             <div className="border border-border bg-card p-4">
               <TableOfContents />
             </div>
           </div>
         </aside>
 
-        <article className="flex-1 min-w-0 max-w-3xl">
+        <article className="flex-1 min-w-0 max-w-3xl mx-auto lg:mx-0">
           <div className="border border-border bg-card p-4 sm:p-6">
           <header className="mb-8 border-b border-border pb-6">
             <h1 className="text-3xl font-bold tracking-tight">技术栈</h1>

@@ -51,12 +51,12 @@ export function SiteHeader() {
         {href ? (
           <Link
             to={href}
-            className="truncate text-sm font-medium transition-colors hover:text-muted-foreground"
+            className="truncate text-base font-semibold transition-colors hover:text-muted-foreground"
           >
             {title}
           </Link>
         ) : (
-          <span className="truncate text-sm font-medium">{title}</span>
+          <span className="truncate text-base font-semibold">{title}</span>
         )}
       </div>
 
