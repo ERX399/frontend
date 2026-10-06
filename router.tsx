@@ -76,6 +76,9 @@ export const router = createBrowserRouter([
           { index: true, element: <HomePage /> },
           { path: 'posts', lazy: page(() => import('@/app/posts/page')) },
           { path: 'posts/:slug', lazy: page(() => import('@/app/posts/[slug]/page')) },
+          { path: 'links', lazy: page(() => import('@/app/links/page')) },
+          // 友链与赞助已合并到 /links，旧路径保留路由做客户端兜底跳转，
+          // 边缘层 302 见 public/_redirects（两边必须同步）
           { path: 'friends', lazy: page(() => import('@/app/friends/page')) },
           { path: 'sponsors', lazy: page(() => import('@/app/sponsors/page')) },
           { path: 'files', element: <BuildingPage /> },

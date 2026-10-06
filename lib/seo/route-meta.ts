@@ -44,6 +44,11 @@ export const STATIC_ROUTE_META: Record<string, RouteMeta> = {
     title: '图库',
     description: '夏之的图库相册：摄影、截图与作品集锦在线浏览。',
   },
+  '/links': {
+    title: '链接',
+    description:
+      '夏之的友情链接与赞助鸣谢：收录互联网上朋友们的博客与网站，欢迎交换友链；同时感谢每一位赞助者。',
+  },
   '/friends': {
     title: '友情链接',
     description: '夏之的友情链接：收录互联网上朋友们的博客与网站，欢迎交换友链。',

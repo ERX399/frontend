@@ -83,8 +83,7 @@ export const siteConfig = {
     { label: '水印', icon: 'lucide:droplet', href: '/watermark' },
     { label: '图片转换', icon: 'lucide:arrow-left-right', href: '/convert' },
     { label: '文件', icon: 'lucide:folder-open', href: '/files' },
-    { label: '友链', icon: 'lucide:link', href: '/friends' },
-    { label: '赞助', icon: 'lucide:heart', href: '/sponsors' },
+    { label: '链接', icon: 'lucide:link', href: '/links' },
     { label: '统计', icon: 'lucide:chart-line', href: 'https://umami.520pro.top/share/v2IzYZRzKhBwoorB' },
   ] satisfies NavLink[],
 };

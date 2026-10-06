@@ -2,7 +2,11 @@
 // 静态重定向由 public/_redirects 的 CF 边缘 302 承担（见该文件注释）。两边条目
 // 必须保持同步。ssr 分支恢复后仍由本文件 + redirect-splat 路由生效。
 export const redirects: Record<string, string> = {
-  '/privacy-policy': '/sponsors',
+  '/privacy-policy': '/links',
+  // 友链与赞助合并为 /links，旧路径永久跳转
+  '/friends': '/links',
+  '/sponsors': '/links',
+  '/donate': '/links',
   '/long': 'https://iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.in/',
   '/tit': '/posts/pin',
   '/q': '/posts/pin',
@@ -16,7 +20,6 @@ export const redirects: Record<string, string> = {
   '/gal': '/posts/mac-gal',
   '/gay': 'https://list.yppp.net/@s/alFjjCRn',
   '/ok': 'https://acofork-uptime.zeabur.app/status/acofork',
-  '/donate': '/sponsors',
   '/tg': 'https://t.me/+_07DERp7k1ljYTc1',
   '/esa': 'https://tianchi.aliyun.com/specials/promotion/freetier/esa?taskCode=25254&recordId=c856e61228828a0423417a767828d166',
   '/plan': 'https://acofork.notion.site/2e11e011d4e5800fa050e8f7cf448347',

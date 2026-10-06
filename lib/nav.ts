@@ -29,8 +29,7 @@ export const NAV_LINKS: NavLink[] = [
   { label: '首页',     icon: 'lucide:house', href: '/' },
   { label: '博客',     icon: 'lucide:file-text',         href: '/posts' },
   { label: '公告',     icon: 'lucide:bell',          href: '/announcements' },
-  { label: '友链',     icon: 'lucide:link',         href: '/friends' },
-  { label: '赞助',     icon: 'lucide:heart',                href: '/sponsors' },
+  { label: '链接',     icon: 'lucide:link',         href: '/links' },
   { label: '工具集',   icon: 'lucide:wrench',      href: '/tools' },
   { label: '封面制作', icon: 'lucide:image',           href: '/cover' },
   { label: '水印',     icon: 'lucide:droplet',                href: '/watermark' },
@@ -46,7 +45,7 @@ export const NAV_LINKS: NavLink[] = [
 export const NAV_GROUPS: NavGroup[] = [
   {
     label: '主页面',
-    links: ['首页', '博客', '公告', '友链', '赞助'].map(
+    links: ['首页', '博客', '公告', '链接'].map(
       (label) => NAV_LINKS.find((l) => l.label === label)!,
     ),
   },

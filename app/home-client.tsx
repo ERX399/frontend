@@ -46,11 +46,11 @@ const FEATURES: Array<{
     icon: 'lucide:link',
     title: '友链 & 赞助',
     desc: '与志同道合的创作者互换友链；如果这里的内容帮到了你，欢迎考虑赞助支持',
-    href: '/friends',
+    href: '/links',
     cta: '查看友链',
     ctas: [
-      { label: '查看友链', href: '/friends' },
-      { label: '查看赞助', href: '/sponsors' },
+      { label: '查看友链', href: '/links' },
+      { label: '查看赞助', href: '/links' },
     ],
   },
 ];
