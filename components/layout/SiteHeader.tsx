@@ -47,7 +47,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-30 flex h-[var(--site-header-height)] shrink-0 items-stretch border-b border-border bg-background/95 backdrop-blur-sm">
-      <div className="flex min-w-0 flex-1 items-center px-4">
+      <div className="flex min-w-0 flex-1 items-center px-4 select-none">
         {href ? (
           <Link
             to={href}
