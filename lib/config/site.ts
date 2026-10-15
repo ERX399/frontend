@@ -1,10 +1,12 @@
 declare const __BUILD_ID__: string;
+
 export type NavLink = {
   label: string;
   icon: string;
   href: string;
   badge?: string;
 };
+
 export const siteConfig = {
   name: 'SVAF',
   siteName: '夏之',
@@ -45,12 +47,12 @@ export const siteConfig = {
     nat: 'https://nat.2x.nz/api/analyze',
     statsShare: 'https://umami.520pro.top/share/v2IzYZRzKhBwoorB',
     longDomain:
-      'https://iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.in',
+      'https://iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.in',
   },
   analytics: {
     umami: {
       src: 'https://umami.520pro.top/script.js',
-      websiteId: '38b52ecd-ed90-4c37-9da1-c752312f8d53',
+      websiteId: 'f9a70e9f-1561-4da9-b54f-b189502fc0d9',
     },
     pageviews: {
       api: 'https://u.520pro.top',
@@ -87,4 +89,5 @@ export const siteConfig = {
     { label: '统计', icon: 'lucide:chart-line', href: 'https://umami.520pro.top/share/v2IzYZRzKhBwoorB' },
   ] satisfies NavLink[],
 };
+
 export type SiteConfig = typeof siteConfig;
