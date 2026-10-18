@@ -45,5 +45,10 @@
     "typescript": "^7.0.2",
     "vite": "^8.3.2",
     "vitest": "^5.0.3"
+  },
+  "overrides": {
+    "katex": "^0.18.2",
+    "source-map-js": "^1.2.2",
+    "postcss-selector-parser": "^7.1.6"
   }
 }
