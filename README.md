@@ -1,4 +1,16 @@
+<div align="center">
+
+![:name](https://count.getloli.com/@frontend?name=frontend&theme=minecraft&padding=6&offset=0&align=top&scale=1&pixelated=1&darkmode=auto)
+
 # 夏之博客主站前端
+
+_✨ Vite + React Router 7 + Tailwind CSS 4 ✨_
+
+[![React](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![GitHub](https://img.shields.io/badge/作者-ERX399-blue)](https://github.com/ERX399)
+
+</div>
 
 夏之博客（520pro.top）的 React 前端，Vite + React Router 7 + Tailwind CSS 4。
 
