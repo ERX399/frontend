@@ -1,0 +1,46 @@
+/* 友链像素卡片 —— 只给 VIP 友链用。
+
+   边框与底色一律由外层 <a>（amber 高亮态）提供，这里只负责一层画布：
+   自带边框/底色会与 <a> 的 amber 框叠成双层线，也会盖掉 VIP 的底色提示。
+
+   站规是全站零圆角（globals.css 里 `*` 的 radius:0 未分层规则会压平任何圆角），
+   这里不写 radius，卡片天然与旁边友链卡片同形。 */
+.pixel-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.pixel-card-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.pixel-card > :not(.pixel-card-canvas) {
+  position: relative;
+  z-index: 1;
+}
+
+/* 内容容器：保持与卡片原本的 flex 行布局一致（原 children 直接是 flex 子项） */
+.pixel-card-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  flex: 1;
+}
+
+/* ── 置顶卡的加料动效（effect 标签） ───────────────────────────────
+   金色尘光是唯一动效，由 canvas 层绘制（常驻微弱颗粒 + 悬停聚光），
+   CSS 这里不再叠任何动画层，避免和 canvas 抢视觉。 */
+
+/* 金色颗粒背景下，给文字加一层微量阴影，避免颗粒透过文字造成视觉噪声。
+   text-shadow 会继承到内容层的所有文字（名称、描述、VIP 徽章）。 */
+.pixel-card--rich .pixel-card-content {
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.5);
+}

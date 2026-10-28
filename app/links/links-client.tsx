@@ -3,8 +3,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Form, Link, useSearchParams } from 'react-router';
 import { Icon } from '@/components/ui/icon';
+import { PixelCard } from '@/components/ui/pixel-card';
 import { Pagination } from '@/components/pagination';
 import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 import { siteConfig } from '@/lib/config/site';
 
 interface Friend {
@@ -14,6 +16,8 @@ interface Friend {
   url: string;
   vip?: boolean;
   backlink?: string;
+  /** 加料动效标签。只允许 vip 用户携带（build 侧不拦，前端侧做守卫） */
+  effect?: string;
 }
 
 interface Sponsor {
@@ -29,6 +33,121 @@ const FRIENDS_REPO = 'https://github.com/ERX399/friends-data';
 
 const AFDIAN_URL =
   siteConfig.bio.links.find((l) => l.name === '爱发电')?.url || 'https://www.ifdian.net/a/ERX399';
+
+/**
+ * 置顶友链的像素卡片配色：金色三阶（与站内 amber 高亮同一族）。
+ * 站点只有 dark 主题，所以不需要浅色一套。
+ */
+const PIXEL_COLORS = ['#efd39a', '#dcae52', '#b8801f'];
+
+/**
+ * 动效标签的有效值。目前只支持「呼吸辉光」这一个，其余值一律不生效。
+ * 只有带 effect 且是 vip 的友链才渲染加料动效（vip 是数据源约定，effect 是它的子标签）。
+ */
+const EFFECT_GLOW = 'glow';
+
+function isEffectRich(friend: Friend): boolean {
+  return Boolean(friend.vip && friend.effect === EFFECT_GLOW);
+}
+
+/**
+ * 友链排序：带动效标签的置顶在最前，其余 VIP 在前，非 VIP 保持数据源给的顺序。
+ * Array.prototype.sort 在 ES2019 起是稳定的，同优先级不会被打乱。
+ */
+function byEffectThenVip(list: Friend[]): Friend[] {
+  return [...list].sort((a, b) => {
+    const pinA = isEffectRich(a) ? 1 : 0;
+    const pinB = isEffectRich(b) ? 1 : 0;
+    if (pinA !== pinB) return pinB - pinA;
+    if (a.vip && !b.vip) return -1;
+    if (!a.vip && b.vip) return 1;
+    return 0;
+  });
+}
+
+/**
+ * VIP 友链渲染成带像素动画的卡片，其余走普通卡片。
+ * 动画只是装饰，卡片仍是同一个 <a> 的整块点击区。
+ */
+function FriendCard({
+  friend,
+  href,
+  avatar,
+  avatarFailed,
+  rich,
+  onAvatarFail,
+}: {
+  friend: Friend;
+  href: string | undefined;
+  avatar: string | undefined;
+  avatarFailed: boolean;
+  rich: boolean;
+  onAvatarFail: () => void;
+}) {
+  const body = (
+    <>
+      <Avatar
+        name={friend.name}
+        src={avatar}
+        sizeClass="size-8"
+        radiusClass="rounded-lg"
+        fallbackClass="text-sm"
+        ringClass={friend.vip ? 'ring-1 ring-amber-500/60' : undefined}
+        failed={avatarFailed}
+        onFail={onAvatarFail}
+      />
+      <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+        <span className="flex min-w-0 items-center gap-1.5">
+          <span className="truncate text-sm font-medium">{friend.name}</span>
+          {friend.vip && (
+            <span className="shrink-0 border border-amber-500/50 bg-amber-400/20 px-1 py-px text-[10px] font-bold uppercase text-amber-600 dark:text-amber-400">
+              VIP
+            </span>
+          )}
+        </span>
+        <span className="truncate text-xs text-muted-foreground">
+          {friend.description || friend.url}
+        </span>
+      </div>
+      <Icon
+        icon="lucide:external-link"
+        className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
+      />
+    </>
+  );
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={cn(
+        'group border transition-colors',
+        friend.vip
+          ? 'border-amber-500/40 bg-amber-400/5 hover:bg-amber-400/10'
+          : 'border-border bg-card hover:border-foreground/40',
+      )}
+    >
+      {friend.vip ? (
+        <PixelCard
+          className={cn('flex items-center gap-3 p-3', rich && 'pixel-card--rich')}
+          colors={PIXEL_COLORS}
+          glowColor={PIXEL_COLORS[1]}
+          gap={5}
+          pixelSize={3}
+          speed={100}
+          opacity={0.45}
+          glow={0.35}
+          rich={rich}
+        >
+          {body}
+        </PixelCard>
+      ) : (
+        <div className="flex items-center gap-3 p-3">{body}</div>
+      )}
+    </a>
+  );
+}
 
 /**
  * 友链数据来自社区 PR（friends-data），`url` / `avatar` 是**投稿人可控**的字符串。
@@ -95,7 +214,9 @@ export function LinksClient({
   initialFriends?: Friend[];
   initialSponsors?: Sponsor[];
 } = {}) {
-  const [friends, setFriends] = useState<Friend[]>(initialFriends ?? []);
+  const [friends, setFriends] = useState<Friend[]>(() =>
+    initialFriends ? byEffectThenVip(initialFriends) : [],
+  );
   const [sponsors, setSponsors] = useState<Sponsor[]>(initialSponsors ?? []);
   const [loadingFriends, setLoadingFriends] = useState(!initialFriends);
   const [loadingSponsors, setLoadingSponsors] = useState(!initialSponsors);
@@ -119,12 +240,7 @@ export function LinksClient({
         return r.json() as Promise<Friend[]>;
       })
       .then((data) => {
-        const sorted = (data as Friend[]).sort((a, b) => {
-          if (a.vip && !b.vip) return -1;
-          if (!a.vip && b.vip) return 1;
-          return 0;
-        });
-        setFriends(sorted);
+        setFriends(byEffectThenVip(data as Friend[]));
         setLoadingFriends(false);
       })
       .catch(() => setLoadingFriends(false));
@@ -343,52 +459,18 @@ function FriendsSection({
       ) : (
         <>
           <div className="grid gap-3 [grid-template-columns:repeat(auto-fill,minmax(17rem,1fr))]">
-            {paginated.map((friend, i) => {
-              const href = safeHttpUrl(friend.url);
-              const avatar = safeHttpUrl(friend.avatar);
-              return (
-                <a
-                  // url 是投稿人可控的，两条相同 url 的友链会撞 key，带上序号
-                  key={`${friend.url}-${i}`}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group flex items-center gap-3 border p-3 transition-colors ${
-                    friend.vip
-                      ? 'border-amber-500/40 bg-amber-400/5 hover:bg-amber-400/10'
-                      : 'border-border bg-card hover:border-foreground/40'
-                  }`}
-                >
-                  <Avatar
-                    name={friend.name}
-                    src={avatar}
-                    sizeClass="size-8"
-                    radiusClass="rounded-lg"
-                    fallbackClass="text-sm"
-                    ringClass={friend.vip ? 'ring-1 ring-amber-500/60' : undefined}
-                    failed={failed.has(friend.url)}
-                    onFail={() => setFailed((prev) => new Set(prev).add(friend.url))}
-                  />
-                  <div className="flex min-w-0 flex-1 flex-col gap-0.5">
-                    <span className="flex min-w-0 items-center gap-1.5">
-                      <span className="truncate text-sm font-medium">{friend.name}</span>
-                      {friend.vip && (
-                        <span className="shrink-0 border border-amber-500/50 bg-amber-400/20 px-1 py-px text-[10px] font-bold uppercase text-amber-600 dark:text-amber-400">
-                          VIP
-                        </span>
-                      )}
-                    </span>
-                    <span className="truncate text-xs text-muted-foreground">
-                      {friend.description || friend.url}
-                    </span>
-                  </div>
-                  <Icon
-                    icon="lucide:external-link"
-                    className="size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-foreground"
-                  />
-                </a>
-              );
-            })}
+            {paginated.map((friend, i) => (
+              <FriendCard
+                // url 是投稿人可控的，两条相同 url 的友链会撞 key，带上序号
+                key={`${friend.url}-${i}`}
+                friend={friend}
+                href={safeHttpUrl(friend.url)}
+                avatar={safeHttpUrl(friend.avatar)}
+                avatarFailed={failed.has(friend.url)}
+                rich={isEffectRich(friend)}
+                onAvatarFail={() => setFailed((prev) => new Set(prev).add(friend.url))}
+              />
+            ))}
           </div>
 
           <Pagination page={currentPage} pageCount={totalPages} hrefFor={pageHref} />
