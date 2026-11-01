@@ -6,6 +6,7 @@ import { renderMarkdown, addHeadingIds } from '@/lib/render-markdown';
 import { MermaidContent } from '@/components/mermaid-renderer';
 import { Skeleton } from '@/components/ui/skeleton';
 import { readEmbeddedPostData } from '@/lib/embedded-post-data';
+import { LoadErrorPanel, useAutoReload } from '@/components/load-error';
 
 export function PostBody({ slug, domain }: { slug: string; domain?: string }) {
   // 预渲染页直开时同步读内嵌 markdown（base64，已剥离 frontmatter，见
@@ -15,6 +16,7 @@ export function PostBody({ slug, domain }: { slug: string; domain?: string }) {
   const [markdown, setMarkdown] = useState<string | null>(() => readEmbeddedPostData('post-md'));
   const [loading, setLoading] = useState(() => !markdown);
   const [error, setError] = useState('');
+  const reloadBlocked = useAutoReload(Boolean(error), 'post-md');
 
   const baseDomain = domain || 'https://raw-posts.520pro.top';
 
@@ -85,7 +87,17 @@ export function PostBody({ slug, domain }: { slug: string; domain?: string }) {
   }
 
   if (error) {
-    return <p className="text-destructive text-sm">加载失败: {error}</p>;
+    return (
+      <LoadErrorPanel
+        compact
+        title="正文没能加载"
+        detail={
+          reloadBlocked
+            ? '已经自动刷新过一次还是没拿到，可能是数据源暂时故障'
+            : '正在自动刷新，稍等一下就好'
+        }
+      />
+    );
   }
 
   return (

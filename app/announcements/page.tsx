@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router';
 import { useEffect, useMemo, useState } from 'react';
 import { Icon } from '@/components/ui/icon';
 import { renderMarkdown } from '@/lib/render-markdown';
+import { LoadErrorPanel, useAutoReload } from '@/components/load-error';
 
 const DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.520pro.top';
 
@@ -23,16 +24,26 @@ interface Announcement {
 export default function AnnouncementsPage() {
   const { slug } = useParams();
   const [list, setList] = useState<Announcement[] | null>(null);
+  const [loadError, setLoadError] = useState(false);
+  const reloadBlocked = useAutoReload(loadError, 'announcements');
 
   useEffect(() => {
     let cancelled = false;
+    setLoadError(false);
     fetch(`${DOMAIN}/announcements.json`)
-      .then((r) => (r.ok ? r.json() : null))
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
       .then((json: { announcements?: Announcement[] } | null) => {
         if (cancelled) return;
         setList(Array.isArray(json?.announcements) ? json.announcements : []);
       })
-      .catch(() => { if (!cancelled) setList([]); });
+      .catch(() => {
+        if (cancelled) return;
+        setList([]);
+        setLoadError(true);
+      });
     return () => { cancelled = true; };
   }, []);
 
@@ -49,7 +60,9 @@ export default function AnnouncementsPage() {
       <div className="flex flex-col gap-6 lg:flex-row">
         <aside className={`lg:w-72 lg:shrink-0 ${slug ? 'hidden lg:block' : ''}`}>
           <h1 className="mb-3 border-b border-border pb-2 text-xl font-bold">公告列表</h1>
-          {list === null ? (
+          {loadError ? (
+            <p className="text-sm text-muted-foreground">公告没能加载，正在自动刷新…</p>
+          ) : list === null ? (
             <p className="text-sm text-muted-foreground">加载中…</p>
           ) : list.length === 0 ? (
             <p className="text-sm text-muted-foreground">暂无公告</p>
@@ -85,7 +98,16 @@ export default function AnnouncementsPage() {
         </aside>
 
         <article className={`min-w-0 flex-1 ${slug ? '' : 'hidden lg:block'}`}>
-          {current ? (
+          {loadError ? (
+            <LoadErrorPanel
+              title="公告没能加载"
+              detail={
+                reloadBlocked
+                  ? '已经自动刷新过一次还是没拿到，可能是数据源暂时故障'
+                  : '正在自动刷新，稍等一下就好'
+              }
+            />
+          ) : current ? (
             <>
               <Link
                 to="/announcements"
@@ -119,7 +141,12 @@ export default function AnnouncementsPage() {
               </div>
             </>
           ) : list !== null && slug ? (
-            <p className="text-muted-foreground">公告不存在</p>
+            <LoadErrorPanel
+              title="公告不存在"
+              detail="公告可能刚被移动或删除，也可能是数据源一瞬间没跟上，刷新一次通常是新的"
+              backTo="/announcements"
+              backLabel="返回公告列表"
+            />
           ) : null}
         </article>
       </div>

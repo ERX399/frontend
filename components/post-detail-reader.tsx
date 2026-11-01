@@ -10,6 +10,7 @@ import { applySeo } from '@/lib/seo/apply-seo';
 import { SITE_URL } from '@/lib/seo/route-meta';
 import { readEmbeddedPostData } from '@/lib/embedded-post-data';
 import { RandomCoverImg } from '@/components/random-cover';
+import { LoadErrorPanel, useAutoReload } from '@/components/load-error';
 import { getPostPageviews, loadPageviews } from '@/lib/pageviews';
 
 const POSTS_DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.520pro.top';
@@ -62,10 +63,12 @@ export function PostDetailReader({ slug }: { slug: string }) {
   // 客户端换篇（slug 变）时这里拿不到新 slug 的内嵌数据，走 useEffect fetch。
   const [meta, setMeta] = useState<PostMeta | null>(() => readEmbeddedMeta(slug));
   const [loading, setLoading] = useState(() => meta === null);
+  const [loadFailed, setLoadFailed] = useState(false);
   const [neighbors, setNeighbors] = useState<{ prev: PostMeta | null; next: PostMeta | null }>({
     prev: null,
     next: null,
   });
+  const reloadBlocked = useAutoReload(loadFailed, 'post-meta');
 
   // 预渲染壳清理：React 已把正文渲染进自己的树，把静态壳与内嵌数据从 DOM 摘掉。
   // 壳的 wrapper 结构与 Layout 的 flex-1 pt-14 一致，摘掉后 React 的正文占同一位置，
@@ -80,8 +83,12 @@ export function PostDetailReader({ slug }: { slug: string }) {
     // 内嵌 meta 属于当前 slug（预渲染首屏）时保持可见，只静默拉 posts.json
     // 补上一篇/下一篇 + SEO；否则显示骨架
     setLoading(meta?.slug !== slug);
+    setLoadFailed(false);
     fetch(`${POSTS_DOMAIN}/posts.json`)
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
       .then((json) => {
         // 兼容旧「数组」与新「索引对象 { posts }」两种格式
         const data: PostMeta[] = Array.isArray(json) ? json : (json?.posts ?? []);
@@ -124,7 +131,10 @@ export function PostDetailReader({ slug }: { slug: string }) {
           applySeo({ title: '文章未找到', description: '你访问的文章不存在或已下线。', noindex: true });
         }
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        setLoadFailed(true);
+        setLoading(false);
+      });
   }, [slug]);
 
   if (loading) {
@@ -163,14 +173,32 @@ export function PostDetailReader({ slug }: { slug: string }) {
     );
   }
 
+  if (loadFailed && !meta) {
+    return (
+      <main className="container mx-auto max-w-2xl px-4 py-16">
+        <LoadErrorPanel
+          title="文章没能加载"
+          detail={
+            reloadBlocked
+              ? '已经自动刷新过一次还是没拿到，可能是数据源暂时故障'
+              : '数据源暂时没响应，正在自动重试'
+          }
+          backTo="/posts"
+          backLabel="返回博客列表"
+        />
+      </main>
+    );
+  }
+
   if (!meta) {
     return (
-      <main className="container mx-auto max-w-2xl px-4 py-16 text-center">
-        <h1 className="text-6xl font-bold mb-4">404</h1>
-        <p className="text-muted-foreground mb-8">文章未找到</p>
-        <Link to="/posts" className="inline-flex items-center justify-center border border-border bg-transparent px-4 py-2 text-sm font-medium text-foreground transition-colors duration-75 hover:border-foreground hover:bg-foreground hover:text-background">
-          返回博客列表
-        </Link>
+      <main className="container mx-auto max-w-2xl px-4 py-16">
+        <LoadErrorPanel
+          title="文章未找到"
+          detail="文章可能刚被移动或删除，也可能是数据源一瞬间没跟上，刷新一次通常是新的"
+          backTo="/posts"
+          backLabel="返回博客列表"
+        />
       </main>
     );
   }

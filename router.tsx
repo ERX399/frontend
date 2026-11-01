@@ -2,6 +2,7 @@ import { createBrowserRouter, Link, Navigate, Outlet, useLocation } from 'react-
 import RootLayout from '@/layouts/root-layout';
 import { redirects } from '@/lib/redirects';
 import { RedirectPageClient } from '@/app/[...slug]/redirect-page-client';
+import { RouteError } from '@/components/route-error';
 
 // 首页保持同步加载：绝大多数首次访问落在 /，避免「入口 JS → 再拉页面 chunk」的二次往返
 import HomePage from '@/app/page';
@@ -69,9 +70,11 @@ export const router = createBrowserRouter([
   {
     element: <TrailingSlashRedirect />,
     HydrateFallback: () => null,
+    ErrorBoundary: RouteError,
     children: [
       {
         element: <RootLayout />,
+        ErrorBoundary: RouteError,
         children: [
           { index: true, element: <HomePage /> },
           { path: 'posts', lazy: page(() => import('@/app/posts/page')) },

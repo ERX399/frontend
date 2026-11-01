@@ -5,6 +5,7 @@ import { Icon } from '@/components/ui/icon';
 import { FileExplorer } from '@/components/file-explorer';
 import type { FileItem } from '@/lib/file-utils';
 import { Spinner } from '@/components/ui/spinner';
+import { LoadErrorPanel, useAutoReload } from '@/components/load-error';
 
 const FILES_BASE_URL = 'https://raw-files.2x.nz';
 const FILES_INDEX_URL = `${FILES_BASE_URL}/index.json`;
@@ -13,6 +14,7 @@ export function FilesClient({ initial }: { initial?: FileItem[] | null } = {}) {
   const [fileTree, setFileTree] = useState<FileItem[] | null>(initial ?? null);
   const [loading, setLoading] = useState(!initial);
   const [error, setError] = useState<string | null>(null);
+  const reloadBlocked = useAutoReload(Boolean(error), 'files-index');
 
   useEffect(() => {
     if (initial) return; // 已由 loader 服务端取好
@@ -73,9 +75,15 @@ export function FilesClient({ initial }: { initial?: FileItem[] | null } = {}) {
             </div>
           )}
           {error && (
-            <div className="rounded-lg border border-destructive/50 bg-destructive/10 p-4 text-center text-sm text-destructive">
-              加载失败：{error}
-            </div>
+            <LoadErrorPanel
+              compact
+              title="文件索引没能加载"
+              detail={
+                reloadBlocked
+                  ? `已经自动刷新过一次还是没拿到（${error}），可能是数据源暂时故障`
+                  : `加载失败：${error}，正在自动刷新`
+              }
+            />
           )}
           {fileTree && <FileExplorer items={fileTree} baseUrl={FILES_BASE_URL} />}
         </div>

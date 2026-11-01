@@ -8,6 +8,7 @@ import { Pagination } from '@/components/pagination';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import { siteConfig } from '@/lib/config/site';
+import { LoadErrorPanel, useAutoReload } from '@/components/load-error';
 
 interface Friend {
   name: string;
@@ -222,6 +223,8 @@ export function LinksClient({
   const [loadingSponsors, setLoadingSponsors] = useState(!initialSponsors);
   const [failedFriends, setFailedFriends] = useState<Set<string>>(new Set());
   const [failedSponsors, setFailedSponsors] = useState<Set<string>>(new Set());
+  const [friendsLoadError, setFriendsLoadError] = useState(false);
+  const reloadBlocked = useAutoReload(friendsLoadError, 'friends');
   const itemsPerPage = 12;
 
   // 翻页与搜索都挂在 URL 上：此前是 useState + onClick 按钮，禁用 JS 时
@@ -234,6 +237,7 @@ export function LinksClient({
 
   useEffect(() => {
     if (initialFriends) return; // 已由 loader 服务端取好
+    setFriendsLoadError(false);
     fetch(`${API}/friends.json`)
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -243,7 +247,10 @@ export function LinksClient({
         setFriends(byEffectThenVip(data as Friend[]));
         setLoadingFriends(false);
       })
-      .catch(() => setLoadingFriends(false));
+      .catch(() => {
+        setFriendsLoadError(true);
+        setLoadingFriends(false);
+      });
   }, []);
 
   useEffect(() => {
@@ -299,6 +306,8 @@ export function LinksClient({
           filtered={filteredFriends}
           paginated={paginatedFriends}
           loading={loadingFriends}
+          loadError={friendsLoadError}
+          reloadBlocked={reloadBlocked}
           failed={failedFriends}
           setFailed={setFailedFriends}
           searchQuery={searchQuery}
@@ -381,6 +390,8 @@ function FriendsSection({
   filtered,
   paginated,
   loading,
+  loadError,
+  reloadBlocked,
   failed,
   setFailed,
   searchQuery,
@@ -392,6 +403,8 @@ function FriendsSection({
   filtered: Friend[];
   paginated: Friend[];
   loading: boolean;
+  loadError: boolean;
+  reloadBlocked: boolean;
   failed: Set<string>;
   setFailed: React.Dispatch<React.SetStateAction<Set<string>>>;
   searchQuery: string;
@@ -450,6 +463,8 @@ function FriendsSection({
             <Skeleton key={i} className="h-[56px]" />
           ))}
         </div>
+      ) : loadError ? (
+        <LoadErrorPanel compact title="友链没能加载" detail={reloadBlocked ? '已经自动刷新过一次还是没拿到，可能是数据源暂时故障' : '正在自动刷新，稍等一下就好'} />
       ) : friends.length === 0 ? (
         <p className="border-y border-border py-12 text-center text-muted-foreground">暂无友链</p>
       ) : filtered.length === 0 ? (

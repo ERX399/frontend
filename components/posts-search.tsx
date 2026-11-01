@@ -5,6 +5,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { coverThumb } from '@/lib/cover-thumb';
 import { RandomCoverImg, isRandomCover } from '@/components/random-cover';
 import { getPostPageviews } from '@/lib/pageviews';
+import { LoadErrorPanel, useAutoReload } from '@/components/load-error';
 
 const DOMAIN = import.meta.env.VITE_POSTS_DOMAIN || 'https://raw-posts.520pro.top';
 
@@ -100,6 +101,8 @@ export function PostsSearch() {
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+  const reloadBlocked = useAutoReload(loadError, 'posts-list');
 
   // 分页态：按需缓存每一页；元信息来自 posts-0.json / posts.json 索引
   const [pageCache, setPageCache] = useState<Map<number, PostEntry[]>>(new Map());
@@ -124,6 +127,7 @@ export function PostsSearch() {
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
+    setLoadError(false);
     fetchPage(0)
       .then((posts) => {
         if (cancelled) return;
@@ -133,7 +137,10 @@ export function PostsSearch() {
       .catch(() => {
         // 回退：老后端没有分页文件，一次性取全量并客户端分页
         fetch(`${DOMAIN}/posts.json`)
-          .then((r) => r.json())
+          .then((r) => {
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            return r.json();
+          })
           .then((json) => {
             if (cancelled) return;
             legacyRef.current = true;
@@ -147,7 +154,11 @@ export function PostsSearch() {
             setPageCache(cache);
             setLoading(false);
           })
-          .catch(() => { if (!cancelled) setLoading(false); });
+          .catch(() => {
+            if (cancelled) return;
+            setLoadError(true);
+            setLoading(false);
+          });
       });
     return () => { cancelled = true; };
   }, [fetchPage]);
@@ -433,6 +444,15 @@ export function PostsSearch() {
             )}
           </>
         )
+      ) : loadError ? (
+        <LoadErrorPanel
+          title="文章列表没能加载"
+          detail={
+            reloadBlocked
+              ? '已经自动刷新过一次还是没拿到，可能是数据源暂时故障'
+              : '正在自动刷新，稍等一下就好'
+          }
+        />
       ) : currentPosts.length === 0 ? (
         <p className="text-muted-foreground">暂无文章</p>
       ) : (
