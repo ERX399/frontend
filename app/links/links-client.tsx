@@ -341,7 +341,10 @@ function SponsorsSection({
   setFailed: React.Dispatch<React.SetStateAction<Set<string>>>;
 }) {
   return (
-    <section className="flex flex-col gap-4">
+    <section
+      id="sponsors"
+      className="flex scroll-mt-[calc(var(--site-header-height)+1rem)] flex-col gap-4"
+    >
       <h2 className="text-xl font-semibold tracking-tight md:text-2xl">赞助支持</h2>
 
       {loading ? (

@@ -8,6 +8,10 @@ import './styles/hljs.css';
 
 installAutoReload();
 
+document.addEventListener('contextmenu', (event) => {
+  event.preventDefault();
+}, { capture: true });
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={router} />

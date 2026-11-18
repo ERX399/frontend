@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Icon } from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -54,6 +54,13 @@ export function CookieConsent() {
     functional: false,
     analytics: false,
   });
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // 弹窗打开时把焦点移进弹窗，否则键盘 Tab 会落到遮罩背后的页面元素上
+  useEffect(() => {
+    if (!view) return;
+    dialogRef.current?.focus();
+  }, [view]);
 
   // Apply consent by dispatching event
   const applyConsent = useCallback((prefs: ConsentPreferences) => {
@@ -111,6 +118,28 @@ export function CookieConsent() {
     setView('banner');
   }, []);
 
+  // 焦点循环：Tab 到最后一个可聚焦元素后回到第一个，Shift+Tab 反向同理
+  const trapFocus = useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== 'Tab') return;
+    const root = event.currentTarget;
+    const focusable = Array.from(
+      root.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter((el) => el.offsetParent !== null);
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement;
+    if (event.shiftKey && (active === first || active === root)) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }, []);
+
   // Handle open_preferences_center clicks
   useEffect(() => {
     const handleClick = (e: Event) => {
@@ -146,7 +175,15 @@ export function CookieConsent() {
     <>
       {/* Banner */}
       {view === 'banner' && (
-        <div className="fixed inset-0 z-50 bg-background/80">
+        <div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="cookie-consent-title"
+          tabIndex={-1}
+          onKeyDown={trapFocus}
+          className="fixed inset-0 z-50 bg-background/80 outline-none"
+        >
           {/* 手机上横幅整块贴到屏幕底边：外层不留内边距，卡片自己去掉左右和
               底边的框（下边缘就是屏幕边缘，那条线没有意义）。md 起恢复成浮块。
               这里必须显式写 mx-0 —— Card 默认带 -mx-4 是为了抵消页面容器的
@@ -154,7 +191,7 @@ export function CookieConsent() {
           <div className="fixed bottom-0 left-0 right-0 p-0 md:p-6">
             <Card className="mx-0 max-w-3xl border-b-0 md:mx-auto md:border">
               <CardHeader className="pb-2">
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle id="cookie-consent-title" className="flex items-center gap-2">
                   <Icon icon="lucide:cookie" className="h-5 w-5" />
                   隐私与协议
                 </CardTitle>

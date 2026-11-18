@@ -7,6 +7,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html {
+  -webkit-touch-callout: none;
+}
+
 /* ── Shell UI ─────────────────────────────────────────────────────────────
    终端 shell 设计系统：近黑灰阶背景、柔和高对比、实色 1px 边框、零圆角、反色选择。
    对比度对齐主流暗色模式（VS Code/GitHub/Material）：背景 oklch(0.205)≈#171717，

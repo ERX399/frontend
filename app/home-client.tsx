@@ -50,7 +50,7 @@ const FEATURES: Array<{
     cta: '查看友链',
     ctas: [
       { label: '查看友链', href: '/links' },
-      { label: '查看赞助', href: '/links' },
+      { label: '查看赞助', href: '/links#sponsors' },
     ],
   },
 ];

@@ -10,6 +10,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { SeoManager } from '@/components/seo-manager';
 import { FloatingActions } from '@/components/floating-actions';
 import { CodeCopyListener } from '@/components/code-copy-listener';
+import { ScrollManager } from '@/components/scroll-manager';
 
 export default function RootLayout() {
   const [mode, toggleMode] = useSidebarMode();
@@ -55,6 +56,7 @@ export default function RootLayout() {
 
       <FloatingActions />
       <CodeCopyListener />
+      <ScrollManager />
       <CookieConsent />
       <Toaster />
       <Analytics />
